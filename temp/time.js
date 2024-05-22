@@ -3,6 +3,12 @@ let hoursNow = 0;
 let ingresso = 0;
 timeNow = new Date();
 hoursNow = parseFloat(timeNow.toLocaleTimeString());
+hoursString = "16:55"
+hoursStringNumber = parseInt(hoursString); 
+if(hoursNow < hoursStringNumber){
+    console.log("aaa " + hoursStringNumber);
+}
+
 let diaHoje = timeNow.getDate();
 if (hoursNow >= 17){
     ingresso = 0;
