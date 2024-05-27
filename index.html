@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineDv</title>
-    <link rel="stylesheet" href="resources/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/normalize.css">
     <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="resources/css/bootstrap-custom.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="assets/framework/bootstrap-custom.css">
+    <link rel="stylesheet" href="assets/index-assets/index.css">
 </head>
 <body>
     <header> 
@@ -26,35 +26,34 @@
         <nav> <!--Programação-->
             <h3>SCHEDULE:</h3>
             <hr>
-            <div>
-                <div>
+            <div class="row">
+                <div class="col 2">
+                    <button id="sun">SUNDAY</button>
+                    <p></p>
+                </div>
+                <div class="col 2">
                     <button id="tue">TUESDAY</button>
                     <p></p>
                 </div>
-                <div>
+                <div class="col 2">
                     <button id="wed">WEDNESDAY</button>
                     <p></p>
                 </div>
-                <div>
+                <div class="col 2">
                     <button id="thu">THURSDAY</button>
                     <p></p>
                 </div>
-                <div>
+                <div class="col 2">
                     <button id="fri">FRIDAY</button>
                     <p></p>
                 </div>
-                <div>
+                <div class="col 2">
                     <button id="sat">SATURDAY</button>
                     <p></p>
                 </div>
-                <div>
-                    <button id="sun">SUNDAY</button>
-                    <p></p>
-                    
-                </div>
             </div>
-            <div id="teste"></div>
-            <small>all sessions schedule</small>
+            <small>all sessions schedule - P.M </small>
+            <div id="teste" class="row"></div>
         </nav> <!--Programação-->
     </header>
     <main>
@@ -147,6 +146,6 @@
     <script> src="/node_modules/@popperjs/core/dist/umd/popper.min.js"</script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/node_modules/axios/dist/axios.min.js"></script>
-    <script src="index.js" type="module"></script>
+    <script src="assets/index-assets/index.js" type="module"></script>
 </body>
 </html>
