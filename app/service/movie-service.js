@@ -32,6 +32,7 @@ async function selectedMoviesAPI(){
             image: item.image,
             timeline: item.timeline
             }));
+            console.log(newData);
         return newData;
     } catch(error){
         return [];

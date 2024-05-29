@@ -1,4 +1,3 @@
-//carregar cards
 import { movieSelected } from "../../app/service/movie-service.js";
 import { MovieSchedules } from "../../app/model/movie-schedule.js";
 import { MoviesDay } from "../../app/service/movies-day.js";
@@ -33,9 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', async () => {  
     let aa = new MoviesDay();
+
     let aaa = await aa.sunMovie();
     let bbb = await aa.tueMovie();
     let ccc = await aa.wedMovie();
+ 
     console.log(ccc);
     console.log(bbb);
     console.log(aaa);
@@ -75,12 +76,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         let day = 0;
         let movie = await new MoviesDay().getMovieDay(day);
         let div = document.getElementById('teste');
-        let schedule = new MovieSchedules().sunSchedule();
-        let scheduleHTML = ``;
-        for(let i = 0; i < schedule.length; i++){
-            scheduleHTML = scheduleHTML + 
-            `<p>${schedule[i]}</p>`
-        }
+        let scheduleDay = new MoviesDay();
+        let schedule = await scheduleDay.getScheduleDiv(day);
+        console.log(schedule);
+        console.log(movie);
         let cardHTML = ``;
         for (let i = 0; i < movie.length; i++){
             cardHTML = cardHTML +
@@ -93,7 +92,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
                 </div>
                 <div>
-                    <div id="moviue-schedule"></div>
+                    <div class="movie-schedule">
+                    ${schedule[i]}
+                    </div>
                     <a href="">view more</a>
                 </div> 
             </div>`;
@@ -113,6 +114,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         let day = 2;
         let movie = await new MoviesDay().getMovieDay(day);
         let div = document.getElementById('teste');
+        let scheduleDay = new MoviesDay();
+        let schedule = await scheduleDay.getScheduleDiv(day);
+        console.log(schedule);
+        console.log(movie);
         let cardHTML = ``;
         for (let i = 0; i < movie.length; i++){
             cardHTML = cardHTML +
@@ -125,7 +130,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
                 </div>
                 <div>
-                    <div id="moviue-schedule"></div>
+                    <div class="movie-schedule">
+                    ${schedule[i]}
+                    </div>
                     <a href="">view more</a>
                 </div> 
             </div>`;
@@ -138,6 +145,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         let day = 3;
         let movie = await new MoviesDay().getMovieDay(day);
         let div = document.getElementById('teste');
+        let scheduleDay = new MoviesDay();
+        let schedule = await scheduleDay.getScheduleDiv(day);
+        console.log(schedule);
+        console.log(movie);
         let cardHTML = ``;
         for (let i = 0; i < movie.length; i++){
             cardHTML = cardHTML +
@@ -150,7 +161,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
                 </div>
                 <div>
-                    <div id="moviue-schedule"></div>
+                    <div class="movie-schedule">
+                    ${schedule[i]}
+                    </div>
                     <a href="">view more</a>
                 </div> 
             </div>`;
@@ -163,6 +176,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         let day = 4;
         let movie = await new MoviesDay().getMovieDay(day);
         let div = document.getElementById('teste');
+        let scheduleDay = new MoviesDay();
+        let schedule = await scheduleDay.getScheduleDiv(day);
+        console.log(schedule);
+        console.log(movie);
         let cardHTML = ``;
         for (let i = 0; i < movie.length; i++){
             cardHTML = cardHTML +
@@ -175,7 +192,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
                 </div>
                 <div>
-                    <div id="moviue-schedule"></div>
+                    <div class="movie-schedule">
+                    ${schedule[i]}
+                    </div>
                     <a href="">view more</a>
                 </div> 
             </div>`;
@@ -188,6 +207,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         let day = 5;
         let movie = await new MoviesDay().getMovieDay(day);
         let div = document.getElementById('teste');
+        let scheduleDay = new MoviesDay();
+        let schedule = await scheduleDay.getScheduleDiv(day);
+        console.log(schedule);
+        console.log(movie);
         let cardHTML = ``;
         for (let i = 0; i < movie.length; i++){
             cardHTML = cardHTML +
@@ -200,7 +223,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
                 </div>
                 <div>
-                    <div id="moviue-schedule"></div>
+                    <div class="movie-schedule">
+                    ${schedule[i]}
+                    </div>
                     <a href="">view more</a>
                 </div> 
             </div>`;
@@ -213,6 +238,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         let day = 6;
         let movie = await new MoviesDay().getMovieDay(day);
         let div = document.getElementById('teste');
+        let scheduleDay = new MoviesDay();
+        let schedule = await scheduleDay.getScheduleDiv(day);
+        console.log(schedule);
+        console.log(movie);
         let cardHTML = ``;
         for (let i = 0; i < movie.length; i++){
             cardHTML = cardHTML +
@@ -225,7 +254,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
                 </div>
                 <div>
-                    <div id="moviue-schedule"></div>
+                    <div class="movie-schedule">
+                    ${schedule[i]}
+                    </div>
                     <a href="">view more</a>
                 </div> 
             </div>`;
