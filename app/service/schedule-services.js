@@ -22,7 +22,6 @@ export class Schedule{
     currentTime(){
         const date = new Date();
         let hours = date.getHours();
-        console.log(hours)
         const minutes = String(date.getMinutes());
         
         const ampm = hours >= 12 ? 'PM' : 'AM';
@@ -51,7 +50,31 @@ export class Schedule{
     toTimeString(minutes) {
         const hours = Math.floor(minutes / 60);
         const mins = minutes % 60;
-        return `${hours}:${mins.toString().padStart(2, '0')}`;
+        return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
     }
+
+    getCurrentFormatedDates(){
+        const date = new Date();
+        let currentDate = date.getDate();
+        let currentMonth = date.getMonth() + 1;
+        const year = date.getFullYear();
+
+        const firstDayNextMonth = new Date(year, currentMonth, 1);
+        const lastDayCurrentMonth = new Date(firstDayNextMonth - 1).getDate();
+        let dates = [];
+        for(let i = 0; i <= 6; i++){
+            if(currentDate > lastDayCurrentMonth){ 
+                currentDate = 1;
+                currentMonth = currentMonth + 1;
+                if(currentMonth > 12){
+                    currentMonth = 1;
+                }
+            }
+            dates.push(`${currentMonth.toString().padStart(2, '0')}/${currentDate.toString().padStart(2,'0')}`);
+            currentDate++;
+        }
+        return dates;
+    }
+
 
 }

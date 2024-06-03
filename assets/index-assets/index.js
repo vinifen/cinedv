@@ -1,269 +1,146 @@
-import { movieSelected } from "../../app/service/movie-service.js";
-import { MovieSchedules } from "../../app/model/movie-schedule.js";
-import { MoviesDay } from "../../app/service/movies-day.js";
+import { moviesApiSelected, upComingMovies } from "../../app/service/movies-api.js";
+import { MovieContent } from "../../app/service/movies-content.js";
+import { Schedule } from "../../app/service/schedule-services.js";
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("oi");
-    let movieSchedules = new MovieSchedules().timeChecker();
-    console.log(movieSchedules);
-    let div = document.getElementById('teste');
-    var cardHTML = ``;
-    for (let i = 0; i < 8; i++){
+    const div = document.getElementById('movies-cards');
+    let cardHTML = ``;
+    for (let i = 0; i < 4; i++){
         cardHTML = cardHTML +
-        `<div class="card col">
-            <div>
-                <h3></h3>
-                <p></p>
+        `<div class="card col-12 col-md-3">
+        <div>
+            <h3></h3>
+            <p class="timeline"></p>
+        </div>
+        <div>  
+        <img class="imagem" class="img-fluid" src="/cinedv/assets/img/skeleton-movie.webp" alt="">
+        </div>
+        <div>
+            <div class="container">
+                <div class="movie-schedule">
+                    <div class="row">
+                        
+                    </div>
+                    <a href="" class="text-center">view more</a>
+                </div>
             </div>
-            <div>  
-                <img class="imagem" src="" alt="">
-            </div>
-            <div>
-                <div id="moviue-schedule"></div>
-                <div class="hora1">10:00</div>
-                <a href="">view more</a>
-            </div> 
+        </div> 
         </div>`;
     }
     div.innerHTML = cardHTML;
 });
 
-
+//carregar cards
 document.addEventListener('DOMContentLoaded', async () => {  
-    let aa = new MoviesDay();
+    let sapo = await upComingMovies;
+    console.log(sapo);
+    await moviesApiSelected;
+    const
+        date = new Date(),
+        currentDay = date.getDay(),
+        daysButtonsElements = [ 
+            document.getElementById('sun'),
+            document.getElementById('mon'),
+            document.getElementById('tue'),
+            document.getElementById('wed'),
+            document.getElementById('thu'),
+            document.getElementById('fri'),
+            document.getElementById('sat'),
+        ],
+        dateElements = [ 
+            document.getElementById('sun-date'),
+            document.getElementById('mon-date'),
+            document.getElementById('tue-date'),
+            document.getElementById('wed-date'),
+            document.getElementById('thu-date'),
+            document.getElementById('fri-date'),
+            document.getElementById('sat-date'),
+        ];
 
-    let aaa = await aa.sunMovie();
-    let bbb = await aa.tueMovie();
-    let ccc = await aa.wedMovie();
- 
-    console.log(ccc);
-    console.log(bbb);
-    console.log(aaa);
-});
+    function renderDates(){
 
-//carregar api e cards
-document.addEventListener('DOMContentLoaded', async () => {  
+        const dates = new Schedule().getCurrentFormatedDates();
+        for(let i = 0; i < dateElements.length; i++){
+            let index = (currentDay + i) % dateElements.length;
+            dateElements[index].innerHTML = dates[i];
+        }
+    }
+    renderDates();
 
-    let currentDay = new Date().getDay();
-    switch (currentDay) {
-        case 0:
-            sunday();
-            break;
-        case 1:
-            wednesday();
-            break;
-        case 2:
-            tuesday();
-            break;
-        case 3:
-            wednesday();
-            break;
-        case 4:
-            thursday();
-            break;
-        case 5:
-            friday();
-            break;
-        case 6:
-            saturday();
-            break;
-        default:
-            error = -1;
+
+    daysButtonsElements.forEach((dayId, dayIndex) => {dayId.addEventListener('click', () => {getMoviesContent(dayIndex), changeButtonStyles(dayIndex)})})
+
+    async function changeButtonStyles(day){
+
+        daysButtonsElements.forEach(button => {
+            button.classList.remove('selected-button');
+        });
+        dateElements.forEach(date => {
+            date.classList.remove('selected-date-button');
+        });
+        daysButtonsElements[day].classList.add('selected-button');
+        dateElements[day].classList.add('selected-date-button');
+    }
+    changeButtonStyles(currentDay);
+
+
+    async function getMoviesContent(day){
+
+        const div = document.getElementById('movies-cards');
+        if(day == 1)
+            div.innerHTML = `<p>We are not open on Mondays</p>`;
+        else{  
+            const movies = await new MovieContent().getMoviesDay(day);
+            const schedule = await new MovieContent().getScheduleDayDiv(day);
+            div.innerHTML = movies.map((_, index) => renderMoviesCards(movies, index, schedule)).join('');
+        }
+    }
+    getMoviesContent(currentDay);
+
+
+    function renderMoviesCards(movie, i, schedule){
+        
+        const card =
+        `<div class="card col-12 col-md-3">
+            <div>
+                <h3>${movie[i].title}</h3>
+                <p class="timeline">${movie[i].runtime}</p>
+            </div>
+            <div>  
+                <img class="imagem" class="img-fluid" src="${movie[i].poster_path}" alt="">
+            </div>
+            <div>
+                <div class="container">
+                    <div class="movie-schedule">
+                        <div class="row">
+                            ${schedule[i]}
+                        </div>
+                        <a href="" class="text-center">view more</a>
+                    </div>
+                </div>
+            </div> 
+        </div>`;
+        return card;
     }
 
-    document.getElementById('sun').onclick=async function sunday(){
-        let day = 0;
-        let movie = await new MoviesDay().getMovieDay(day);
-        let div = document.getElementById('teste');
-        let scheduleDay = new MoviesDay();
-        let schedule = await scheduleDay.getScheduleDiv(day);
-        console.log(schedule);
-        console.log(movie);
-        let cardHTML = ``;
-        for (let i = 0; i < movie.length; i++){
-            cardHTML = cardHTML +
+    async function renderUpComingMovies(){
+        const divUpComingMovies = document.getElementById('upcoming-movies');
+        const upComingMoviesInstance = await upComingMovies;
+        let cardHTMLupcomingMovies = '';
+        for(let i = 0; i < upComingMoviesInstance.length; i++){ 
+            cardHTMLupcomingMovies = cardHTMLupcomingMovies +
             `<div class="card col-12 col-md-3">
-                <div>
-                    <h3>${movie[i].title}</h3>
-                    <p class="timeline">${movie[i].timeline}</p>
+                <div class="container">
+                    <img class="imagem" class="img-fluid" src="${upComingMoviesInstance[i].poster_path}" alt="">
                 </div>
-                <div>  
-                    <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
-                </div>
-                <div>
-                    <div class="movie-schedule">
-                    ${schedule[i]}
-                    </div>
-                    <a href="">view more</a>
-                </div> 
             </div>`;
         }
-        div.innerHTML = cardHTML;
+        divUpComingMovies.innerHTML = cardHTMLupcomingMovies;
     }
+    renderUpComingMovies();
 
     
-    async function monday(){ 
-        let div = document.getElementById('teste');
-        let cardHTML = '<p> Nao abrimos segunda feira <p>';
-        div.innerHTML = cardHTML;
-    }
-    document.getElementById('mon').addEventListener('click', monday);
-
-    async function tuesday(){
-        let day = 2;
-        let movie = await new MoviesDay().getMovieDay(day);
-        let div = document.getElementById('teste');
-        let scheduleDay = new MoviesDay();
-        let schedule = await scheduleDay.getScheduleDiv(day);
-        console.log(schedule);
-        console.log(movie);
-        let cardHTML = ``;
-        for (let i = 0; i < movie.length; i++){
-            cardHTML = cardHTML +
-            `<div class="card col-12 col-md-3">
-                <div>
-                    <h3>${movie[i].title}</h3>
-                    <p class="timeline">${movie[i].timeline}</p>
-                </div>
-                <div>  
-                    <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
-                </div>
-                <div>
-                    <div class="movie-schedule">
-                    ${schedule[i]}
-                    </div>
-                    <a href="">view more</a>
-                </div> 
-            </div>`;
-        }
-        div.innerHTML = cardHTML;
-    }
-    document.getElementById('tue').addEventListener('click', tuesday);
-
-    async function wednesday(){
-        let day = 3;
-        let movie = await new MoviesDay().getMovieDay(day);
-        let div = document.getElementById('teste');
-        let scheduleDay = new MoviesDay();
-        let schedule = await scheduleDay.getScheduleDiv(day);
-        console.log(schedule);
-        console.log(movie);
-        let cardHTML = ``;
-        for (let i = 0; i < movie.length; i++){
-            cardHTML = cardHTML +
-            `<div class="card col-12 col-md-3">
-                <div>
-                    <h3>${movie[i].title}</h3>
-                    <p class="timeline">${movie[i].timeline}</p>
-                </div>
-                <div>  
-                    <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
-                </div>
-                <div>
-                    <div class="movie-schedule">
-                    ${schedule[i]}
-                    </div>
-                    <a href="">view more</a>
-                </div> 
-            </div>`;
-        }
-        div.innerHTML = cardHTML;
-    }
-    document.getElementById('wed').addEventListener('click', wednesday);
-
-    async function thursday(){
-        let day = 4;
-        let movie = await new MoviesDay().getMovieDay(day);
-        let div = document.getElementById('teste');
-        let scheduleDay = new MoviesDay();
-        let schedule = await scheduleDay.getScheduleDiv(day);
-        console.log(schedule);
-        console.log(movie);
-        let cardHTML = ``;
-        for (let i = 0; i < movie.length; i++){
-            cardHTML = cardHTML +
-            `<div class="card col-12 col-md-3">
-                <div>
-                    <h3>${movie[i].title}</h3>
-                    <p class="timeline">${movie[i].timeline}</p>
-                </div>
-                <div>  
-                    <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
-                </div>
-                <div>
-                    <div class="movie-schedule">
-                    ${schedule[i]}
-                    </div>
-                    <a href="">view more</a>
-                </div> 
-            </div>`;
-        }
-        div.innerHTML = cardHTML;
-    }
-    document.getElementById('thu').addEventListener('click', thursday);
-
-    async function friday(){
-        let day = 5;
-        let movie = await new MoviesDay().getMovieDay(day);
-        let div = document.getElementById('teste');
-        let scheduleDay = new MoviesDay();
-        let schedule = await scheduleDay.getScheduleDiv(day);
-        console.log(schedule);
-        console.log(movie);
-        let cardHTML = ``;
-        for (let i = 0; i < movie.length; i++){
-            cardHTML = cardHTML +
-            `<div class="card col-12 col-md-3">
-                <div>
-                    <h3>${movie[i].title}</h3>
-                    <p class="timeline">${movie[i].timeline}</p>
-                </div>
-                <div>  
-                    <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
-                </div>
-                <div>
-                    <div class="movie-schedule">
-                    ${schedule[i]}
-                    </div>
-                    <a href="">view more</a>
-                </div> 
-            </div>`;
-        }
-        div.innerHTML = cardHTML;
-    }
-    document.getElementById('fri').addEventListener('click', friday);
-
-    async function saturday(){
-        let day = 6;
-        let movie = await new MoviesDay().getMovieDay(day);
-        let div = document.getElementById('teste');
-        let scheduleDay = new MoviesDay();
-        let schedule = await scheduleDay.getScheduleDiv(day);
-        console.log(schedule);
-        console.log(movie);
-        let cardHTML = ``;
-        for (let i = 0; i < movie.length; i++){
-            cardHTML = cardHTML +
-            `<div class="card col-12 col-md-3">
-                <div>
-                    <h3>${movie[i].title}</h3>
-                    <p class="timeline">${movie[i].timeline}</p>
-                </div>
-                <div>  
-                    <img class="imagem" class="img-fluid" src="${movie[i].image}" alt="">
-                </div>
-                <div>
-                    <div class="movie-schedule">
-                    ${schedule[i]}
-                    </div>
-                    <a href="">view more</a>
-                </div> 
-            </div>`;
-        }
-        div.innerHTML = cardHTML;
-    }
-    document.getElementById('sat').addEventListener('click', saturday);
 });
 
 

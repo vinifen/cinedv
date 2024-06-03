@@ -15,3 +15,23 @@ h3{
     font-size: 0.8em;
 }
 
+.selected-button{
+    font-size: 1.2em;
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #96081B,  
+        1px -1px 0 #96081B,
+        -1px 1px 0 #96081B,
+        1px 1px 0 #96081B;
+}
+
+.selected-date-button{
+    font-size: 1em;
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #96081B,  
+        1px -1px 0 #96081B,
+        -1px 1px 0 #96081B,
+        1px 1px 0 #96081B;
+}
+
