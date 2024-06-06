@@ -66,7 +66,7 @@ export class MovieContent{
     async getScheduleDayDiv(day){
         const selectedSchedule = await this.getSelectedSchedule(day);
         const timeDiv = selectedSchedule.map(sublist => {
-            return sublist.map(time => `<div class="col-4">${time}</div>`).join('');
+            return sublist.map(time => `<div class="m-1 p-1 bg-black">${time}</div>`).join('');
         });
         return timeDiv;
     }

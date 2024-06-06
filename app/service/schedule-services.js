@@ -75,6 +75,4 @@ export class Schedule{
         }
         return dates;
     }
-
-
 }

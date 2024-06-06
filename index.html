@@ -4,69 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineDv</title>
-    <link rel="stylesheet" href="assets/css/normalize.css">
     <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/framework/bootstrap-custom.css">
     <link rel="stylesheet" href="assets/index-assets/index.css">
 </head>
 <body>
     <header class="overflow-x-hidden"> 
-        <nav> <!-- barra navegação-->
+        <nav class="bg-primary">
+            <div class="container d-flex justify-content-between align-items-center" style="height: 55px;">
+                <!-- Logo e título à esquerda -->
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="/cinedv/assets/img/logo-cinedv.png" id="logo" alt="Logo">
+                    <h1 class="mb-0 mr-2">Cine<span>DV</span></h1>
+                </a>
+                <!-- Login à direita -->
+                <a href="app/pages/login/login.html" class="d-flex align-items-center text-white text-decoration-none">
+                    <p class="m-0 m-2 fw-bold">LOGIN</p>
+                    <i class="bi bi-person-circle fs-2"></i>
+                </a>
+            </div>
+        </nav>
+        <div class="backgroud-logo d-flex align-items-center justify-content-center" style="height: 150px;"> <!--Logo e fundo-->
             <div>
-                <img src="" alt="">
-                <h1>Cine <span>DV</span></h1>
-                <div>
-                    <div class="bi bi-person-circle">
-                </div>
+                <img src="assets/img/logo-cinedv-bonito-fotor-bg-remover-2024042512270.png" id="logo2" alt="">
             </div>
-        </nav> <!-- barra navegação-->
-        <div> <!--Logo e fundo-->
-            <div></div>
         </div> <!--Logo e fundo-->
-        <nav> <!--Programação-->
-            <h3>SCHEDULE:</h3>
-            <hr>
-            <div class="row">
-                <div class="col 2">
-                    <div class="bi bi-chevron-compact-left fs-3"></div>
+        <nav class="bg-primary text-center"> <!--Programação-->
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-center">
+                    <h3>SCHEDULE:</h3>
                 </div>
-                <div class="col 2">
-                    <button id="sun">SUNDAY</button>
-                    <p id="sun-date"></p>
-                </div>
-                <div class="col 2">
-                    <button id="mon">MONDAY</button>
-                    <p id="mon-date"></p>
-                </div>
-                <div class="col 2">
-                    <button id="tue">TUESDAY</button>
-                    <p id="tue-date"></p>
-                </div>
-                <div class="col 2">
-                    <button id="wed">WEDNESDAY</button>
-                    <p id="wed-date"></p>
-                </div>
-                <div class="col 2">
-                    <button id="thu">THURSDAY</button>
-                    <p id="thu-date"></p>
-                </div>
-                <div class="col 2">
-                    <button id="fri">FRIDAY</button>
-                    <p id="fri-date"></p>
-                </div>
-                <div class="col 2">
-                    <button id="sat">SATURDAY</button>
-                    <p id="sat-date"></p>
-                </div>
-                <div class="col 2">
-                    <div class="bi bi-chevron-compact-right fs-3"></div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="row border-top d-flex align-items-center justify-content-around flex-nowrap">
+                        <div class="col 3">
+                            <button id="sun">SUNDAY</button>
+                            <p id="sun-date"></p>
+                        </div>
+                        <div class="col 3">
+                            <button id="mon">MONDAY</button>
+                            <p id="mon-date"></p>
+                        </div>
+                        <div class="col 3">
+                            <button id="tue">TUESDAY</button>
+                            <p id="tue-date"></p>
+                        </div>
+                        <div class="col 3" >
+                            <button id="wed">WEDNESDAY</button>
+                            <p id="wed-date"></p>
+                        </div>
+                        <div class="col 3">
+                            <button id="thu">THURSDAY</button>
+                            <p id="thu-date"></p>
+                        </div>
+                        <div class="col 3">
+                            <button id="fri">FRIDAY</button>
+                            <p id="fri-date"></p>
+                        </div>
+                        <div class="col 3">
+                            <button id="sat">SATURDAY</button>
+                            <p id="sat-date"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <small>all sessions schedule - P.M </small>
-            <div id="movies-cards" class="row"></div>
-        </nav> <!--Programação-->
+        </nav>
     </header>
-    <main>
+    <main class="overflow-x-hidden bg-black text-center" >
+        <small >all sessions schedule - P.M </small>
+        <div class="container" style="width: 50%;">
+            <div id="movies-cards" class="row container"></div> 
+        </div>
         <div> <!--Filmes em cartaz-->
             <div></div>
         </div> <!--Filmes em cartaz-->
@@ -74,25 +81,31 @@
             <h3>Coming soon</h3>
             <div id="upcoming-movies" class="row"></div>
         </div> <!--Filmes em BREVE-->
-        <div> <!--Descobra nosso lugar-->
-            <h3>Discover Our Space</h3>
-            <div>
-                <img src="" alt="">
-                <h4></h4>
-            </div>
-            <div>
-                <img src="" alt="">
-                <h4></h4>
-            </div>
-            <div>
-                <img src="" alt="">
-                <h4></h4>
-            </div>
-            <div>
-                <img src="" alt="">
-                <h4></h4>
-            </div>
-        </div> <!--Descobra nosso lugar-->
+        <div class="d-flex align-items-center justify-content-around">
+            <div class="container row imgs-cinema"> <!--Descobra nosso lugar-->
+                <h3>Discover Our Space</h3>
+                <div class="col-3">
+                    <img class="img-fluid" src="assets/img/cine-apu1.jpg" alt="">
+                    <h4></h4>
+                </div>
+                <div class="col-3">
+                    <img class="img-fluid" src="assets/img/cine_g_3.jpg" alt="">
+                    <h4></h4>
+                </div>
+                <div class="col-3">
+                    <img class="img-fluid" src="assets/img/image_5bf2e7d5509c0.jpg" alt="">
+                    <h4></h4>
+                </div>
+                <div class="col-3">
+                    <img class="img-fluid" src="assets/img/image_5bf3077ca25c1.jpg" alt="">
+                    <h4></h4>
+                </div>
+                <div class="col-3">
+                    <img class="img-fluid" src="assets/img/image_5cbf191759711.jpg" alt="">
+                    <h4></h4>
+                </div>
+            </div> <!--Descobra nosso lugar-->
+        </div>
         <div> <!--Mais sobre esse site-->
             <div>
                 <img src="" alt="">

@@ -75,6 +75,7 @@ async function upComingMoviesApi(){
             response = await fetch(url),
             result = await response.json(),
             moviesFiltered = toCheckMoviesDate(result.results);
+            console.log(result);
         return moviesFiltered;
     }catch(error){
         console.error(`Error fetching movie runtime for ID ${movieId}: `, error);

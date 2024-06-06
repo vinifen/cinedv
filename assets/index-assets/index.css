@@ -1,6 +1,8 @@
 .imagem{
-    width: 200px;
-    height: 300px;
+    width: 80%;
+}
+body{
+    color: #ffffff;
 }
 
 h1{
@@ -8,15 +10,30 @@ h1{
 }
 
 h3{
-    font-size: 1em;
+    font-size: 0.7em;
 }
 
 .timeline{
     font-size: 0.8em;
 }
 
+button{
+    width: 94px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    font-size: clamp(0.6em, 1.1vw, 1em);
+    /* Para garantir que o botão não tenha sombra ou borda */
+    box-shadow: none;
+    outline: none;
+}
+
 .selected-button{
-    font-size: 1.2em;
+    font-size: clamp(0.7em, 1.1vw, 1em);
     color: white;
     text-shadow: 
         -1px -1px 0 #96081B,  
@@ -35,3 +52,34 @@ h3{
         1px 1px 0 #96081B;
 }
 
+.backgroud-logo{
+    background-image: url(/cinedv/assets/img/baner.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#logo{
+    width: 25%;
+}
+
+#logo2{
+    width: 160px;
+}
+
+h1{
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #96081B,  
+        1px -1px 0 #96081B,
+        -1px 1px 0 #96081B,
+        1px 1px 0 #96081B;
+}
+
+.movie-schedule{
+    font-size: clamp(0.7rem, 0.5vw, 0.9rem)
+}
+
+.imgs-cinema > div > img{
+    width: 80%;
+}

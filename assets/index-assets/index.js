@@ -32,13 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //carregar cards
-document.addEventListener('DOMContentLoaded', async () => {  
-    let sapo = await upComingMovies;
-    console.log(sapo);
+document.addEventListener('DOMContentLoaded', async () => { 
     await moviesApiSelected;
     const
         date = new Date(),
-        currentDay = date.getDay(),
+        currentDay = 3,
         daysButtonsElements = [ 
             document.getElementById('sun'),
             document.getElementById('mon'),
@@ -102,24 +100,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     function renderMoviesCards(movie, i, schedule){
         
         const card =
-        `<div class="card col-12 col-md-3">
-            <div>
-                <h3>${movie[i].title}</h3>
-                <p class="timeline">${movie[i].runtime}</p>
-            </div>
-            <div>  
-                <img class="imagem" class="img-fluid" src="${movie[i].poster_path}" alt="">
-            </div>
-            <div>
-                <div class="container">
-                    <div class="movie-schedule">
-                        <div class="row">
-                            ${schedule[i]}
-                        </div>
-                        <a href="" class="text-center">view more</a>
-                    </div>
+        `<div class="col-12 col-md-3">
+            <div class="card bg-primary d-flex justify-content-center text-center text-white">
+                <div>
+                    <h3>${movie[i].title}</h3>
+                    <p class="timeline">${movie[i].runtime}</p>
                 </div>
-            </div> 
+                <div>  
+                    <img class="imagem" class="img-fluid" src="${movie[i].poster_path}" alt="">
+                </div>
+                <div class="container bg-secondary" style="width: 95%;">
+                    <div>
+                        <div class="movie-schedule">
+                            <div class="d-flex justify-content-around flex-wrap">
+                                ${schedule[i]}
+                            </div>
+                            <a href="" class="text-center">view more</a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
         </div>`;
         return card;
     }
