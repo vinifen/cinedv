@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await moviesApiSelected;
     const
         date = new Date(),
-        currentDay = 3,
+        currentDay = date.getDay(),
         daysButtonsElements = [ 
             document.getElementById('sun'),
             document.getElementById('mon'),
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div>  
                     <img class="imagem" class="img-fluid" src="${movie[i].poster_path}" alt="">
                 </div>
-                <div class="container bg-secondary" style="width: 95%;">
+                <div class="container bg-secondary bs-gap-2" style="width: 95%;">
                     <div>
                         <div class="movie-schedule">
                             <div class="d-flex justify-content-around flex-wrap">
@@ -130,9 +130,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         let cardHTMLupcomingMovies = '';
         for(let i = 0; i < upComingMoviesInstance.length; i++){ 
             cardHTMLupcomingMovies = cardHTMLupcomingMovies +
-            `<div class="card col-12 col-md-3">
-                <div class="container">
-                    <img class="imagem" class="img-fluid" src="${upComingMoviesInstance[i].poster_path}" alt="">
+            `<div class="col-12 col-md-3">
+                <div class="card">
+                    <div class="container">
+                        <img class="imagem" class="img-fluid" src="${upComingMoviesInstance[i].poster_path}" alt="">
+                    </div>
                 </div>
             </div>`;
         }

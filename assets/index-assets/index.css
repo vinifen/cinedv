@@ -5,8 +5,11 @@ body{
     color: #ffffff;
 }
 
+.login{
+    font-size: 18px;
+}
 h1{
-    font-size: 22px;
+    font-size: 18px;
 }
 
 h3{
@@ -26,20 +29,26 @@ button{
     font: inherit;
     color: inherit;
     cursor: pointer;
-    font-size: clamp(0.6em, 1.1vw, 1em);
+    font-size: clamp(0.8em, 1vw, 1em);
     /* Para garantir que o botão não tenha sombra ou borda */
     box-shadow: none;
     outline: none;
 }
-
+label{
+    font-size: clamp(0.8em, 1vw, 1em);
+}
 .selected-button{
-    font-size: clamp(0.7em, 1.1vw, 1em);
+    font-size: clamp(0.9em, 1.1vw, 1.1em);
     color: white;
     text-shadow: 
         -1px -1px 0 #96081B,  
         1px -1px 0 #96081B,
         -1px 1px 0 #96081B,
         1px 1px 0 #96081B;
+}
+
+small{
+    font-size: 11px;
 }
 
 .selected-date-button{
@@ -83,3 +92,4 @@ h1{
 .imgs-cinema > div > img{
     width: 80%;
 }
+
