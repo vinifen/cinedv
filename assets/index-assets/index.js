@@ -101,8 +101,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(schedule[i].length == "")
             schedule[i] = "There are no more schedule today for this film" 
         const card =
-        `<div class="col-3">
-            <div class="carousel-item">    
+        `<div class="col-3"> 
                 <div class="card bg-primary d-flex justify-content-center text-center text-white" style="width: 250px">
                     <div style="height: 4em;">
                         <h3 class="my-1">${movie[i].title}</h3>
@@ -122,7 +121,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     </div> 
                 </div>
-            <div>
         </div>`;
         return card;
     }
