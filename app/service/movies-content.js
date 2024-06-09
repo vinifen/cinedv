@@ -11,7 +11,7 @@ export class MovieContent{
             case 2:
                 return [3, 2, 6, 4];
             case 3:
-                return [0, 1, 5, 6, 4];
+                return [0, 1, 2, 3];
             case 4:
                 return [2, 3, 6, 7, 1];
             case 5:
@@ -66,8 +66,7 @@ export class MovieContent{
     async getScheduleDayDiv(day){
         const selectedSchedule = await this.getSelectedSchedule(day);
         const timeDiv = selectedSchedule.map(sublist => {
-            return sublist.map(time => `<div class="m-1 p-1 bg-black">${time}</div>`).join('');
-        });
+            return sublist.map(time => `<div class="col-3 time">${time}</div>`).join('')});
         return timeDiv;
     }
 }

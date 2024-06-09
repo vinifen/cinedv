@@ -7,80 +7,80 @@
     <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/framework/bootstrap-custom.css">
     <link rel="stylesheet" href="assets/index-assets/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="overflow-x-hidden"> 
         <nav class="bg-primary">
-            <div class="container d-flex justify-content-between align-items-center" style="height: 55px;">
+            <div class="container d-flex justify-content-between" style="width: 60%;">
                 <!-- Logo e título à esquerda -->
-                <a class="navbar-brand d-flex align-items-center" href="#">
+                <a class=" m-0 navbar-brand d-flex align-items-center" href="#">
                     <img src="/cinedv/assets/img/logo-cinedv.png" id="logo" alt="Logo">
-                    <h1 class="mb-0 mr-2">Cine<span>DV</span></h1>
+                    <h1 class="m-2">Cine<span>DV</span></h1>
                 </a>
                 <!-- Login à direita -->
-                <a href="app/pages/login/login.html" class="d-flex align-items-center text-white text-decoration-none">
-                    <p class="m-0 m-2 fw-bold">LOGIN</p>
+                <a href="app/pages/login/login.html" class="m-0 d-flex align-items-center text-white text-decoration-none">
+                    <p class="login m-2">Login</p>
                     <i class="bi bi-person-circle fs-2"></i>
                 </a>
             </div>
         </nav>
-        <div class="backgroud-logo d-flex align-items-center justify-content-center" style="height: 150px;"> <!--Logo e fundo-->
+        <div class="backgroud-logo d-flex align-items-center justify-content-center" style="height: 130px;"> <!--Logo e fundo-->
             <div>
                 <img src="assets/img/logo-cinedv-bonito-fotor-bg-remover-2024042512270.png" id="logo2" alt="">
             </div>
         </div> <!--Logo e fundo-->
-        <nav class="bg-primary text-center"> <!--Programação-->
-            <div class="container">
-                <div class="d-flex align-items-center justify-content-center">
-                    <h3>SCHEDULE:</h3>
+        <nav class="bg-primary"> <!--Programação-->
+            <div class="container" style="width: 60%;">
+                <div class="d-flex border-bottom align-items-center justify-content-center mx-4">
+                    <h3 class="mt-1 mb-1">SCHEDULE:</h3>
                 </div>
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="row border-top d-flex align-items-center justify-content-around flex-nowrap">
-                        <div class="col 3">
-                            <button id="sun">SUNDAY</button>
-                            <p id="sun-date"></p>
-                        </div>
-                        <div class="col 3">
-                            <button id="mon">MONDAY</button>
-                            <p id="mon-date"></p>
-                        </div>
-                        <div class="col 3">
-                            <button id="tue">TUESDAY</button>
-                            <p id="tue-date"></p>
-                        </div>
-                        <div class="col 3" >
-                            <button id="wed">WEDNESDAY</button>
-                            <p id="wed-date"></p>
-                        </div>
-                        <div class="col 3">
-                            <button id="thu">THURSDAY</button>
-                            <p id="thu-date"></p>
-                        </div>
-                        <div class="col 3">
-                            <button id="fri">FRIDAY</button>
-                            <p id="fri-date"></p>
-                        </div>
-                        <div class="col 3">
-                            <button id="sat">SATURDAY</button>
-                            <p id="sat-date"></p>
-                        </div>
+                <div class="row d-flex align-items-center justify-content-around flex-nowrap fw-medium mt-1">
+                    <div class="col 3 d-flex flex-column align-items-center">
+                        <button id="sun">SUNDAY</button>
+                        <label id="sun-date"></label>
+                    </div>
+                    <div class="col 3 d-flex flex-column align-items-center">
+                        <button id="mon">MONDAY</button>
+                        <label for="mon" id="mon-date"></label>
+                    </div>
+                    <div class="col 3 d-flex flex-column align-items-center">
+                        <button id="tue">TUESDAY</button>
+                        <label for="tue" id="tue-date"></label>
+                    </div>
+                    <div class="col 3 d-flex flex-column align-items-center">
+                        <button id="wed">WEDNESDAY</button>
+                        <label for="wed" id="wed-date"></label>
+                    </div>
+                    <div class="col 3 d-flex flex-column align-items-center">
+                        <button id="thu">THURSDAY</button>
+                        <label for="thu" id="thu-date"></label>
+                    </div>
+                    <div class="col 3 d-flex flex-column align-items-center">
+                        <button id="fri">FRIDAY</button>
+                        <label for="fri" id="fri-date"></label>
+                    </div>
+                    <div class="col 3 d-flex flex-column align-items-center">
+                        <button id="sat">SATURDAY</button>
+                        <label for="sat" id="sat-date"></label>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
     <main class="overflow-x-hidden bg-black text-center" >
-        <small >all sessions schedule - P.M </small>
-        <div class="container" style="width: 50%;">
-            <div id="movies-cards" class="row container"></div> 
+        <div class="container-fluid" style="width: 85em;">
+            <small class="m-0">all sessions schedule - P.M </small>
+            <div class="d-flex justify-content-center" >
+                <div id="movies-cards" class="row carlos" style="width: 1200px"></div> 
+            </div>
+            <div> <!--Filmes em BREVE-->
+                <h3>Coming soon</h3>
+                <div id="upcoming-movies" class="row"></div>
+            </div>
         </div>
-        <div> <!--Filmes em cartaz-->
-            <div></div>
-        </div> <!--Filmes em cartaz-->
-        <div> <!--Filmes em BREVE-->
-            <h3>Coming soon</h3>
-            <div id="upcoming-movies" class="row"></div>
-        </div> <!--Filmes em BREVE-->
         <div class="d-flex align-items-center justify-content-around">
             <div class="container row imgs-cinema"> <!--Descobra nosso lugar-->
                 <h3>Discover Our Space</h3>
@@ -138,7 +138,7 @@
                 </section>
         </div> <!--informação-->
     </main>
-    <footer>
+    <footer class="bg-black">
         <div> <!--Redes-->
             <div>
                 <div class="bi bi-twitter-x"></div>
