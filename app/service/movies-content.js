@@ -17,7 +17,7 @@ export class MovieContent{
             case 5:
                 return [0, 1, 3, 4, 5, 6, 7];
             case 6:
-                return [1, 2, 3, 4, 5, 6, 7, 8];
+                return [0, 1, 2, 3, 4, 5, 6, 7, 8];
             default:
                 console.error('Invalid movies content day'); 
                 return [];

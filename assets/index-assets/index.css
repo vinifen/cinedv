@@ -30,6 +30,9 @@ button{
     border: none;
     padding: 0;
     margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
     font-size: clamp(0.6em, 1.1vw, 1em);
     /* Para garantir que o botão não tenha sombra ou borda */
     box-shadow: none;
@@ -40,9 +43,11 @@ button{
 label{
     color: #acacac;
 }
-
-.selected-button{
+label{
     font-size: clamp(0.8em, 1vw, 1em);
+}
+.selected-button{
+    font-size: clamp(0.7em, 1.1vw, 1em);
     color: white;
     text-shadow: 
         -1px -1px 0 #96081B,  
@@ -97,6 +102,7 @@ h1{
 .imgs-cinema > div > img{
     width: 80%;
 }
+
 
 .time{
     font-size: clamp(0.7rem, 0.6vw, 1rem);

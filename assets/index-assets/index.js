@@ -102,26 +102,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             schedule[i] = "There are no more schedule today for this film" 
         const card =
         `<div class="col-3">
-            <div class="card bg-primary d-flex justify-content-center text-center text-white" style="width: 250px">
-                <div style="height: 4em;">
-                    <h3 class="my-1">${movie[i].title}</h3>
-                    <p class="timeline my-1">${movie[i].runtime}</p>
-                </div>
-                <div class="mb-2">  
-                    <img class="imagem rounded rounded-3" class="img-fluid" src="${movie[i].poster_path}" alt="">
-                </div>
-                <div class="container schedule-container mb-2 bg-secondary rounded rounded-3">
-                    <div class="movie-schedule">
-                        <div class="row d-flex justify-content-center align-items-center movie-schedule">
-                            ${schedule[i]}
-                        </div>
-                        <div class="mt-3 mb-1">
-                            <a href="" class="view-more text-center text-white">view more</a>
-                        </div>
+            <div class="carousel-item">    
+                <div class="card bg-primary d-flex justify-content-center text-center text-white" style="width: 250px">
+                    <div style="height: 4em;">
+                        <h3 class="my-1">${movie[i].title}</h3>
+                        <p class="timeline my-1">${movie[i].runtime}</p>
                     </div>
-                </div> 
-            </div>
-        
+                    <div class="mb-2">  
+                        <img class="imagem rounded rounded-3" class="img-fluid" src="${movie[i].poster_path}" alt="">
+                    </div>
+                    <div class="container schedule-container mb-2 bg-secondary rounded rounded-3">
+                        <div class="movie-schedule">
+                            <div class="row d-flex justify-content-center align-items-center movie-schedule">
+                                ${schedule[i]}
+                            </div>
+                            <div class="mt-3 mb-1">
+                                <a href="" class="view-more text-center text-white">view more</a>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            <div>
         </div>`;
         return card;
     }
