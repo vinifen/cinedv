@@ -34,7 +34,6 @@ async function selectedMoviesAPI() {
             });
         }
         
-        console.log(moviesData);
         return moviesData;
     }catch(error){
         console.error('API selection error: ', error); 
@@ -48,7 +47,6 @@ async function getMoviesRuntime(movieId) {
     try{
         const response = await fetch(url);
         const result = await response.json();
-        console.log(result);
         return result.runtime;
     }catch(error){
         console.error(`Error fetching movie runtime for ID ${movieId}:`, error);
