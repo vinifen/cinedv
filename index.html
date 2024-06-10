@@ -35,7 +35,7 @@
         <nav class="bg-primary"> <!--Programação-->
             <div class="container" style="width: 60%;">
                 <div class="d-flex border-bottom align-items-center justify-content-center mx-4">
-                    <h3 class="mt-1 mb-1">SCHEDULE:</h3>
+                    <h4 class="mt-1 mb-1">SCHEDULE:</h4>
                 </div>
                 <div class="row d-flex align-items-center justify-content-around flex-nowrap fw-medium mt-1">
                     <div class="col 3 d-flex flex-column align-items-center">
@@ -74,21 +74,33 @@
         <div class="container-fluid" style="width: 80em;">
             <small class="m-0">all sessions schedule - P.M </small>
             <div >
-                <div id="carouselExampleControls" class="carousel slide">
-                    <div id="movies-cards" class="carousel-inner"></div> 
-                    <button id="left-button-carousel" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <div id="carouselMoviesCurrent" class="carousel slide">
+                    <div id="containerMoviesCurrent" class="carousel-inner">         
+                    </div> 
+
+                    <button id="leftButtonMoviesCurrent" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button id="right-button-carousel" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <button id="rightButtonMoviesCurrent" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
             </div>
             <div> <!--Filmes em BREVE-->
-                <h3>Coming soon</h3>
-                <div id="upcoming-movies" class="row"></div>
+                <h3 class="border-bottom mx-3">Coming soon</h3>
+                <div id="carouselMoviesUpcoming" class="carousel slide">
+                    <div id="containerMoviesUpComing" class="carousel-inner"></div>
+                    <button id="leftButtonMoviesUpComing" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button id="rightButtonMoviesUpComing" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="d-flex align-items-center justify-content-around">

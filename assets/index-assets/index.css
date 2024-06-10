@@ -16,7 +16,7 @@ h1{
 }
 
 h3{
-    font-size: 1em;
+    font-size: 1.5em;
 }
 
 .timeline{
@@ -53,7 +53,7 @@ label{
 }
 
 small{
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .selected-date-button{
@@ -133,6 +133,11 @@ h1{
     }
 }
 
+.carousel-item:hover {
+    transition: transform 0.2s;
+    transform: scale(1.05);
+}
+
 .carousel-inner{
     padding: 1em;
 }
@@ -156,4 +161,8 @@ h1{
 
 #movies-cards{
     max-width: 75em;
+}
+
+h4{
+    font-size: 1em;
 }

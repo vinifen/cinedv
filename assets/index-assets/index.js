@@ -4,7 +4,7 @@ import { Schedule } from "../../app/service/schedule-services.js";
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const div = document.getElementById('movies-cards');
+    const div = document.getElementById('containerMoviesCurrent');
     let cardHTML = ``;
     for (let i = 0; i < 4; i++){
         cardHTML = cardHTML +
@@ -35,7 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', async () => { 
     await moviesApiSelected;
     let scrollPosition = 0;
+    let scrollPositionUpComing = 0;
     let daySelected = 0;
+    let daySelectedUpComing = 0;
     const
         date = new Date(),
         currentDay = 3,
@@ -93,9 +95,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function getMoviesContent(day){
         scrollPosition = 0;
-        $(".carousel-inner").animate({ scrollLeft: scrollPosition });
+        scrollPositionUpComing = 0;
+        $("#containerMoviesCurrent").animate({ scrollLeft: scrollPosition });
 
-        const div = document.getElementById('movies-cards');
+        const div = document.getElementById('containerMoviesCurrent');
         if(day == 1)
             div.innerHTML = `<p>We are not open on Mondays</p>`;
         else{  
@@ -114,10 +117,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(schedule[i].length == "")
             schedule[i] = "There are no more schedule today for this film"; 
         const card =
-        `<div class="carousel-item ${carouselActive} d-flex justify-content-center">
+        `<div class="cardsMoviesCurrent carousel-item ${carouselActive} d-flex justify-content-center">
             <div class="card bg-primary d-flex justify-content-center text-center text-white" style="width: 250px">
                 <div style="height: 4em;">
-                    <h3 class="my-1">${movie[i].title}</h3>
+                    <h4 class="my-1">${movie[i].title}</h4>
                     <p class="timeline my-1">${movie[i].runtime}</p>
                 </div>
                 <div class="mb-2">  
@@ -139,13 +142,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     async function renderUpComingMovies(){
-        const divUpComingMovies = document.getElementById('upcoming-movies');
+        const divUpComingMovies = document.getElementById('containerMoviesUpComing');
         const upComingMoviesInstance = await upComingMovies;
         let cardHTMLupcomingMovies = '';
         for(let i = 0; i < upComingMoviesInstance.length; i++){ 
             cardHTMLupcomingMovies = cardHTMLupcomingMovies +
-            `<div class="col-12 col-md-3">
-                <div class="card">
+            `<div class="cardsMoviesUpComing carousel-item">
+                <div class="card" style="width: 250px">
                     <div class="container">
                         <img class="imagem" class="img-fluid" src="${upComingMoviesInstance[i].poster_path}" alt="">
                     </div>
@@ -156,35 +159,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     renderUpComingMovies();
 
-    async function initCarousel() {
-        const movies = await new MovieContent().getMoviesDay(day);
+    async function initCarouselMoviesCurrent() {
+        const movies = await new MovieContent().getMoviesDay(daySelected);
         await getMoviesContent(currentDay);
-        const leftButton = document.getElementById("left-button-carousel");
-        const rightButton = document.getElementById("right-button-carousel");
+        const leftButton = document.getElementById("leftButtonMoviesCurrent");
+        const rightButton = document.getElementById("rightButtonMoviesCurrent");
         console.log(scrollPosition, "posicao inicial");
-        var carouselWidth = $(".carousel-inner")[0].scrollWidth;
-        var cardWidth = $(".carousel-item").width();
+        var carouselWidth = $("#containerMoviesCurrent")[0].scrollWidth;
+        var cardWidth = $(".cardsMoviesCurrent").width();
         console.log(carouselWidth, cardWidth);
-        $(".carousel-control-next").addClass('.remove-carousel-control-prev')
+        $("#rightButtonMoviesCurrent").addClass('.remove-carousel-control-prev')
 
-        $(".carousel-control-next").on("click", function () {
+        $("#rightButtonMoviesCurrent").on("click", function () {
             leftButton.classList.remove('remove-carousel-control-prev');
             console.log(cardWidth, carouselWidth, "next");
             console.log(scrollPosition, "posicao antes clique");
            //check if you can go any further
-                scrollPosition += cardWidth;  //update scroll position
-                $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 600); //scroll left
+                scrollPosition += cardWidth*2;  //update scroll position
+                $("#containerMoviesCurrent").animate({ scrollLeft: scrollPosition }, 600); //scroll left
                 console.log(cardWidth, carouselWidth, "next depois clique");
                 console.log(scrollPosition, "posicao depois clique");
             
         });
 
-        $(".carousel-control-prev").on("click", function () {
+        $("#leftButtonMoviesCurrent").on("click", function () {
             console.log(cardWidth, carouselWidth, "prev");
             console.log(scrollPosition, "posicao antes do clique");
             if(scrollPosition > 0){ 
-                scrollPosition -= cardWidth;
-                $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 600);
+                scrollPosition -= cardWidth*2;
+                $("#containerMoviesCurrent").animate({ scrollLeft: scrollPosition }, 600);
                 console.log(scrollPosition, "ss");
                 leftButton.classList.remove('remove-carousel-control-prev');
             }else{
@@ -194,7 +197,49 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(scrollPosition, "posicao depois clique");
         });
     }
-    initCarousel();
+    initCarouselMoviesCurrent();
+
+    async function initCarouselMoviesUpComing(){
+        const movies = await new MovieContent().getMoviesDay(daySelected);
+        await getMoviesContent(currentDay);
+        const leftButton = document.getElementById("leftButtonMoviesCurrent");
+        const rightButton = document.getElementById("rightButtonMoviesCurrent");
+        console.log(scrollPositionUpComing, "posicao inicial");
+        var carouselWidth = $("#containerMoviesUpComing")[0].scrollWidth;
+        var cardWidth = $(".cardsMoviesUpComing").width();
+        console.log(cardWidth, "asdf");
+        console.log(carouselWidth, cardWidth);
+        $("#rightButtonMoviesUpComing").addClass('.remove-carousel-control-prev')
+
+        $("#rightButtonMoviesUpComing").on("click", function () {
+            console.log("sapo")
+            leftButton.classList.remove('remove-carousel-control-prev');
+            console.log(cardWidth, carouselWidth, "next");
+            console.log(scrollPositionUpComing, "posicao antes clique");
+           //check if you can go any further
+                scrollPositionUpComing += cardWidth;  //update scroll position
+                $("#containerMoviesUpComing").animate({ scrollLeft: scrollPositionUpComing }, 600); //scroll left
+                console.log(cardWidth, carouselWidth, "next depois clique");
+                console.log(scrollPositionUpComing, "posicao depois clique");
+            
+        });
+
+        $("#leftButtonMoviesUpComing").on("click", function () {
+            console.log(cardWidth, carouselWidth, "prev");
+            console.log(scrollPositionUpComing, "posicao antes do clique");
+            if(scrollPositionUpComing > 0){ 
+                scrollPositionUpComing -= cardWidth;
+                $("#containerMoviesUpComing").animate({ scrollLeft: scrollPositionUpComing }, 600);
+                console.log(scrollPositionUpComing, "ss");
+                leftButton.classList.remove('remove-carousel-control-prev');
+            }else{
+                leftButton.classList.add('remove-carousel-control-prev');
+            }
+            console.log(cardWidth, carouselWidth, "prev depois clique");
+            console.log(scrollPositionUpComing, "posicao depois clique");
+        });
+    }
+    initCarouselMoviesUpComing();
 });
 
 

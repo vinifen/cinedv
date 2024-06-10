@@ -17,11 +17,13 @@ async function selectedMoviesAPI() {
     try{
         console.log("Iniciando seleção de filmes");
         const allMovies = await processAPI();
+        const allMoviesSelected = await toRemoveEqualsUpComingMovies(allMovies);
+        console.log(allMoviesSelected);
         let moviesData = [];
-        let moviesNumber = 8;
+        let moviesNumber = 12;
 
         for (let i = 0; i < moviesNumber; i++) {
-            const movie = allMovies[i];
+            const movie = allMoviesSelected[i];
             const runtime = await getMoviesRuntime(movie.id);
             
             moviesData.push({
@@ -33,7 +35,7 @@ async function selectedMoviesAPI() {
                 overview: movie.overview
             });
         }
-        
+        console.log(moviesData);
         return moviesData;
     }catch(error){
         console.error('API selection error: ', error); 
@@ -79,6 +81,15 @@ async function upComingMoviesApi(){
         console.error(`Error fetching movie runtime for ID ${movieId}: `, error);
         return [];
     }
+}
+
+async function toRemoveEqualsUpComingMovies(allMovies){
+    const upComingMoviesData = await upComingMoviesApi();
+    const checkedMovies = allMovies.filter(checkTitles);
+    function checkTitles(movieUpComing){
+        return !upComingMoviesData.some(movie => movieUpComing.title === movie.title)
+    }
+    return checkedMovies;
 }
 
 async function toCheckMoviesDate(movies){
