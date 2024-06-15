@@ -8,8 +8,10 @@ export class MovieContent{
         switch (day) {
             case 0:
                 return [0, 1, 5, 6, 7];
+            case 1:
+                return [];
             case 2:
-                return [3, 2, 6, 4];
+                return [3];
             case 3:
                 return [0, 1, 2, 3];
             case 4:
@@ -17,7 +19,7 @@ export class MovieContent{
             case 5:
                 return [0, 1, 3, 4, 5, 6, 7];
             case 6:
-                return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 12];
+                return [0, 1, 2, 3, 4, 5, 6, 7];
             default:
                 console.error('Invalid movies content day'); 
                 return [];
@@ -28,7 +30,8 @@ export class MovieContent{
         const
             movies = await moviesApiSelected,
             moviesFilter = await this.getMoviesFilter(day),
-            moviesFiltered = movies.filter((_, index) => moviesFilter.includes(index));    
+            moviesFiltered = movies.filter((_, index) => moviesFilter.includes(index));   
+            console.log(moviesFiltered); 
         return moviesFiltered;
     }
 

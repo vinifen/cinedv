@@ -1,11 +1,15 @@
 .imagem{
-    width: 80%;
+    width: 75%;
 }
 body{
     color: #ffffff;
     font-family: "Unna", serif;
     font-weight: 400;
     font-style: normal;
+}
+
+main{
+    background-color: #0F0F0F;
 }
 
 .login{
@@ -23,6 +27,10 @@ h3{
     font-size: 0.8em;
 }
 
+i{
+    
+}
+
 button{
     color: #acacac;
     width: 94px;
@@ -30,7 +38,7 @@ button{
     border: none;
     padding: 0;
     margin: 0;
-    font-size: clamp(0.6em, 1.1vw, 1em);
+    font-size: 1em;
     /* Para garantir que o botão não tenha sombra ou borda */
     box-shadow: none;
     outline: none;
@@ -39,11 +47,11 @@ button{
 
 label{
     color: #acacac;
-    font-size: clamp(0.8em, 1vw, 1em);
+    font-size: 0.8em;
 }
 
 .selected-button{
-    font-size: clamp(0.7em, 1.1vw, 1em);
+    font-size: 1.03em;
     color: white;
     text-shadow: 
         -1px -1px 0 #96081B,  
@@ -54,16 +62,22 @@ label{
 
 small{
     font-size: 13px;
+    color: #acacac;
 }
 
 .selected-date-button{
-    font-size: 1.1em;
+    font-size: 1em;
     color: white;
     text-shadow: 
         -1px -1px 0 #96081B,  
         1px -1px 0 #96081B,
         -1px 1px 0 #96081B,
         1px 1px 0 #96081B;
+}
+
+.centralizeMoviesCards{
+    display: flex;
+    justify-content: center;
 }
 
 .backgroud-logo{
@@ -91,7 +105,7 @@ h1{
 }
 
 .movie-schedule{
-    font-size: clamp(0.7rem, 0.5vw, 0.9rem);
+    font-size: 0.7em;
     height: 80px;
 }
 
@@ -106,7 +120,7 @@ h1{
     border-radius: 5px;
     border: #797979 1px solid;
     padding: 2px 0 2px 0;
-    margin: 9px 5px 0 5px;
+    margin: 5px 5px 4px 5px;
 }
 
 .schedule-container{
@@ -155,12 +169,8 @@ h1{
     transform: translateY(-50%);
 }
 
-.remove-carousel-control-prev{
+.remove-carousel-control{
     display: none;
-}
-
-#movies-cards{
-    max-width: 75em;
 }
 
 h4{

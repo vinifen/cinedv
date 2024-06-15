@@ -17,10 +17,11 @@ async function selectedMoviesAPI() {
     try{
         console.log("Iniciando seleção de filmes");
         const allMovies = await processAPI();
-        const allMoviesSelected = await toRemoveEqualsUpComingMovies(allMovies);
+        const equalMoviesRemoved = await toRemoveEqualsUpComingMovies(allMovies);
+        const allMoviesSelected = await toRemoveOldMovies(equalMoviesRemoved);
         console.log(allMoviesSelected);
         let moviesData = [];
-        let moviesNumber = 12;
+        let moviesNumber = 13;
 
         for (let i = 0; i < moviesNumber; i++) {
             const movie = allMoviesSelected[i];
@@ -35,7 +36,7 @@ async function selectedMoviesAPI() {
                 overview: movie.overview
             });
         }
-        console.log(moviesData);
+        
         return moviesData;
     }catch(error){
         console.error('API selection error: ', error); 
@@ -92,13 +93,24 @@ async function toRemoveEqualsUpComingMovies(allMovies){
     return checkedMovies;
 }
 
+async function toRemoveOldMovies(movieSelected){
+    console.log(movieSelected, "asdf");
+    const yearAccepted = new Date().getFullYear() - 2;
+    const oldMoviesRemoved = movieSelected.filter(checkOldYear);
+    function checkOldYear(movie){
+        const [movieYear, mouth, day] = movie.release_date.split('-').map(Number);
+        return yearAccepted < movieYear; 
+    }
+    return oldMoviesRemoved;
+}
+
 async function toCheckMoviesDate(movies){
     const moviesFiltered = movies.filter(checkDate);
-    function checkDate(date){
+    function checkDate(movie){
         const
             currentYear = new Date().getFullYear(),
             currentMonth = new Date().getMonth() + 1,
-            [year, month, _]= date.release_date.split('-').map(Number);
+            [year, month, day] = movie.release_date.split('-').map(Number);
         return year > currentYear || year >= currentYear && month >= currentMonth;
     }
     return moviesFiltered;
@@ -111,8 +123,13 @@ async function selectedUpComingMovies(){
         backdrop_path: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`,
         poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
         overview: movie.overview
-    }))
-    return upComingMovies;
+    }));
+    
+
+    
+    let upComingMovies1 = upComingMovies.splice(1, 3);
+    
+    return upComingMovies1;
 }
 
 export const upComingMovies = new Promise(async (resolve, reject) => {

@@ -14,7 +14,7 @@
 <body>
     <header class="overflow-x-hidden"> 
         <nav class="bg-primary">
-            <div class="container d-flex justify-content-between" style="width: 60%;">
+            <div class="container-fluid d-flex justify-content-between" style="width: 69em;">
                 <!-- Logo e título à esquerda -->
                 <a class=" m-0 navbar-brand d-flex align-items-center" href="#">
                     <img src="/cinedv/assets/img/logo-cinedv.png" id="logo" alt="Logo">
@@ -23,7 +23,7 @@
                 <!-- Login à direita -->
                 <a href="app/pages/login/login.html" class="m-0 d-flex align-items-center text-white text-decoration-none">
                     <p class="login m-2">Login</p>
-                    <i class="bi bi-person-circle fs-2"></i>
+                    <i class="bi bi-person-circle fs-3 mt-1"></i>
                 </a>
             </div>
         </nav>
@@ -33,11 +33,12 @@
             </div>
         </div> <!--Logo e fundo-->
         <nav class="bg-primary"> <!--Programação-->
-            <div class="container" style="width: 60%;">
-                <div class="d-flex border-bottom align-items-center justify-content-center mx-4">
+            <div class="container-fluid pb-2 pt-1" style="width: 73em;">
+                <div class="d-flex border-bottom align-items-center justify-content-center mx-5">
+                    <i class="bi bi-calendar-week mx-2"></i>
                     <h4 class="mt-1 mb-1">SCHEDULE:</h4>
                 </div>
-                <div class="row d-flex align-items-center justify-content-around flex-nowrap fw-medium mt-1">
+                <div class="row d-flex align-items-center justify-content-around flex-nowrap fw-bolder mt-1">
                     <div class="col 3 d-flex flex-column align-items-center">
                         <button id="sun">SUNDAY</button>
                         <label id="sun-date"></label>
@@ -70,11 +71,11 @@
             </div>
         </nav>
     </header>
-    <main class="overflow-x-hidden bg-black text-center" >
-        <div class="container-fluid" style="width: 80em;">
+    <main class="overflow-x-hidden text-center" >
+        <div class="container-fluid" style="width: 75em;">
             <small class="m-0">all sessions schedule - P.M </small>
-            <div >
-                <div id="carouselMoviesCurrent" class="carousel slide">
+            <div class="mb-5">
+                <div id="carouselMoviesCurrent" class="carousel slide m-0">
                     <div id="containerMoviesCurrent" class="carousel-inner">         
                     </div> 
 
