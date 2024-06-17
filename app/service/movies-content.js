@@ -11,9 +11,9 @@ export class MovieContent{
             case 1:
                 return [];
             case 2:
-                return [3];
+                return [3, 2];
             case 3:
-                return [0, 1, 2, 3];
+                return [0, 1, 2, 3, 5];
             case 4:
                 return [2, 3, 6, 7, 1];
             case 5:
@@ -31,7 +31,6 @@ export class MovieContent{
             movies = await moviesApiSelected,
             moviesFilter = await this.getMoviesFilter(day),
             moviesFiltered = movies.filter((_, index) => moviesFilter.includes(index));   
-            console.log(moviesFiltered); 
         return moviesFiltered;
     }
 

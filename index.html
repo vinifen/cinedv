@@ -14,9 +14,9 @@
 <body>
     <header class="overflow-x-hidden"> 
         <nav class="bg-primary">
-            <div class="container-fluid d-flex justify-content-between" style="width: 69em;">
+            <div class="container-fluid d-flex justify-content-between container-navbar">
                 <!-- Logo e título à esquerda -->
-                <a class=" m-0 navbar-brand d-flex align-items-center" href="#">
+                <a class="m-0 navbar-brand d-flex align-items-center" href="#">
                     <img src="/cinedv/assets/img/logo-cinedv.png" id="logo" alt="Logo">
                     <h1 class="m-2">Cine<span>DV</span></h1>
                 </a>
@@ -33,38 +33,38 @@
             </div>
         </div> <!--Logo e fundo-->
         <nav class="bg-primary"> <!--Programação-->
-            <div class="container-fluid pb-2 pt-1" style="width: 73em;">
-                <div class="d-flex border-bottom align-items-center justify-content-center mx-5">
-                    <i class="bi bi-calendar-week mx-2"></i>
-                    <h4 class="mt-1 mb-1">SCHEDULE:</h4>
+            <div class="container-fluid pb-2 pt-1 container-dates-md">
+                <div class="d-flex border-bottom align-items-center justify-content-center">
+                    <i class="bi bi-calendar-week mx-2 mb-2"></i>
+                    <h4 class="mt-1 mb-2">SCHEDULE:</h4>
                 </div>
-                <div class="row d-flex align-items-center justify-content-around flex-nowrap fw-bolder mt-1">
-                    <div class="col 3 d-flex flex-column align-items-center">
-                        <button id="sun">SUNDAY</button>
-                        <label id="sun-date"></label>
+                <div class=" d-flex align-items-center justify-content-between flex-nowrap fw-bolder mt-1 ">
+                    <div class=" d-flex flex-column align-items-center">
+                        <button id="sun"></button>
+                        <label for="sun" id="sun-date"></label>
                     </div>
-                    <div class="col 3 d-flex flex-column align-items-center">
-                        <button id="mon">MONDAY</button>
+                    <div class=" d-flex flex-column align-items-center">
+                        <button id="mon"></button>
                         <label for="mon" id="mon-date"></label>
                     </div>
-                    <div class="col 3 d-flex flex-column align-items-center">
-                        <button id="tue">TUESDAY</button>
+                    <div class=" d-flex flex-column align-items-center">
+                        <button id="tue"></button>
                         <label for="tue" id="tue-date"></label>
                     </div>
-                    <div class="col 3 d-flex flex-column align-items-center">
-                        <button id="wed">WEDNESDAY</button>
+                    <div class=" d-flex flex-column align-items-center">
+                        <button id="wed"></button>
                         <label for="wed" id="wed-date"></label>
                     </div>
-                    <div class="col 3 d-flex flex-column align-items-center">
-                        <button id="thu">THURSDAY</button>
+                    <div class=" d-flex flex-column align-items-center">
+                        <button id="thu"></button>
                         <label for="thu" id="thu-date"></label>
                     </div>
-                    <div class="col 3 d-flex flex-column align-items-center">
-                        <button id="fri">FRIDAY</button>
+                    <div class=" d-flex flex-column align-items-center">
+                        <button id="fri"></button>
                         <label for="fri" id="fri-date"></label>
                     </div>
-                    <div class="col 3 d-flex flex-column align-items-center">
-                        <button id="sat">SATURDAY</button>
+                    <div class=" d-flex flex-column align-items-center">
+                        <button id="sat"></button>
                         <label for="sat" id="sat-date"></label>
                     </div>
                 </div>
@@ -72,11 +72,12 @@
         </nav>
     </header>
     <main class="overflow-x-hidden text-center" >
-        <div class="container-fluid" style="width: 75em;">
+        <div class="container-fluid container-movies">
             <small class="m-0">all sessions schedule - P.M </small>
             <div class="mb-5">
-                <div id="carouselMoviesCurrent" class="carousel slide m-0">
-                    <div id="containerMoviesCurrent" class="carousel-inner">         
+                <div id="carouselMoviesCurrent" class="carousel slide">
+
+                    <div id="moviesCurrent" class="carousel-inner">         
                     </div> 
 
                     <button id="leftButtonMoviesCurrent" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -88,11 +89,14 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
+                <div id="moviesCurrentSm"> 
             </div>
             <div> <!--Filmes em BREVE-->
                 <h3 class="border-bottom mx-3">Coming soon</h3>
                 <div id="carouselMoviesUpcoming" class="carousel slide">
-                    <div id="containerMoviesUpComing" class="carousel-inner"></div>
+
+                    <div id="moviesUpComing" class="carousel-inner"></div>
+
                     <button id="leftButtonMoviesUpComing" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>

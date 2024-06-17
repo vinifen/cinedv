@@ -1,6 +1,10 @@
 .imagem{
     width: 75%;
 }
+
+.imagem2{
+    width: 100%;
+}
 body{
     color: #ffffff;
     font-family: "Unna", serif;
@@ -15,8 +19,15 @@ main{
 .login{
     font-size: 18px;
 }
+
 h1{
     font-size: 18px;
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #96081B,  
+        1px -1px 0 #96081B,
+        -1px 1px 0 #96081B,
+        1px 1px 0 #96081B;
 }
 
 h3{
@@ -27,27 +38,23 @@ h3{
     font-size: 0.8em;
 }
 
-i{
-    
-}
-
 button{
     color: #acacac;
-    width: 94px;
+    width: 100%;
     background: none;
     border: none;
     padding: 0;
     margin: 0;
     font-size: 1em;
-    /* Para garantir que o botão não tenha sombra ou borda */
     box-shadow: none;
     outline: none;
     font-weight: bold;
 }
 
+
 label{
     color: #acacac;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 .selected-button{
@@ -88,20 +95,11 @@ small{
 }
 
 #logo{
-    width: 25%;
+    width: 50px;
 }
 
 #logo2{
     width: 160px;
-}
-
-h1{
-    color: white;
-    text-shadow: 
-        -1px -1px 0 #96081B,  
-        1px -1px 0 #96081B,
-        -1px 1px 0 #96081B,
-        1px 1px 0 #96081B;
 }
 
 .movie-schedule{
@@ -118,7 +116,7 @@ h1{
     font-size: clamp(0.7rem, 0.6vw, 1rem);
     background-color: #272727;
     border-radius: 5px;
-    border: #797979 1px solid;
+    border: #777777 1px solid;
     padding: 2px 0 2px 0;
     margin: 5px 5px 4px 5px;
 }
@@ -128,28 +126,13 @@ h1{
     height: 7.4em;
 }
 
-.movies-container{
-    margin: 0 8em;
-}
-
 .view-more{
     font-size: 1.3em;
 }
 
-@media (min-width: 768px) {
-    .carousel-inner {
-      display: flex;
-    }
-    .carousel-item {
-      margin-right: 0;
-      display: block;
-      flex: 0 0 calc(100%/4);
-    }
-}
-
 .carousel-item:hover {
     transition: transform 0.2s;
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .carousel-inner{
@@ -169,10 +152,85 @@ h1{
     transform: translateY(-50%);
 }
 
-.remove-carousel-control{
+.display-none{
     display: none;
 }
 
 h4{
     font-size: 1em;
+}
+
+.container-movies{
+    width: 78em;
+}
+
+.container-dates-md{
+    width: 76em;
+}
+
+.container-navbar{
+    width: 76.5em;
+    height: 3em;
+}
+
+.carousel-inner{
+    padding: 0.6em 0;
+}
+
+.carousel-inner {
+    display: flex;
+}
+
+.carousel-item {
+    margin-right: 0;
+    display: block;
+    flex: 0 0 calc(100% / 5);
+}
+
+@media (max-width: 800px) {
+    #moviesCurrentSm {
+        display: block;
+    }
+
+    #carouselMoviesCurrent {
+        display: none;
+    }
+
+    .carousel-item {
+        flex: 0 0 calc(100% / 3);
+    }
+}
+
+@media (min-width: 801px) {
+
+    #moviesCurrentSm {
+        display: none;
+    }
+
+    #carouselMoviesCurrent {
+        display: block;
+    }
+}
+
+@media (max-width: 1260px) {
+    .container-movies{
+        width: 61em;
+    }
+    
+    .container-dates-md{
+        width: 58em;
+    }
+    
+    .container-navbar{
+        width: 59.5em;
+        height: 3em;
+    }
+    
+    .carousel-inner{
+        padding: 0.6em 0;
+    }
+
+    .carousel-item {
+        flex: 0 0 calc(100% / 4);
+    }
 }

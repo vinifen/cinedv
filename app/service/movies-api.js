@@ -5,7 +5,6 @@ async function processAPI() {
     try{
         const response = await fetch(url);
         const result = await response.json();
-        console.log(result.results);
         return result.results;
     }catch(error){
         console.error('API request error: ', error); 
@@ -19,7 +18,6 @@ async function selectedMoviesAPI() {
         const allMovies = await processAPI();
         const equalMoviesRemoved = await toRemoveEqualsUpComingMovies(allMovies);
         const allMoviesSelected = await toRemoveOldMovies(equalMoviesRemoved);
-        console.log(allMoviesSelected);
         let moviesData = [];
         let moviesNumber = 13;
 
@@ -60,7 +58,6 @@ async function getMoviesRuntime(movieId) {
 export const moviesApiSelected = new Promise(async (resolve, reject) => {
     try{
         const movies = await selectedMoviesAPI();
-        console.log(movies);
         resolve(movies);
     }catch(error){
         console.error('Api request error: ', error); 
@@ -76,7 +73,6 @@ async function upComingMoviesApi(){
             response = await fetch(url),
             result = await response.json(),
             moviesFiltered = toCheckMoviesDate(result.results);
-            console.log(result);
         return moviesFiltered;
     }catch(error){
         console.error(`Error fetching movie runtime for ID ${movieId}: `, error);
@@ -94,7 +90,6 @@ async function toRemoveEqualsUpComingMovies(allMovies){
 }
 
 async function toRemoveOldMovies(movieSelected){
-    console.log(movieSelected, "asdf");
     const yearAccepted = new Date().getFullYear() - 2;
     const oldMoviesRemoved = movieSelected.filter(checkOldYear);
     function checkOldYear(movie){
@@ -125,11 +120,7 @@ async function selectedUpComingMovies(){
         overview: movie.overview
     }));
     
-
-    
-    let upComingMovies1 = upComingMovies.splice(1, 3);
-    
-    return upComingMovies1;
+    return upComingMovies;
 }
 
 export const upComingMovies = new Promise(async (resolve, reject) => {
