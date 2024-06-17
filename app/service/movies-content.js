@@ -7,13 +7,13 @@ export class MovieContent{
     async getMoviesFilter(day){
         switch (day) {
             case 0:
-                return [0, 1, 5, 6, 7];
+                return [0, 1, 5, 6, 7, 8];
             case 1:
                 return [];
             case 2:
                 return [3, 2];
             case 3:
-                return [0, 1, 2, 3, 5];
+                return [0, 1, 2, 3, 5, 6];
             case 4:
                 return [2, 3, 6, 7, 1];
             case 5:
@@ -39,6 +39,8 @@ export class MovieContent{
         switch (day) {
             case 0:
                 return schedule.sunSchedule();      
+            case 1:
+                return schedule.monSchedule();
             case 2:  
                 return schedule.tueSchedule();
             case 3:  
@@ -57,15 +59,17 @@ export class MovieContent{
 
     async getSelectedSchedule(day){
         const
-            scheduleDay = await this.getScheduleDay(day),
-            moviesFilter = await this.getMoviesFilter(day),
-            scheduleCheck = new Schedule().timeChecker(scheduleDay, day),
-            scheduleFiltered = scheduleCheck.filter((_, index) => moviesFilter.includes(index)),
-            orderedTimes = new Schedule().getOrderedTimes(scheduleFiltered);
+            scheduleDay = await this.getScheduleDay(day);
+            
+        const moviesFilter = await this.getMoviesFilter(day);
+        const scheduleCheck = new Schedule().timeChecker(scheduleDay, day);
+        const scheduleFiltered = scheduleCheck.filter((_, index) => moviesFilter.includes(index));
+        const orderedTimes = new Schedule().getOrderedTimes(scheduleFiltered);
         return orderedTimes;
     }
 
     async getScheduleDayDiv(day){
+        
         const selectedSchedule = await this.getSelectedSchedule(day);
         const timeDiv = selectedSchedule.map(sublist => {
             return sublist.map(time => `<div class="col-3 time">${time}</div>`).join('')});

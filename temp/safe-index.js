@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let scrollPositionUpComing = 0;
     let daySelectedUpComing = 0;
     let windowWidth = window.innerWidth;
-    let cardWidthMoviesCurrent = 0;
+    let cardWidth = 0;
     let cardWidthMoviesUpComing = 0;
     const
         date = new Date(),
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }else{ 
             divSm.innerHTML = moviesCurrentInstance.map((_, index) => renderMoviesCardsSm(moviesCurrentInstance, index, schedule)).join('');
             divMd.innerHTML = moviesCurrentInstance.map((_, index) => renderMoviesCardsMd(moviesCurrentInstance, index, schedule)).join('');
-            cardWidthMoviesCurrent = $(".cardsMoviesCurrent").width();
+            cardWidth = $(".cardsMoviesCurrent").width();
             $("#moviesCurrent").animate({ scrollLeft: scrollPosition });        
         }
 
@@ -179,7 +179,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         `<div class="d-flex justify-content-center">
             <div class="card bg-primary d-flex justify-content-center text-center text-white" style="width: 14em">
                 <div style="height: 4em;">
-                    
+                    <h4 class="my-1">${movie[i].title}</h4>
+                    <p class="timeline my-1">${movie[i].runtime}</p>
                 </div>
                 <div class="mb-2">  
                     <img class="imagem rounded rounded-3" class="img-fluid" src="${movie[i].poster_path}" alt="">
@@ -232,7 +233,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             leftButton.classList.remove('display-none');
             
            
-                scrollPosition += cardWidthMoviesCurrent*2;  
+                scrollPosition += cardWidth*2;  
                 $("#moviesCurrent").animate({ scrollLeft: scrollPosition }, 400); 
                 
             
@@ -241,7 +242,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         $("#leftButtonMoviesCurrent").on("click", function () {
             
             if(scrollPosition > 0){ 
-                scrollPosition -= cardWidthMoviesCurrent*2;
+                scrollPosition -= cardWidth*2;
                 $("#moviesCurrent").animate({ scrollLeft: scrollPosition }, 400);
                 
                 leftButton.classList.remove('display-none');
@@ -322,8 +323,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     async function resizeWindow(){
-        cardWidthMoviesCurrent = $(".cardsMoviesCurrent").width();
-        cardWidthMoviesUpComing = $(".cardsMoviesUpComing").width();
         windowWidth = window.innerWidth;
         responsiveCarouselLayout(daySelected);
         if (windowWidth < 800 || windowWidth > 800 && windowWidth < 1000) {
