@@ -34,12 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
 //carregar cards
 document.addEventListener('DOMContentLoaded', async () => { 
     await moviesApiSelected;
+    const upComingMoviesInstance = await upComingMovies;
+    const movieContentInstance = new MovieContent();
     let scrollPosition = 0;
     let scrollPositionUpComing = 0;
     let daySelectedUpComing = 0;
     let windowWidth = window.innerWidth;
     let cardWidthMoviesCurrent = 0;
     let cardWidthMoviesUpComing = 0;
+    
     const
         date = new Date(),
         currentDay = date.getDay(),
@@ -66,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function renderDaysButtonsContent() {
         const daysFull = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
         const daysShort = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-        const days = windowWidth > 800 ? daysFull : daysShort;
+        const days = windowWidth > 580 ? daysFull : daysShort;
     
         for (let i = 0; i < daysButtonsElements.length; i++) {
             daysButtonsElements[i].innerHTML = days[i];
@@ -110,19 +113,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function getMoviesContent(day){
         scrollPosition = 0;
         scrollPositionUpComing = 0;
-        const moviesCurrentInstance = await new MovieContent().getMoviesDay(day);
+
+        const moviesCurrentDayContent = await movieContentInstance.getMoviesDay(day);
+        const schedule = await movieContentInstance.getScheduleDayDiv(day);
+
         const divMd = document.getElementById('moviesCurrent');
         const divSm = document.getElementById('moviesCurrentSm');
-        const schedule = await new MovieContent().getScheduleDayDiv(day);
 
-        if (moviesCurrentInstance.length === 0) {
+        if (moviesCurrentDayContent.length === 0) {
             divSm.innerHTML = `<p> We are not open in this day</p>`;
-            divMd.innerHTML = `<p class="cardsMoviesCurrent"> We are not open in this day</p>`;
+            divMd.innerHTML = `<p class="carousel-items-movies-current"> We are not open in this day</p>`;
         }else{ 
-            divSm.innerHTML = moviesCurrentInstance.map((_, index) => renderMoviesCardsSm(moviesCurrentInstance, index, schedule)).join('');
-            divMd.innerHTML = moviesCurrentInstance.map((_, index) => renderMoviesCardsMd(moviesCurrentInstance, index, schedule)).join('');
-            cardWidthMoviesCurrent = $(".cardsMoviesCurrent").width();
-            $("#moviesCurrent").animate({ scrollLeft: scrollPosition });        
+            divSm.innerHTML = moviesCurrentDayContent.map((_, index) => renderMoviesCardsSm(moviesCurrentDayContent, index, schedule)).join('');
+            divMd.innerHTML = moviesCurrentDayContent.map((_, index) => renderMoviesCardsMd(moviesCurrentDayContent, index, schedule)).join('');
+            cardWidthMoviesCurrent = $(".carousel-items-movies-current").width();
+            $("#moviesCurrent").animate({ scrollLeft: scrollPosition }, 0);        
         }
 
         responsiveCarouselLayout(day);
@@ -143,24 +148,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             schedule[i] = ["There are no more schedules today for this film"];
         }
         const cardMd =
-        `<div class="cardsMoviesCurrent carousel-item ${carouselActive} d-flex justify-content-center">
-            <div class="card bg-primary d-flex justify-content-center text-center text-white" style="width: 14em">
-                <div style="height: 4em;">
-                    <h4 class="my-1">${movie[i].title}</h4>
-                    <p class="timeline my-1">${movie[i].runtime}</p>
+        `<div class="carousel-items-movies-current d-flex justify-content-center carousel-item ${carouselActive}">
+            <div class="card cards-movies-current-md bg-primary text-white">
+                <div class="movies-title-runtime d-flex flex-column justify-content-between">
+                    <h4 class="mx-2 mt-1 movie-title">${movie[i].title}</h4>
+                    <p class="timeline mb-2 text-bottom">${movie[i].runtime}</p>
                 </div>
                 <div class="mb-2">  
                     <img class="imagem rounded rounded-3" class="img-fluid" src="${movie[i].poster_path}" alt="">
                 </div>
                 <div class="container schedule-container mb-2 bg-secondary rounded rounded-3">
-                    <div class="movie-schedule">
-                        <div class="row d-flex justify-content-center align-items-center movie-schedule">
+                        <div class="row d-flex justify-content-center align-items-center movie-schedule-md">
                             ${schedule[i]}
                         </div>
-                        <div class="mt-3 mb-1">
+                        <div>
                             <a href="" class="view-more text-center text-white">view more</a>
                         </div>
-                    </div>
                 </div> 
             </div>
         </div>`;
@@ -173,26 +176,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     
         if (schedule[i].length === 0) {
-            schedule[i] = ["There are no more schedules today for this film"];
+            schedule[i] = [`<p class="no-time">There are no more schedules today for this film</p>`];
         }
         const cardSm =
-        `<div class="d-flex justify-content-center">
-            <div class="card bg-primary d-flex justify-content-center text-center text-white" style="width: 14em">
-                <div style="height: 4em;">
-                    
-                </div>
-                <div class="mb-2">  
-                    <img class="imagem rounded rounded-3" class="img-fluid" src="${movie[i].poster_path}" alt="">
-                </div>
+        `<div class="mb-3 rounded rounded-3 bg-primary text-center text-white d-flex justify-content-around align-items-center">
+            <div class="" style="width: 40%;">  
+                <img class=" m-2 imagem rounded rounded-3" class="img-fluid" src="${movie[i].poster_path}" alt="" style="width: 90%;">
+            </div>
+            <div class="" style="width: 60%">
+                <h4 class="">${movie[i].title}</h4>
+                <p class="timeline my-1">${movie[i].runtime}</p>
                 <div class="container schedule-container mb-2 bg-secondary rounded rounded-3">
-                    <div class="movie-schedule">
-                        <div class="row d-flex justify-content-center align-items-center movie-schedule">
+                        <div class="row d-flex justify-content-center align-items-center movie-schedule-md">
                             ${schedule[i]}
                         </div>
-                        <div class="mt-3 mb-1">
+                        <div>
                             <a href="" class="view-more text-center text-white">view more</a>
                         </div>
-                    </div>
                 </div> 
             </div>
         </div>`
@@ -203,18 +203,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         const divUpComingMovies = document.getElementById('moviesUpComing');
         const leftButtonUpComing = document.getElementById("leftButtonMoviesUpComing");
         const rightButtonUpComing = document.getElementById("rightButtonMoviesUpComing");
-        const upComingMoviesInstance = await upComingMovies;
+        
         let cardHTMLupcomingMovies = '';
         for(let i = 0; i < upComingMoviesInstance.length; i++){ 
+            let carouselActive = "active";
+            if(i != 0)
+                carouselActive = "";
+
             cardHTMLupcomingMovies = cardHTMLupcomingMovies +
-            `<div class="cardsMoviesUpComing carousel-item d-flex align-items-center justify-content-center">
-                <div class="" style="width: 14em">
+            `<div class="carousel-items-movies-upcoming carousel-item ${carouselActive} d-flex align-items-center justify-content-center">
+                <div class="card-movies-upcoming">
                         <img class="imagem2 img-fluid rounded rounded-3" src="${upComingMoviesInstance[i].poster_path}" alt="">
                 </div>
             </div>`;
         }
         divUpComingMovies.innerHTML = cardHTMLupcomingMovies;
-        cardWidthMoviesUpComing = $(".cardsMoviesUpComing").width();
+        cardWidthMoviesUpComing = $(".carousel-items-movies-upcoming").width();
     }
     renderUpComingMovies();
     
@@ -281,8 +285,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initCarouselMoviesUpComing();
 
     async function responsiveCarouselLayout(day){
-        await upComingMovies;
-        const upComingMoviesInstance = await upComingMovies;
+        
         const div = document.getElementById('moviesCurrent');
         const divSm = document.getElementById('moviesCurrentSm');
         const divCarouselMd = document.getElementById('carouselMoviesCurrent');
@@ -291,14 +294,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         const rightButton = document.getElementById("rightButtonMoviesCurrent");
         const leftButtonUpComing = document.getElementById("leftButtonMoviesUpComing");
         const rightButtonUpComing = document.getElementById("rightButtonMoviesUpComing");
-        const movies = await new MovieContent().getMoviesDay(day);
-        
+        const movies = await movieContentInstance.getMoviesDay(day);
+        leftButton.classList.add('display-none');
         let moviesFrontPage = 0;
         
-        if(windowWidth > 1260)
+        if(windowWidth > 1280)
             moviesFrontPage = 5;
-        else if(windowWidth <= 1260 && windowWidth >= 800)
+        else if(windowWidth <= 1280 && windowWidth >= 1021)
             moviesFrontPage = 4;
+        else if((windowWidth <= 1020 && windowWidth >= 581))
+            moviesFrontPage = 3;
         else 
             moviesFrontPage = 0;
 
@@ -320,18 +325,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             rightButtonUpComing.classList.remove('display-none');
         }
     }
+    responsiveCarouselLayout(currentDay);
     
     async function resizeWindow(){
-        cardWidthMoviesCurrent = $(".cardsMoviesCurrent").width();
-        cardWidthMoviesUpComing = $(".cardsMoviesUpComing").width();
+        cardWidthMoviesCurrent = $(".carousel-items-movies-current").width();
+        cardWidthMoviesUpComing = $(".carousel-items-movies-upcoming").width();
         windowWidth = window.innerWidth;
         responsiveCarouselLayout(daySelected);
-        if (windowWidth < 800 || windowWidth > 800 && windowWidth < 1000) {
+        if (windowWidth < 580 || windowWidth > 580 && windowWidth < 1019) {
             renderDaysButtonsContent();
         }
     }
     
     window.addEventListener('resize', resizeWindow);
+
+    let mediaQuery = window.matchMedia('(max-width: 1280px)');
+
+    function resetScrollPosition(){
+            scrollPosition = 0;
+            scrollPositionUpComing = 0;
+            $("#moviesCurrent").animate({ scrollLeft: scrollPosition }, 0); 
+            $("#moviesUpComing").animate({ scrollLeft: scrollPositionUpComing }, 0); 
+    }
+
+    mediaQuery.addListener(resetScrollPosition);
 });
 
 

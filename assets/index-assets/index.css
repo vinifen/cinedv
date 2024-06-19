@@ -1,3 +1,7 @@
+p, i a, nav, div{
+    margin: 0;
+}
+
 .imagem{
     width: 75%;
 }
@@ -32,6 +36,26 @@ h1{
 
 h3{
     font-size: 1.5em;
+}
+
+.cards-movies-current-md{
+    width: 14.5em;
+}
+
+.card-movies-upcoming{
+    width: 13em;
+}
+
+.movies-title-runtime{
+    height: 4.5em;
+}
+
+.movie-title{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Número de linhas que deseja mostrar */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
 }
 
 .timeline{
@@ -85,6 +109,7 @@ small{
 .centralizeMoviesCards{
     display: flex;
     justify-content: center;
+    
 }
 
 .backgroud-logo{
@@ -92,6 +117,7 @@ small{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    height: 8em;
 }
 
 #logo{
@@ -99,21 +125,20 @@ small{
 }
 
 #logo2{
-    width: 160px;
-}
-
-.movie-schedule{
-    font-size: 0.7em;
-    height: 80px;
+    width: 10em;
 }
 
 .imgs-cinema > div > img{
     width: 80%;
 }
 
+.movie-schedule-md{
+    font-size: 0.7em;
+    height: 92px;
+}
 
 .time{
-    font-size: clamp(0.7rem, 0.6vw, 1rem);
+    font-size: 1em;
     background-color: #272727;
     border-radius: 5px;
     border: #777777 1px solid;
@@ -127,7 +152,7 @@ small{
 }
 
 .view-more{
-    font-size: 1.3em;
+    font-size: 1em;
 }
 
 .carousel-item:hover {
@@ -161,11 +186,11 @@ h4{
 }
 
 .container-movies{
-    width: 78em;
+    width: 79em;
 }
 
 .container-dates-md{
-    width: 76em;
+    width: 76.5em;
 }
 
 .container-navbar{
@@ -174,7 +199,7 @@ h4{
 }
 
 .carousel-inner{
-    padding: 0.6em 0;
+    padding: 0.5em 0;
 }
 
 .carousel-inner {
@@ -187,50 +212,167 @@ h4{
     flex: 0 0 calc(100% / 5);
 }
 
-@media (max-width: 800px) {
-    #moviesCurrentSm {
-        display: block;
-    }
+@media (min-width: 450px) {
 
-    #carouselMoviesCurrent {
+    #moviesCurrentSm {
         display: none;
     }
 
+    #carouselMoviesCurrent {
+        display: block;
+    }
+}
+
+@media (max-width: 1280px) {
+    .container-movies{
+        width: 58em;
+    }
+    
+    .container-dates-md{
+        width: 56.5em;
+    }
+    
+    .container-navbar{
+        width: 56.5em;
+        height: 3em;
+    }
+    
+    .carousel-item {
+        flex: 0 0 calc(100% / 4);
+    }
+
+    .cards-movies-current-md{
+        width: 13em;
+    }
+
+    .backgroud-logo{
+        height: 7em;
+    }
+
+    #logo2{
+        width: 8em;
+    }
+
+    .card-movies-upcoming{
+        width: 13em;
+    }
+}
+
+@media (max-width: 1020px) {
+    .container-movies{
+        width: 50em;
+    }
+    
+    .container-dates-md{
+        width: 47.5em;
+    }
+    
+    .container-navbar{
+        width: 47.5em;
+        height: 3em;
+    }
+    
+    .cards-movies-current-md{
+        width: 11em;
+    }
+
+    .backgroud-logo{
+        height: 6em;
+    }
+
+    #logo2{
+        width: 8em;
+    }
+
+    .time{
+        font-size: 0.8em;
+        padding: 1px 0 1px 0;
+        margin: 4px 4px 3px 4px;
+    }
+
+    .no-time{
+        font-size: 10px;
+    }
+
+    .schedule-container{
+        width: 90%;
+        height: 6em;
+    }
+
+    .movie-schedule-md{
+        font-size: 0.7em;
+        height: 70px;
+    }
+
+    .view-more{
+        font-size: 0.7em;
+    }
+
+    .imagem{
+        width: 65%;
+    }
+
+    .movie-title{
+        font-size: 14px;
+    }
+
+    .movies-title-runtime{
+        height: 3.5em;
+    }
+
+    .card-movies-upcoming{
+        width: 10.5em;
+    }
+}
+
+@media (max-width: 818px) {
+    .container-movies{
+        width: 35em;
+    }
+
+    .cards-movies-current-md{
+        width: 10em;
+    }
+
+    .card-movies-upcoming{
+        width: 10em;
+    }
+    
+    .container-dates-md{
+        width: 33.5em;
+    }
+    
+    .container-navbar{
+        width: 34.5em;
+        height: 3em;
+    }
+    
     .carousel-item {
         flex: 0 0 calc(100% / 3);
     }
 }
 
-@media (min-width: 801px) {
 
+
+@media (max-width: 580px) {
     #moviesCurrentSm {
-        display: none;
+        display: block;
     }
 
     #carouselMoviesCurrent {
-        display: block;
+        display: none;
     }
-}
 
-@media (max-width: 1260px) {
     .container-movies{
-        width: 61em;
+        width: 90vw;
     }
-    
+
     .container-dates-md{
-        width: 58em;
+        width: 90vw;
     }
     
     .container-navbar{
-        width: 59.5em;
+        width: 90vw;
         height: 3em;
-    }
-    
-    .carousel-inner{
-        padding: 0.6em 0;
-    }
-
-    .carousel-item {
-        flex: 0 0 calc(100% / 4);
     }
 }

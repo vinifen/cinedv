@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <div class="login-register-toggle">
+                <button id="login-toggle" onclick="showLogin()">Login</button>
+                <button id="register-toggle" onclick="showRegister()">Register</button>
+            </div>
+            <form id="login-form" class="form">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <div class="remember-me">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember Me</label>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <form id="register-form" class="form" style="display: none;">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+    <script src="login.css"></script>
 </body>
 </html>

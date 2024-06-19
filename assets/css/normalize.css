@@ -12,6 +12,10 @@
     line-height: 1.15; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
   }
+
+  p, h1, h2, h3, h4, h5, h6, small, a, nav, i, div{
+    margin: 0;
+  }
   
   /* Sections
      ========================================================================== */
