@@ -23925,4 +23925,25 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+.is-valid {
+  background-color: #d4edda !important;
+  border-color: #28a745 !important;
+  color: #155724 !important;
+}
+
+.is-invalid {
+  background-color: #f8d7da !important;
+  border-color: #dc3545 !important;
+  color: #721c24 !important;
+}
+
+.valid-feedback,
+.valid-tooltip {
+  color: #155724 !important;
+}
+
+.invalid-feedback,
+.invalid-tooltip {
+  color: #721c24 !important;
 }/*# sourceMappingURL=bootstrap-custom.css.map */

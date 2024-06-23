@@ -4,32 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineDv</title>
-    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/cinedv/assets/framework/bootstrap-icons/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/framework/bootstrap-custom.css">
     <link rel="stylesheet" href="assets/index-assets/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="/cinedv/assets/css/styles.css">
+</head> 
 <body>
-    <header class="overflow-x-hidden"> 
+    <header class="overflow-x-hidden">
         <nav class="bg-primary">
             <div class="container-fluid d-flex justify-content-between container-navbar">
                 <!-- Logo e título à esquerda -->
                 <a class="m-0 navbar-brand d-flex align-items-center" href="#">
-                    <img src="/cinedv/assets/img/logo-cinedv.png" id="logo" alt="Logo">
+                    <img src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/logo-cinedv_uazxqx.png" id="logo" alt="Logo">
                     <h1 class="m-2">Cine<span>DV</span></h1>
                 </a>
                 <!-- Login à direita -->
-                <a type="button" class="m-0 d-flex align-items-center text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#authModal">
+                <a type="button" id="loggedOut" class="m-0 d-flex align-items-center text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#authModal">
                     <p class="login m-2">Login</p>
                     <i class="bi bi-person-circle fs-3 mt-1"></i>
                 </a>
+                <a type="button" id="logged" class="m-0 d-flex align-items-center text-white text-decoration-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <p class="login m-2" id="loginText"></p>
+                    <i class="bi bi-person-circle fs-3 mt-1"></i>
+                </a>
+                <div class="offcanvas offcanvas-end bg-secondary text-white" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightLabel">Menu</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <a href="#" class="btn btn-danger d-flex justify-content-center" id="logoutButton">Log out</a>
+                    </div>
+                </div>
             </div>
         </nav>
         <div class="backgroud-logo d-flex align-items-center justify-content-center"> <!--Logo e fundo-->
             <div>
-                <img src="assets/img/logo-cinedv-bonito-fotor-bg-remover-2024042512270.png" id="logo2" alt="">
+                <img src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/logo-2_wttptj.png" id="logo2" alt="">
             </div>
         </div> <!--Logo e fundo-->
         <nav class="bg-primary"> <!--Programação-->
@@ -71,8 +85,8 @@
             </div>
         </nav>
     </header>
-    <main class="overflow-x-hidden text-center" >
-        <div class="container-fluid container-movies">
+    <main class="overflow-x-hidden text-center">
+        <div class="container-fluid container-movies mb-5">
             <small class="m-0">all sessions schedule - P.M </small>
             <div class="mb-5">
                 <div id="carouselMoviesCurrent" class="carousel slide">
@@ -89,7 +103,7 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-                <div id="moviesCurrentSm"> 
+                <div id="moviesCurrentSm"></div>
             </div>
             <div> <!--Filmes em BREVE-->
                 <h3 class="border-bottom mx-3">Coming soon</h3>
@@ -106,102 +120,95 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
+                <div id="moviesUpComingSm" class="mx-4"></div>
             </div>
         </div>
-        <div class="d-flex align-items-center justify-content-around">
-            <div class="container row imgs-cinema"> <!--Descobra nosso lugar-->
-                <h3>Discover Our Space</h3>
-                <div class="col-3">
-                    <img class="img-fluid" src="assets/img/cine-apu1.jpg" alt="">
-                    <h4></h4>
+        <div class="bg-primary mb-5">
+            <div class="container-fluid container-movie-theater-imgs">
+                <h3 class="border-bottom">Discover Our Space</h3>
+                <div id="carouselMovieTheaterImgs" class="carousel">
+                    <div class=" carousel-inner" id="carouselInnerMovieTheaterImgs"> <!--Descobra nosso lugar-->
+                        <div class="card bg-secondary carousel-item active carousel-item-movie-theater-imgs">
+                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/entrance_rzvsbc.jpg" alt="">
+                            <h5>Entrance</h5>
+                        </div>
+                        <div class="card bg-secondary carousel-item carousel-item-movie-theater-imgs active">
+                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/popcorn-store_mgyswp.jpg" alt="">
+                            <h5>Popcorn Store</h5>
+                        </div>
+                        <div class="card bg-secondary carousel-item carousel-item-movie-theater-imgs">
+                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/rooms-entrance_lo97fq.jpg" alt="">
+                            <h5>Rooms Entrance</h5>
+                        </div>
+                        <div class="card bg-secondary carousel-item carousel-item-movie-theater-imgs">
+                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/room_1_ixcbzp.jpg" alt="">
+                            <h5>Room 1</h5>
+                        </div>
+                        <div class="card bg-secondary carousel-item carousel-item-movie-theater-imgs">
+                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/room_2_y7czzy.jpg" alt="">
+                            <h5>Room 2</h5>
+                        </div>
+                        <div class="card bg-secondary carousel-item carousel-item-movie-theater-imgs">
+                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/baner_i6zrpo.jpg" alt="">
+                            <h5>Room 3</h5>
+                        </div>
+                    </div> <!--Descobra nosso lugar-->
+                    <button id="leftButtonMovieTheaterImgs" class="carousel-control-prev" type="button" data-bs-target="#carouselMovieTheaterImgs" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button id="rightButtonMovieTheaterImgs" class="carousel-control-next" type="button" data-bs-target="#carouselMovieTheaterImgs" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                <div class="col-3">
-                    <img class="img-fluid" src="assets/img/cine_g_3.jpg" alt="">
-                    <h4></h4>
-                </div>
-                <div class="col-3">
-                    <img class="img-fluid" src="assets/img/image_5bf2e7d5509c0.jpg" alt="">
-                    <h4></h4>
-                </div>
-                <div class="col-3">
-                    <img class="img-fluid" src="assets/img/image_5bf3077ca25c1.jpg" alt="">
-                    <h4></h4>
-                </div>
-                <div class="col-3">
-                    <img class="img-fluid" src="assets/img/image_5cbf191759711.jpg" alt="">
-                    <h4></h4>
-                </div>
-            </div> <!--Descobra nosso lugar-->
-        </div>
-        <div> <!--Mais sobre esse site-->
-            <div>
-                <img src="" alt="">
-                <h3>FIND OUT MORE ABOUT US AND THIS SITE!</h3>
+                
             </div>
-        </div> <!--Mais sobre esse site-->
-        <div> <!--informação-->
-            <h3>INFORMATION</h3>
-                <section>
-                    <h4>HALF TICKETS</h4>
-                    <p>People under 18 or over 60, people with disabilities or serious illnesses, blood donors, employees and students with proof are entitled to pay only half the price.</p>
-                </section>
-                <section>
-                    <h4>OPERATION</h4>
-                    <p>We are open from TUESDAY to SUNDAY</p>
-                    <p>TUESDAY to FRIDAY from 1:00 pm until 9:00 pm</p>
-                    <p>SATURDAY and SUNDAY from 1:00 pm until 9:00 pm</p>
-                </section>
-                <section>
-                    <h4>ADDRESS</h4>
-                    <p>Street: Santos Oliveira </p>
-                    <p>Neighborhood: Palmeiras</p>
-                    <p>Number: 1234</p>
-                </section>
-                <section>
-                    <h4>CONTACT</h4>
-                    <p>contact@cinedv.com</p>
-                    <p>Phone: 9923198</p>
-                    <small>fictitious information</small>
-                </section>
-        </div> <!--informação-->
+        </div>
     </main>
-    <footer class="bg-black">
-        <div> <!--Redes-->
-            <div>
-                <div class="bi bi-twitter-x"></div>
-                <p>CineDV</p>
+    <footer class="bg-black text-white border-top py-4">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <i class="bi bi-twitter"></i>
+                    <p class="mb-0 ms-2">CineDV</p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <i class="bi bi-youtube"></i>
+                    <p class="mb-0 ms-2">CineDV</p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <i class="bi bi-facebook"></i>
+                    <p class="mb-0 ms-2">CineDV</p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <i class="bi bi-instagram"></i>
+                    <p class="mb-0 ms-2">CineDV</p>
+                </div>
+            </div> <!-- Redes -->
+            <div class="row mb-3">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <cite class="me-2">By vinifen</cite>
+                    <i class="bi bi-github"></i>
+                </div>
+            </div> <!-- Crédito -->
+            <div class="row">
+                <div class="col text-center">
+                    <small>Copyright © 2024 Ninguem</small>
+                </div>
             </div>
-            <div>
-                <div class="bi bi-youtube"></div>
-                <p>CineDV</p>
-            </div>
-            <div>
-                <div class="bi bi-facebook"></div>
-                <p>CineDV</p>
-            </div>
-            <div>
-                <div class="bi bi-instagram"></div>
-                <p>CineDV</p>
-            </div>
-        </div> <!--Redes-->
-        <div> <!--Crédito-->
-            <cite>By vinifen</cite>
-            <div class="bi bi-github"></div>
-        </div> <!--Crédito-->
-        <div>
-            <small>Copyright © 2024 Ninguem</small>
         </div>
     </footer>
 
     <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-primary">
                     <h5 class="modal-title" id="authModalLabel">Autenticação</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <!-- Nav tabs -->
+                    <!-- Nav tabs -->
                     <ul class="nav nav-tabs" id="authTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
@@ -214,50 +221,74 @@
                     <div class="tab-content" id="authTabContent">
                         <!-- Login Form -->
                         <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                            <form class="mt-3">
+                            <form class="mt-3" id="loginForm">
                                 <div class="mb-3">
-                                    <label for="loginEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="loginEmail" placeholder="Digite seu email">
+                                    <label for="loginEmail" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="loginEmail" placeholder="john-junior@gmail.com">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="loginPassword" class="form-label">Senha</label>
-                                    <input type="password" class="form-control" id="loginPassword" placeholder="Digite sua senha">
+                                    <label for="loginPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="loginPassword" placeholder="john321passwordJunior">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Entrar</button>
+                                <div class="mb-3">
+                                    <label for="loginRemeberMe" class="form-label">
+                                        <input type="checkbox" id="loginRemeberMe"><span class="mx-2">Remember-me</span>
+                                    </label>
+                                    
+                                </div>
+                                <div class="mb-1" id="loginFeedback"></div>
+                                <button type="button" id="loginSubmitButton" class="btn btn-primary">Enter</button>
                             </form>
                         </div>
                             <!-- Register Form -->
                         <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                            <form class="mt-3">
+                            <form class="mt-3" id="registerForm">
                                 <div class="mb-3">
-                                    <label for="registerName" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="registerName" placeholder="Digite seu nome">
+                                    <label for="registerName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="registerName" placeholder="John" minlength="2" maxlength="20" required autofocus pattern="^(?!  )[a-zA-ZÀ-ÿ\s]{2,}$">
+                                    <span></span>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="registerEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="registerEmail" placeholder="Digite seu email">
+                                    <label for="registerLastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="registerLastName" placeholder="Junior" minlength="2" maxlength="80" required autofocus pattern="^(?!  )[a-zA-ZÀ-ÿ\s]{2,}$">
+                                    <span></span>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="registerPassword" class="form-label">Senha</label>
-                                    <input type="password" class="form-control" id="registerPassword" placeholder="Digite sua senha">
+                                    <label for="registerAge" class="form-label">Age</label>
+                                    <input type="text" class="form-control" id="registerAge" placeholder="20/05/2005" minlength="10" maxlength="10" required pattern="^[0-9\/]*$" data-mask="00/00/0000">
+                                    <span></span>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="registerConfirmPassword" class="form-label">Confirme a Senha</label>
-                                    <input type="password" class="form-control" id="registerConfirmPassword" placeholder="Confirme sua senha">
+                                    <label for="registerEmail" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="registerEmail" placeholder="john-junior@gmail.com" required>
+                                    <span></span>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                <div class="mb-3">
+                                    <label for="registerPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="registerPassword" placeholder="john321passwordJunior" minlength="4" maxlength="80" required>
+                                    <span></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerConfirmPassword" class="form-label">Confirm your Password</label>
+                                    <input type="password" class="form-control" id="registerConfirmPassword" placeholder="john321passwordJunior" minlength="4" maxlength="80" required>
+                                    <span></span>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="registerSubmitButton">Register Account</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
     
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/script/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="assets/script/jquery.mask.min.js"></script>
     <script src="assets/index-assets/index.js" type="module" defer></script>
 </body>
 </html>
+

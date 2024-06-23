@@ -1,4 +1,29 @@
+.display-none{
+    display: none !important;
+}
+.error-feedback{
+    color: red;
+}  
 
- .hide {
-    display: none;
-  }
+.ok-feedback{
+    color: green;
+}
+
+.justify-content-center{
+      display: flex;
+      justify-content: center; 
+}
+
+::-webkit-input-placeholder {
+    color: #b6b6b6 !important;
+    font-style: italic;
+}
+
+.form-label{
+    color: gray;
+}
+
+  
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}

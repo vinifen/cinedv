@@ -2,7 +2,6 @@ $primary: #001B33;
 $secondary: #01274A;
 $border-color: #797979;
 
-
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
 
 @import "../../../node_modules/bootstrap/scss/functions";
@@ -50,4 +49,26 @@ $border-color: #797979;
 
 // Utilities
 @import "../../../node_modules/bootstrap/scss/utilities/api";
+
+.is-valid {
+    background-color: #d4edda !important;  
+    border-color: #28a745 !important;      
+    color: #155724 !important;             
+}
+
+.is-invalid {
+    background-color: #f8d7da !important;  
+    border-color: #dc3545 !important;      
+    color: #721c24 !important;             
+}
+
+.valid-feedback,
+.valid-tooltip {
+    color: #155724 !important;
+}
+
+.invalid-feedback,
+.invalid-tooltip {
+    color: #721c24 !important;
+}
 

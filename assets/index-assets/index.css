@@ -38,6 +38,10 @@ h3{
     font-size: 1.5em;
 }
 
+.imgs-movie-theater-sm{
+    width: 50vw;
+}
+
 .cards-movies-current-md{
     width: 14.5em;
 }
@@ -106,14 +110,8 @@ small{
         1px 1px 0 #96081B;
 }
 
-.centralizeMoviesCards{
-    display: flex;
-    justify-content: center;
-    
-}
-
 .backgroud-logo{
-    background-image: url(/cinedv/assets/img/baner.jpg);
+    background-image: url(https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/baner_i6zrpo.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -126,10 +124,6 @@ small{
 
 #logo2{
     width: 10em;
-}
-
-.imgs-cinema > div > img{
-    width: 80%;
 }
 
 .movie-schedule-md{
@@ -185,8 +179,17 @@ h4{
     font-size: 1em;
 }
 
+h5{
+    color: #ffffff;
+    font-size: 1em;
+}
+
 .container-movies{
     width: 79em;
+}
+
+.container-movie-theater-imgs{
+    width: 77.5em;
 }
 
 .container-dates-md{
@@ -212,20 +215,29 @@ h4{
     flex: 0 0 calc(100% / 5);
 }
 
-@media (min-width: 450px) {
-
-    #moviesCurrentSm {
-        display: none;
-    }
-
-    #carouselMoviesCurrent {
-        display: block;
-    }
+.imgs-movie-theater{
+    width: 90%;
+    height: 80%;
+    border-radius: 10px;
 }
+
+#moviesCurrentSm, #moviesUpComingSm {
+    display: none !important;
+}
+
+
+#carouselMoviesCurrent, #carouselMoviesUpcoming {
+    display: block !important;
+}
+
 
 @media (max-width: 1280px) {
     .container-movies{
         width: 58em;
+    }
+
+    .container-movie-theater-imgs{
+        width: 57.5em;
     }
     
     .container-dates-md{
@@ -261,6 +273,10 @@ h4{
 @media (max-width: 1020px) {
     .container-movies{
         width: 50em;
+    }
+
+    .container-movie-theater-imgs{
+        width: 49.5em;
     }
     
     .container-dates-md{
@@ -323,11 +339,26 @@ h4{
     .card-movies-upcoming{
         width: 10.5em;
     }
+
+    #sun, #mon, #tue, #wed, #thu, #fri, #sat{
+        font-size: 12px;
+    }
+
+    h4{
+        font-size: 0.8em;
+    }
+    h3{
+        font-size: 1.2em;
+    }
 }
 
 @media (max-width: 818px) {
     .container-movies{
         width: 35em;
+    }
+
+    .container-movie-theater-imgs{
+        width: 34.5em;
     }
 
     .cards-movies-current-md{
@@ -350,17 +381,31 @@ h4{
     .carousel-item {
         flex: 0 0 calc(100% / 3);
     }
+
+    #moviesCurrentSm {
+        display: none;
+    }
+
+    #carouselMoviesCurrent {
+        display: block;
+    }
 }
 
 
 
 @media (max-width: 580px) {
-    #moviesCurrentSm {
-        display: block;
+    #moviesCurrentSm{
+        display: block !important;
+    }
+    
+    #carouselMoviesCurrent, #carouselMoviesUpcoming {
+        display: none !important;
     }
 
-    #carouselMoviesCurrent {
-        display: none;
+    #moviesUpComingSm{
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 
     .container-movies{
@@ -370,9 +415,32 @@ h4{
     .container-dates-md{
         width: 90vw;
     }
+
+    .container-movie-theater-imgs{
+        width: 85vw;
+    }
     
     .container-navbar{
         width: 90vw;
         height: 3em;
+    }
+
+    .carousel-item {
+        flex: 0 0 calc(100% / 1);
+    }
+
+    .imgs-movie-theater{
+        width: 70%;
+        
+    }
+
+    .cards-movies-upcoming-sm {
+        width: 30vw;
+    }
+}
+
+@media (max-width: 292px) {
+    #moviesUpComingSm{
+        justify-content: space-around;
     }
 }
