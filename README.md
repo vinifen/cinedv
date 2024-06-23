@@ -3,9 +3,9 @@ Este projeto tem como objetivo implementar progressivamente e de forma didática
 
 O frontend da aplicação foi desenvolvido com HTML, CSS e JavaScript e o backend foi simulado pela implementação de uma API Fake, usando o JSON Server.
 
-## Endereço de Deploy - GitHub Pages
+## Vídeo
 
-https://utfpr-gp.github.io/roubank-css/
+https://www.youtube.com/watch?v=JAPL2QQ66nk&ab_channel=ViniciusFerreiraNovacoski
 
 ## Protótipo
 
