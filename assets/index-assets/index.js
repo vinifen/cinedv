@@ -36,28 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const textLogin = document.getElementById('loginText');
 
     function reloadCounter() {
-        // Verifica se há um valor salvo no localStorage
+        
         let counter = localStorage.getItem('counterReload');
     
-        // Se não houver valor, inicializa com 0
         if (counter === null) {
             counter = 0;
         } else {
-            // Converte o valor salvo para número e verifica se é um número válido
+       
             counter = parseInt(counter, 10);
             if (isNaN(counter)) {
                 counter = 0;
             }
         }
-    
-        // Incrementa o counter
+
         counter++;
-    
-        // Salva o novo valor no localStorage
         localStorage.setItem('counterReload', counter);
-    
-        // Debug: Exibe o valor atual do contador no console
-        console.log('Contador:', counter);
     }
 
     if(localStorage.getItem('login') === "true"){  
@@ -109,7 +102,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     const
         date = new Date(),
-        currentDay = 4,
+        currentDay = date.getDay(),
         daysButtonsElements = [ 
             document.getElementById('sun'),
             document.getElementById('mon'),
@@ -182,7 +175,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         const moviesCurrentDayContent = await movieContentInstance.getMoviesDay(day);
         scrollLimit = await moviesCurrentDayContent.length + 1;
-        console.log(scrollLimit, "sapo");
         const schedule = await movieContentInstance.getScheduleDayDiv(day);
 
         const divMd = document.getElementById('moviesCurrent');
@@ -199,7 +191,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             $("#moviesCurrent").animate({ scrollLeft: scrollPosition }, 0);   
             setTimeout(() => {
                 carouselWidth = $("#moviesCurrent")[0].scrollWidth; 
-                console.log(carouselWidth);
+                
             }, 0);
         }
         
@@ -325,8 +317,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         $("#rightButtonMoviesCurrent").on("click", function () {
             scrollLimit = scrollLimitMoviesCurrent.length + 1;
             leftButton.classList.remove('display-none');
-            console.log(scrollLimit, "sc");
-            console.log(scrollPosition, carouselWidth, cardWidthMoviesCurrent, scrollLimit);
+
             if (scrollPosition < (carouselWidth - cardWidthMoviesCurrent * scrollLimit)){ 
                 scrollPosition += cardWidthMoviesCurrent*2;  
                 $("#moviesCurrent").animate({ scrollLeft: scrollPosition }, 400); 
@@ -360,11 +351,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const rightButton = document.getElementById("rightButtonMoviesUpComing");
         
         const scrollLimitUpComing = upComingMoviesInstance.length - 1;
-        console.log(scrollLimitUpComing);
         
         $("#rightButtonMoviesUpComing").on("click", function () {
             
-            console.log(scrollPositionUpComing, carouselWidthUpComing, cardWidthMoviesUpComing, scrollLimitUpComing);
             if (scrollPositionUpComing < (carouselWidthUpComing - cardWidthMoviesUpComing * scrollLimitUpComing)){ 
                 leftButton.classList.remove('display-none');
 
@@ -401,11 +390,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const cardsNumberMovieTheaterImgs = document.querySelectorAll('.carousel-item-movie-theater-imgs').length - 1;
         
         
-        console.log("antes clique direita", scrollPositionMovieTheaterImgs);
+        
         $("#rightButtonMovieTheaterImgs").on("click", function () {
             if (scrollPositionMovieTheaterImgs < (carouselWidthMovieTheaterImgs - cardWidthMovieTheaterImgs * cardsNumberMovieTheaterImgs)){ 
                 scrollPositionMovieTheaterImgs += cardWidthMovieTheaterImgs;
-                console.log("depois clique direita", scrollPositionMovieTheaterImgs, cardWidthMovieTheaterImgs);
                 leftButton.classList.remove('display-none');
                 $("#carouselInnerMovieTheaterImgs").animate({ scrollLeft: scrollPositionMovieTheaterImgs }, 400);
                 if (scrollPositionMovieTheaterImgs >= (carouselWidthMovieTheaterImgs - cardWidthMovieTheaterImgs * 5)){ 
@@ -413,10 +401,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
         });
-        console.log("antes clique esquerda", scrollPositionMovieTheaterImgs);
+        
         $("#leftButtonMovieTheaterImgs").on("click", function () {
             scrollPositionMovieTheaterImgs -= cardWidthMovieTheaterImgs;
-            console.log("depois clique esquerda", scrollPositionMovieTheaterImgs);
+            
             if (scrollPositionMovieTheaterImgs <= 0) {
                 leftButton.classList.add('display-none');
             }
@@ -476,7 +464,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             divUpComingMovies.classList.remove('justify-content-center'); 
             rightButtonUpComing.classList.remove('display-none');
         }
-        console.log(cardsNumberMovieTheaterImgs.length, moviesFrontPage);
         if(cardsNumberMovieTheaterImgs.length <= moviesFrontPage){
             divMovieTheaterImgs.classList.add('justify-content-center');
             rightButtonMovieTheaterImgs.classList.add('display-none');

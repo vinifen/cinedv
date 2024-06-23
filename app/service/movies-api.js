@@ -1,5 +1,4 @@
 async function processAPI() {
-    console.log("API chamada");
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=b6d5faa16246f7a6600a2feeea7743b7&language=en-US&page=1`;
     
     try{
@@ -14,7 +13,6 @@ async function processAPI() {
 
 async function selectedMoviesAPI() {
     try{
-        console.log("Iniciando seleção de filmes");
         const allMovies = await processAPI();
         const equalMoviesRemoved = await toRemoveEqualsUpComingMovies(allMovies);
         const allMoviesSelected = await toRemoveOldMovies(equalMoviesRemoved);
