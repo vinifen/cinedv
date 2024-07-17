@@ -56,6 +56,7 @@ async function getMoviesRuntime(movieId) {
 export const moviesApiSelected = new Promise(async (resolve, reject) => {
     try{
         const movies = await selectedMoviesAPI();
+        console.log(movies);
         resolve(movies);
     }catch(error){
         console.error('Api request error: ', error); 
@@ -102,7 +103,7 @@ async function toCheckMoviesDate(movies){
     function checkDate(movie){
         const
             currentYear = new Date().getFullYear(),
-            currentMonth = new Date().getMonth() + 1,
+            currentMonth = new Date().getMonth(),
             [year, month, day] = movie.release_date.split('-').map(Number);
         return year > currentYear || year >= currentYear && month >= currentMonth;
     }
@@ -111,13 +112,14 @@ async function toCheckMoviesDate(movies){
 
 async function selectedUpComingMovies(){
     const upComingMoviesData = await upComingMoviesApi()
-    const upComingMovies = upComingMoviesData.map(movie => ({
+    const upComingMoviess = upComingMoviesData.map(movie => ({
         title: movie.title,        
         backdrop_path: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`,
         poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
         overview: movie.overview
     }));
-    
+    //remover
+    const upComingMovies = upComingMoviess.slice(0, 10);
     return upComingMovies;
 }
 

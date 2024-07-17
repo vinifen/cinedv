@@ -7,7 +7,7 @@ export class MovieContent{
     async getMoviesFilter(day){
         switch (day) {
             case 0:
-                return [0, 1, 5, 6, 7, 8];
+                return [0, 1, 5, 6, 7, 8, 9, 10];
             case 1:
                 return [];
             case 2:
@@ -30,7 +30,7 @@ export class MovieContent{
         const
             movies = await moviesApiSelected,
             moviesFilter = await this.getMoviesFilter(day),
-            moviesFiltered = movies.filter((_, index) => moviesFilter.includes(index));   
+            moviesFiltered = movies.filter((_, index) => moviesFilter.includes(index)); 
         return moviesFiltered;
     }
 
@@ -72,7 +72,7 @@ export class MovieContent{
         
         const selectedSchedule = await this.getSelectedSchedule(day);
         const timeDiv = selectedSchedule.map(sublist => {
-            return sublist.map(time => `<div class="col-3 time">${time}</div>`).join('')});
+            return sublist.map(time => `<div class="border col-3 time">${time}</div>`).join('')});
         return timeDiv;
     }
 }

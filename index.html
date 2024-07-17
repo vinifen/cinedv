@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/cinedv/assets/css/styles.css">
 </head> 
-<body>
+<body class="bg-black">
     <header class="overflow-x-hidden">
         <nav class="bg-primary">
             <div class="container-fluid d-flex justify-content-between container-navbar">
@@ -50,35 +50,35 @@
             <div class="container-fluid pb-2 pt-1 container-dates-md">
                 <div class="d-flex border-bottom align-items-center justify-content-center">
                     <i class="bi bi-calendar-week mx-2 mb-2"></i>
-                    <h4 class="mt-1 mb-2">SCHEDULE:</h4>
+                    <h2 class="mt-1 mb-2">SCHEDULE:</h2>
                 </div>
-                <div class=" d-flex align-items-center justify-content-between flex-nowrap fw-bolder mt-1 ">
-                    <div class=" d-flex flex-column align-items-center">
-                        <button id="sun"></button>
+                <div class="d-flex align-items-center justify-content-between flex-nowrap fw-bolder mt-1 ">
+                    <div class="d-flex flex-column align-items-center">
+                        <button id="sun" class="daysButton"></button>
                         <label for="sun" id="sun-date"></label>
                     </div>
-                    <div class=" d-flex flex-column align-items-center">
-                        <button id="mon"></button>
+                    <div class="d-flex flex-column align-items-center">
+                        <button id="mon" class="daysButton"></button>
                         <label for="mon" id="mon-date"></label>
                     </div>
                     <div class=" d-flex flex-column align-items-center">
-                        <button id="tue"></button>
+                        <button id="tue" class="daysButton"></button>
                         <label for="tue" id="tue-date"></label>
                     </div>
-                    <div class=" d-flex flex-column align-items-center">
-                        <button id="wed"></button>
+                    <div class="d-flex flex-column align-items-center">
+                        <button id="wed" class="daysButton"></button>
                         <label for="wed" id="wed-date"></label>
                     </div>
-                    <div class=" d-flex flex-column align-items-center">
-                        <button id="thu"></button>
+                    <div class="d-flex flex-column align-items-center">
+                        <button id="thu" class="daysButton"></button>
                         <label for="thu" id="thu-date"></label>
                     </div>
-                    <div class=" d-flex flex-column align-items-center">
-                        <button id="fri"></button>
+                    <div class="d-flex flex-column align-items-center">
+                        <button id="fri" class="daysButton"></button>
                         <label for="fri" id="fri-date"></label>
                     </div>
                     <div class=" d-flex flex-column align-items-center">
-                        <button id="sat"></button>
+                        <button id="sat" class="daysButton"></button>
                         <label for="sat" id="sat-date"></label>
                     </div>
                 </div>
@@ -88,116 +88,178 @@
     <main class="overflow-x-hidden text-center">
         <div class="container-fluid container-movies mb-5">
             <small class="m-0">all sessions schedule - P.M </small>
-            <div class="mb-5">
+            <section class="mb-4">
                 <div id="carouselMoviesCurrent" class="carousel slide">
 
-                    <div id="moviesCurrent" class="carousel-inner">         
-                    </div> 
+                    <div id="moviesCurrent" class="carousel-inner mb-2"></div> 
 
-                    <button id="leftButtonMoviesCurrent" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button id="rightButtonMoviesCurrent" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button id="leftButtonMoviesCurrent" class="left-Button-carousel mx-3 d-flex align-items-center d-flex align-items-center bi bi-chevron-left fs-3">
+                        </button>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div id="controlCirclesMoviesCurrent" class="d-flex justify-content-center align-items-center" ></div>
+                        </div>
+                        <button id="rightButtonMoviesCurrent" class="right-Button-carousel mx-3 d-flex align-items-center bi bi-chevron-right fs-3">
+               
+                        </button>
+                    </div>
+                    
                 </div>
                 <div id="moviesCurrentSm"></div>
-            </div>
-            <div> <!--Filmes em BREVE-->
-                <h3 class="border-bottom mx-3">Coming soon</h3>
+            </section>
+
+            <section class="bg-primary d-flex justify-content-between rounded rounded-5 mb-4 mx-2">
+                <div id="divMovieOfWeekImg"></div>
+                <div id="movieOfWeekBackgroundImg" class="rounded rounded-5">
+                    <div class="dark-effect rounded rounded-5">
+                        <div class="d-flex flex-column justify-content-around align-items-start ms-5" style="height: 100%;">
+                            <h3 class="mt-2">MOVIE OF THE WEEK:</h3>
+                            <p class="mb-2" id="movieOfWeekTitle"></p>
+                            <p class="off20">20% OFF</p>
+                            <button id="movieOfWeekButton" class="bg-primary py-3 border rounded-5 mb-2">Buy TICKETS</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section> 
+                <h3 class="border-bottom mb-2">Coming soon</h3>
                 <div id="carouselMoviesUpcoming" class="carousel slide">
 
-                    <div id="moviesUpComing" class="carousel-inner"></div>
+                    <div id="moviesUpComing" class="carousel-inner mb-2"></div>
 
-                    <button id="leftButtonMoviesUpComing" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button id="rightButtonMoviesUpComing" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button id="leftButtonMoviesUpComing" class="left-Button-carousel mx-3 d-flex align-items-center d-flex align-items-center bi bi-chevron-left fs-3">
+                        </button>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div id="controlCirclesMoviesUpComing" class="d-flex justify-content-center align-items-center" ></div>
+                        </div>
+                        <button id="rightButtonMoviesUpComing" class="right-Button-carousel mx-3 d-flex align-items-center bi bi-chevron-right fs-3">
+                        </button>
+                    </div>
                 </div>
                 <div id="moviesUpComingSm" class="mx-4"></div>
-            </div>
+            </section>
         </div>
-        <div class="bg-primary mb-5">
+        <section class="bg-primary pb-3 pt-2 mb-5">
             <div class="container-fluid container-movie-theater-imgs">
-                <h3 class="border-bottom">Discover Our Space</h3>
+                <h3 class="border-bottom mb-2 ">Discover Our Space</h3>
                 <div id="carouselMovieTheaterImgs" class="carousel">
-                    <div class=" carousel-inner" id="carouselInnerMovieTheaterImgs"> <!--Descobra nosso lugar-->
-                        <div class="card bg-secondary carousel-item active carousel-item-movie-theater-imgs">
-                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/entrance_rzvsbc.jpg" alt="">
-                            <h5>Entrance</h5>
+                    <div class="carousel-inner mb-2" id="carouselInnerMovieTheaterImgs"> <!--Descobra nosso lugar-->
+
+                        <div class="carousel-item carousel-item-movie-theater-imgs active">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/entrance_rzvsbc.jpg" alt="">
+                                <h5 class="mb-2">Entrance</h5>
+                            </div>
                         </div>
-                        <div class="card bg-secondary carousel-item carousel-item-movie-theater-imgs active">
-                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/popcorn-store_mgyswp.jpg" alt="">
-                            <h5>Popcorn Store</h5>
+                        <div class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/popcorn-store_mgyswp.jpg" alt="">
+                                <h5 class="mb-2">Popcorn Store</h5>
+                            </div>
                         </div>
-                        <div class="card bg-secondary carousel-item carousel-item-movie-theater-imgs">
-                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/rooms-entrance_lo97fq.jpg" alt="">
-                            <h5>Rooms Entrance</h5>
+                        <div class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/rooms-entrance_lo97fq.jpg" alt="">
+                                <h5 class="mb-2">Rooms Entrance</h5>
+                            </div>
                         </div>
-                        <div class="card bg-secondary carousel-item carousel-item-movie-theater-imgs">
-                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/room_1_ixcbzp.jpg" alt="">
-                            <h5>Room 1</h5>
+                        <div class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/room_1_ixcbzp.jpg" alt="">
+                                <h5 class="mb-2">Room 1</h5>
+                            </div>
                         </div>
-                        <div class="card bg-secondary carousel-item carousel-item-movie-theater-imgs">
-                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/room_2_y7czzy.jpg" alt="">
-                            <h5>Room 2</h5>
+                        <div class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/room_2_y7czzy.jpg" alt="">
+                                <h5 class="mb-2">Room 2</h5>
+                            </div>
                         </div>
-                        <div class="card bg-secondary carousel-item carousel-item-movie-theater-imgs">
-                            <img class="img-fluid imgs-movie-theater mt-2" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/baner_i6zrpo.jpg" alt="">
-                            <h5>Room 3</h5>
+                        <div class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/baner_i6zrpo.jpg" alt="">
+                                <h5 class="mb-2">Room 3</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1721180909/estacionamento.jpg" alt="">
+                                <h5 class="mb-2">Parking</h5>
+                            </div>
                         </div>
                     </div> <!--Descobra nosso lugar-->
-                    <button id="leftButtonMovieTheaterImgs" class="carousel-control-prev" type="button" data-bs-target="#carouselMovieTheaterImgs" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button id="rightButtonMovieTheaterImgs" class="carousel-control-next" type="button" data-bs-target="#carouselMovieTheaterImgs" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button id="leftButtonMovieTheaterImgs" class="left-Button-carousel mx-3 d-flex align-items-center bi bi-chevron-left fs-3"></button>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div id="controlCirclesMovieTheaterImgs" class="d-flex justify-content-center align-items-center" ></div>
+                        </div>
+                        <button id="rightButtonMovieTheaterImgs" class="right-Button-carousel mx-3 d-flex align-items-center bi bi-chevron-right fs-3"></button>
+                    </div>
                 </div>
                 
             </div>
+        </section>
+        <div class="container-fluid container-movies mb-5">
+            <section class="moreSite bg-primary mx-2 d-flex justify-content-center align-items-center rounded-5 py-3"> <!--Mais sobre esse site-->
+                <img src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/logo-2_wttptj.png" class="me-4" alt="" style="width: 15%;">
+                <h3>ABOUT US AND THIS SITE</h3>
+            </section> <!--Mais sobre esse site-->
+        
+            <section> <!--informação-->
+                <h3>INFORMATION</h3>
+                <section>
+                    <h4>HALF TICKETS</h4>
+                    <p>People under 18 or over 60, people with disabilities or serious illnesses, blood donors, employees and students with proof are entitled to pay only half the price.</p>
+                </section>
+                <section>
+                    <h4>OPERATION</h4>
+                    <p>We are open from TUESDAY to SUNDAY</p>
+                    <p>TUESDAY to FRIDAY from 1:00 pm until 9:00 pm</p>
+                    <p>SATURDAY and SUNDAY from 1:00 pm until 9:00 pm</p>
+                </section>
+                <section>
+                    <h4>ADDRESS</h4>
+                    <p>Street: Santos Oliveira </p>
+                    <p>Neighborhood: Palmeiras</p>
+                    <p>Number: 1234</p>
+                </section>
+                <section>
+                    <h4>CONTACT</h4>
+                    <p>contact@cinedv.com</p>
+                    <p>Phone: 9923198</p>
+                    <small>fictitious information</small>
+                </section>
+            </section> <!--informação-->
         </div>
     </main>
-    <footer class="bg-black text-white border-top py-4">
-        <div class="container">
-            <div class="row mb-3">
-                <div class="col d-flex justify-content-center align-items-center">
-                    <i class="bi bi-twitter"></i>
-                    <p class="mb-0 ms-2">CineDV</p>
-                </div>
-                <div class="col d-flex justify-content-center align-items-center">
-                    <i class="bi bi-youtube"></i>
-                    <p class="mb-0 ms-2">CineDV</p>
-                </div>
-                <div class="col d-flex justify-content-center align-items-center">
-                    <i class="bi bi-facebook"></i>
-                    <p class="mb-0 ms-2">CineDV</p>
-                </div>
-                <div class="col d-flex justify-content-center align-items-center">
-                    <i class="bi bi-instagram"></i>
-                    <p class="mb-0 ms-2">CineDV</p>
-                </div>
-            </div> <!-- Redes -->
-            <div class="row mb-3">
-                <a href="https://github.com/vinifen" class="col d-flex text-white justify-content-center align-items-center">
-                    <cite class="me-2">By vinifen</cite>
-                    <i class="bi bi-github"></i>
-                </a>
-            </div> <!-- Crédito -->
-            <div class="row">
-                <div class="col text-center">
-                    <small>Copyright © 2024 Ninguem</small>
+    <footer class="overflow-x-hidden">
+        <div class="container-fluid container-movies border-top d-flex justify-content-between">
+            <a href="https://www.themoviedb.org/?language=en-US" class="my-5 d-flex justify-content-center align-items-center" style="width: 30%;">
+                <img src="assets/tmdb-logo.svg" alt="tmdb-logo" class="tmdb-logo">
+            </a>
+            <a href="https://github.com/vinifen" class="text-white d-flex justify-content-center align-items-center" style="width: 30%;">
+                <cite>By vinifen</cite>
+                <i class="bi bi-github fs-2 ms-3"></i>
+            </a>
+            <div class="d-flex flex-column justify-content-center align-items-center" style="width: 30%;">
+                <div class="d-flex flex-column justify-content-center align-items-start">
+                    <p>Follow us</p>
+                    <div class="d-flex justify-content-center">
+                        <i class="bi bi-twitter-x fs-5 me-2"></i>
+                        <i class="bi bi-youtube fs-5 me-2"></i>
+                        <i class="bi bi-facebook fs-5 me-2"></i>
+                        <i class="bi bi-instagram fs-5 me-2"></i>
+                    </div>
                 </div>
             </div>
         </div>
+        
+        <div class="d-flex bg-primary justify-content-center align-items-end">
+            <small>Copyright © <span id="dateCopyright"></span> Ninguem</small>
+        </div>
+           
     </footer>
 
     <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">

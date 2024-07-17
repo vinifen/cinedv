@@ -3,7 +3,6 @@ import { MovieContent } from "../../app/service/movies-content.js";
 import { Schedule } from "../../app/service/schedule-services.js";
 import { UserRegister } from "../../app/service/user-register.js";
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const div = document.getElementById('moviesCurrent');
     let cardHTML = ``;
@@ -56,14 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if(localStorage.getItem('login') === "true"){  
         reloadCounter();
         textLogin.innerHTML = localStorageUserContent.name;
-        modalAuthentication.classList.add('display-none');
-        offLogin.classList.add('display-none');
-        onLogin.classList.remove('display.none');
+        modalAuthentication.classList.add('d-none');
+        offLogin.classList.add('d-none');
+        onLogin.classList.remove('d-none');
     }else{
         localStorage.removeItem('counterReload');
-        offLogin.classList.remove('display-none');
-        onLogin.classList.add('display-none');
-        modalAuthentication.classList.remove('display-none');
+        offLogin.classList.remove('d-none');
+        onLogin.classList.add('d-none');
+        modalAuthentication.classList.remove('d-none');
     }
 
     function logout() {
@@ -83,22 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
 });
 
-//carregar cards
+
 document.addEventListener('DOMContentLoaded', async () => { 
-    await moviesApiSelected;
+    const apiMoviesAll = await moviesApiSelected;
     const upComingMoviesInstance = await upComingMovies;
     const movieContentInstance = new MovieContent();
-    let scrollPosition = 0;
-    let scrollPositionUpComing = 0;
-    let scrollPositionMovieTheaterImgs = 0;
-    let daySelectedUpComing = 0;
-    let windowWidth = window.innerWidth;
-    let cardWidthMoviesCurrent = 0;
-    let cardWidthMoviesUpComing = 0;
-    let cardWidthMovieTheaterImgs = $(".carousel-item-movie-theater-imgs").width();
-    let carouselWidthMovieTheaterImgs = $("#carouselInnerMovieTheaterImgs")[0].scrollWidth;
-    let carouselWidthUpComing = 0;
-    let carouselWidth = 0;
     
     const
         date = new Date(),
@@ -121,10 +109,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('fri-date'),
             document.getElementById('sat-date'),
         ];
-    let daySelected = currentDay;
-    let scrollLimitMoviesCurrent = await movieContentInstance.getMoviesDay(daySelected);
-    let scrollLimit = scrollLimitMoviesCurrent.length + 1;
-    
+    let daySelected = currentDay,
+        windowWidth = window.innerWidth,
+
+        scrollPositionMoviesCurrent = 0,
+        cardWidthMoviesCurrent = 0,
+        buttonCountMoviesCurrent = 0,
+        carouselButtonLimitMoviesCurrent = 0,
+
+        cardWidthMoviesUpComing = 0,
+        scrollPositionMoviesUpComing = 0,
+        buttonCountMoviesUpComing = 0,
+        carouselButtonLimitMoviesUpComing = 0,
+
+        cardWidthMovieTheaterImgs = $(".carousel-item-movie-theater-imgs").width(),
+        scrollPositionMovieTheaterImgs = 0,
+        buttonCountMovieTheaterImgs = 0,
+        carouselButtonLimitMovieTheaterImgs = 0;
+        $("#carouselInnerMovieTheaterImgs").animate({ scrollLeft: scrollPositionMovieTheaterImgs }, 0);
+        document.getElementById("leftButtonMovieTheaterImgs").classList.add("visibility-hidden");
+        
+    const amountCardsMoviesCurrentAnimate = 2;
+    const amountCardsMoviesUpComingAnimate = 1;
+    const amountCardsMovieTheaterImgsAnimate = 2;
+
     function renderDaysButtonsContent() {
         const daysFull = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
         const daysShort = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
@@ -149,7 +157,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     daysButtonsElements.forEach((dayId, dayIndex) => {dayId.addEventListener('click', () => {
-        getMoviesContent(dayIndex), 
+        console.log(dayId, dayIndex)
+        renderMoviesCurrent(dayIndex), 
         changeButtonStyles(dayIndex), 
         daySelected = dayIndex;
 
@@ -168,15 +177,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     changeButtonStyles(currentDay);
 
-
-    async function getMoviesContent(day){
-        scrollPosition = 0;
-        scrollPositionUpComing = 0;
+    async function renderMoviesCurrent(day){
         
         const moviesCurrentDayContent = await movieContentInstance.getMoviesDay(day);
-        scrollLimit = await moviesCurrentDayContent.length + 1;
         const schedule = await movieContentInstance.getScheduleDayDiv(day);
-
         const divMd = document.getElementById('moviesCurrent');
         const divSm = document.getElementById('moviesCurrentSm');
 
@@ -184,24 +188,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             divSm.innerHTML = `<p> We are not open in this day</p>`;
             divMd.innerHTML = `<p class="carousel-items-movies-current"> We are not open in this day</p>`;
         }else{ 
-            divSm.innerHTML = moviesCurrentDayContent.map((_, index) => renderMoviesCardsSm(moviesCurrentDayContent, index, schedule)).join('');
-            divMd.innerHTML = moviesCurrentDayContent.map((_, index) => renderMoviesCardsMd(moviesCurrentDayContent, index, schedule)).join('');
-            
+            divSm.innerHTML = moviesCurrentDayContent.map((_, index) => contentMoviesCurrentSm(moviesCurrentDayContent, index, schedule)).join('');
+            divMd.innerHTML = moviesCurrentDayContent.map((_, index) => contentMoviesCurrentMd(moviesCurrentDayContent, index, schedule)).join('');
+
+            scrollPositionMoviesCurrent = 0;
             cardWidthMoviesCurrent = $(".carousel-items-movies-current").width();
-            $("#moviesCurrent").animate({ scrollLeft: scrollPosition }, 0);   
-            setTimeout(() => {
-                carouselWidth = $("#moviesCurrent")[0].scrollWidth; 
-                
-            }, 0);
+            $("#moviesCurrent").animate({ scrollLeft: scrollPositionMoviesCurrent }, 0);  
+            carouselButtonLimitMoviesCurrent = await getCarouselNextLimitMoviesCurrent();
+            buttonCountMoviesCurrent = 0;
+            console.log(await getCarouselNextLimitMoviesCurrent(), "claudio");
         }
-        
-        responsiveCarouselLayout(day);
-        
+        await addControlCirclesMoviesCurrent();
+        await responsiveMoviesCurrentLayout(daySelected);
     }
-    getMoviesContent(currentDay);
+    renderMoviesCurrent(currentDay);
 
-
-    function renderMoviesCardsMd(movie, i, schedule){
+    function contentMoviesCurrentMd(movie, i, schedule){
         let carouselActive = "active";
         if(i != 0)
             carouselActive = "";
@@ -215,13 +217,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         const cardMd =
         `<div class="carousel-items-movies-current d-flex justify-content-center carousel-item ${carouselActive}">
-            <div class="card cards-movies-current-md bg-primary text-white">
-                <div class="movies-title-runtime d-flex flex-column justify-content-between">
-                    <h4 class="mx-2 mt-1 movie-title">${movie[i].title}</h4>
+            <div class="card rounded rounded-4 cards-movies-current-md bg-primary text-white">
+                <div class="movies-title-runtime d-flex flex-column justify-content-around">
+                    <h4 class="mx-2 py-1 movie-title">${movie[i].title}</h4>
                     <p class="timeline mb-2 text-bottom">${movie[i].runtime}</p>
                 </div>
                 <div class="mb-2">  
-                    <img class="imagem rounded rounded-3" class="img-fluid" src="${movie[i].poster_path}" alt="">
+                    <img class="images-movies-current-md rounded rounded-3" class="img-fluid" src="${movie[i].poster_path}" alt="">
                 </div>
                 <div class="container schedule-container mb-2 bg-secondary rounded rounded-3">
                         <div class="row d-flex justify-content-center align-items-center movie-schedule-md">
@@ -236,7 +238,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return cardMd;
     }
 
-    function renderMoviesCardsSm(movie, i, schedule){
+    function contentMoviesCurrentSm(movie, i, schedule){
         if (schedule[i] === undefined) {
             schedule[i] = ["Undefined"];
         }
@@ -245,9 +247,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             schedule[i] = [`<p class="no-time">There are no more schedules today for this film</p>`];
         }
         const cardSm =
-        `<div class="mb-3 rounded rounded-3 bg-primary text-center text-white d-flex justify-content-around align-items-center">
+        `<div class="mb-3 rounded rounded-4 bg-primary text-center text-white d-flex justify-content-around align-items-center">
             <div class="" style="width: 40%;">  
-                <img class=" m-2 imagem rounded rounded-3" class="img-fluid" src="${movie[i].poster_path}" alt="" style="width: 90%;">
+                <img class=" m-2 images-movies-current-md rounded rounded-3" class="img-fluid" src="${movie[i].poster_path}" alt="" style="width: 90%;">
             </div>
             <div class="" style="width: 60%">
                 <h4 class="">${movie[i].title}</h4>
@@ -263,11 +265,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
         </div>`
         return cardSm;
+        
     }
+
+
+    /*Movie of The week function*/
+    async function renderMovieOfWeek(){
+        const movieOfWeek = 0;
+        const movieOfWeekImg = await apiMoviesAll[movieOfWeek].poster_path;
+        const movieOfWeekBackground = await apiMoviesAll[movieOfWeek].backdrop_path;
+        const movieOfWeekTitle = await apiMoviesAll[movieOfWeek].title;
+        document.getElementById('divMovieOfWeekImg').innerHTML = `<img class="movie-of-week-img my-3 rounded rounded-4" src="${movieOfWeekImg}">`;
+        document.getElementById('movieOfWeekBackgroundImg').style.backgroundImage = `url("${movieOfWeekBackground}")`;
+        document.getElementById('movieOfWeekTitle').textContent = movieOfWeekTitle; 
+    }
+    renderMovieOfWeek();
 
     async function renderUpComingMovies(){
         const divUpComingMovies = document.getElementById('moviesUpComing');
-        
+
         let cardHTMLupcomingMovies = '';
         for(let i = 0; i < upComingMoviesInstance.length; i++){ 
             let carouselActive = "active";
@@ -282,8 +298,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>`;
         }
         divUpComingMovies.innerHTML = cardHTMLupcomingMovies;
+
+        scrollPositionMoviesUpComing = 0;
         cardWidthMoviesUpComing = $(".carousel-items-movies-upcoming").width();
-        carouselWidthUpComing = $("#moviesUpComing")[0].scrollWidth;
+        $("#moviesUpComing").animate({scrollLeft: scrollPositionMoviesUpComing}, 0);
+        carouselButtonLimitMoviesUpComing = await getCarouselNextLimitMoviesUpComing();
+        buttonCountMoviesUpComing = 0;
+        responsiveMoviesUpComingLayout();
     }
     renderUpComingMovies();
 
@@ -306,198 +327,447 @@ document.addEventListener('DOMContentLoaded', async () => {
         divUpComingMovies.innerHTML = cardHTMLupcomingMovies;
     }
     renderUpComingMoviesSm();
-    
+
+
     async function initCarouselMoviesCurrent() {
-        await movieContentInstance.getMoviesDay(daySelected);
-        
-        
         const leftButton = document.getElementById("leftButtonMoviesCurrent");
         const rightButton = document.getElementById("rightButtonMoviesCurrent");
-        
-        $("#rightButtonMoviesCurrent").on("click", function () {
-            scrollLimit = scrollLimitMoviesCurrent.length + 1;
-            leftButton.classList.remove('display-none');
 
-            if (scrollPosition < (carouselWidth - cardWidthMoviesCurrent * scrollLimit)){ 
-                scrollPosition += cardWidthMoviesCurrent*2;  
-                $("#moviesCurrent").animate({ scrollLeft: scrollPosition }, 400); 
-                if (scrollPosition >= (carouselWidth - cardWidthMoviesCurrent * scrollLimit)){ 
-                    rightButton.classList.add('display-none');
-                }
+        $("#rightButtonMoviesCurrent").on("click",async function () {
+            console.log(carouselButtonLimitMoviesCurrent, buttonCountMoviesCurrent);
+            if(buttonCountMoviesCurrent < carouselButtonLimitMoviesCurrent){ 
+                buttonCountMoviesCurrent ++;
+                console.log(buttonCountMoviesCurrent);
+                leftButton.classList.remove("visibility-hidden");
+                scrollPositionMoviesCurrent += cardWidthMoviesCurrent*amountCardsMoviesCurrentAnimate;  
+                $("#moviesCurrent").animate({ scrollLeft: scrollPositionMoviesCurrent }, 400); 
+
+                if(buttonCountMoviesCurrent >= carouselButtonLimitMoviesCurrent)
+                    rightButton.classList.add("visibility-hidden");
+
+                await updateControlCirclesMoviesCurrent(buttonCountMoviesCurrent);
             }
+           
         });
-
-        $("#leftButtonMoviesCurrent").on("click", function () {
-            rightButton.classList.remove('display-none');
-            if(scrollPosition > 0){ 
-                scrollPosition -= cardWidthMoviesCurrent*2;
-                $("#moviesCurrent").animate({ scrollLeft: scrollPosition }, 400);
-                
-                leftButton.classList.remove('display-none');
-            }else{
-                
-                leftButton.classList.add('display-none');
+    
+        $("#leftButtonMoviesCurrent").on("click",async function () {
+            if(buttonCountMoviesCurrent > 0){ 
+                buttonCountMoviesCurrent --;
+                scrollPositionMoviesCurrent -= cardWidthMoviesCurrent * amountCardsMoviesCurrentAnimate;
+                $("#moviesCurrent").animate({ scrollLeft: scrollPositionMoviesCurrent }, 400);
+                if(buttonCountMoviesCurrent <= 0){ 
+                    leftButton.classList.add("visibility-hidden");
+                    rightButton.classList.remove("visibility-hidden");
+                }else{ 
+                    leftButton.classList.remove("visibility-hidden");
+                    rightButton.classList.remove("visibility-hidden");
+                }
+                await updateControlCirclesMoviesCurrent(buttonCountMoviesCurrent);
             }
-            if(scrollPosition <= 0){
-                leftButton.classList.add('display-none')
-            }
+            
         });
     }
     initCarouselMoviesCurrent();
-    
+
+
     async function initCarouselMoviesUpComing(){
-        await upComingMoviesInstance;
         const leftButton = document.getElementById("leftButtonMoviesUpComing");
         const rightButton = document.getElementById("rightButtonMoviesUpComing");
-        
-        const scrollLimitUpComing = upComingMoviesInstance.length - 1;
-        
-        $("#rightButtonMoviesUpComing").on("click", function () {
-            
-            if (scrollPositionUpComing < (carouselWidthUpComing - cardWidthMoviesUpComing * scrollLimitUpComing)){ 
-                leftButton.classList.remove('display-none');
 
-                scrollPositionUpComing += cardWidthMoviesUpComing;
-                $("#moviesUpComing").animate({ scrollLeft: scrollPositionUpComing }, 400);
-                console.log(scrollPositionUpComing);
-                if (scrollPositionUpComing >= (carouselWidthUpComing - cardWidthMoviesUpComing * scrollLimitUpComing)){ 
-                    rightButton.classList.add('display-none');
+        $("#rightButtonMoviesUpComing").on("click",async function () {
+            console.log(upComingMoviesInstance.length, "carlos", buttonCountMoviesUpComing);
+            if(buttonCountMoviesUpComing < carouselButtonLimitMoviesUpComing){ 
+                leftButton.classList.remove("visibility-hidden");
+                buttonCountMoviesUpComing ++;
+                scrollPositionMoviesUpComing += cardWidthMoviesUpComing * amountCardsMoviesUpComingAnimate;
+                $("#moviesUpComing").animate({ scrollLeft: scrollPositionMoviesUpComing }, 400);
+
+                if(buttonCountMoviesUpComing >= carouselButtonLimitMoviesUpComing)
+                    rightButton.classList.add("visibility-hidden");
+                await updateControlCirclesMoviesUpComing(buttonCountMoviesUpComing);
+            }
+        });
+    
+        $("#leftButtonMoviesUpComing").on("click",async function () {
+            if(buttonCountMoviesUpComing > 0){ 
+                buttonCountMoviesUpComing --;
+                scrollPositionMoviesUpComing -= cardWidthMoviesUpComing * amountCardsMoviesUpComingAnimate;
+                $("#moviesUpComing").animate({ scrollLeft: scrollPositionMoviesUpComing }, 400);
+                if(buttonCountMoviesUpComing <= 0){ 
+                    leftButton.classList.add("visibility-hidden");
+                    rightButton.classList.remove("visibility-hidden");
+                }else{ 
+                    leftButton.classList.remove("visibility-hidden");
+                    rightButton.classList.remove("visibility-hidden");
                 }
+                await updateControlCirclesMoviesUpComing(buttonCountMoviesUpComing);
             }
         });
-
-        $("#leftButtonMoviesUpComing").on("click", function () {
-            rightButton.classList.remove('display-none');
-            if(scrollPositionUpComing > 0){ 
-                scrollPositionUpComing -= cardWidthMoviesUpComing;
-                $("#moviesUpComing").animate({ scrollLeft: scrollPositionUpComing }, 400);
-                leftButton.classList.remove('display-none');
-            }else{
-                leftButton.classList.add('display-none');
-            }
-            if(scrollPositionUpComing <= 0){ 
-                leftButton.classList.add('display-none');
-            }
-        });
-        leftButton.classList.add('display-none');
     }
     initCarouselMoviesUpComing();
 
+    
+    async function updateMovieTheaterImgsMediaQuerie(){
+        cardWidthMovieTheaterImgs = $(".carousel-item-movie-theater-imgs").width();
+        scrollPositionMovieTheaterImgs = 0;
+        $("#carouselInnerMovieTheaterImgs").animate({ scrollLeft: scrollPositionMovieTheaterImgs }, 0);
+        document.getElementById("leftButtonMovieTheaterImgs").classList.add("visibility-hidden");
+        await responsiveMovieTheaterImgsLayout();
+        buttonCountMovieTheaterImgs = 0;
+        carouselButtonLimitMovieTheaterImgs = await getCarouselNextLimitMovieTheaterImgs();
+        await addControlCirclesMovieTheaterImgs();
+    }
+    
     async function initCarouselMovieTheaterImgs() {
         const leftButton = document.getElementById("leftButtonMovieTheaterImgs");
         const rightButton = document.getElementById("rightButtonMovieTheaterImgs");
-        
-        const cardsNumberMovieTheaterImgs = document.querySelectorAll('.carousel-item-movie-theater-imgs').length - 1;
-        
+        const movieTheaterImgs = document.querySelectorAll(".carousel-item-movie-theater-imgs");
         
         
-        $("#rightButtonMovieTheaterImgs").on("click", function () {
-            if (scrollPositionMovieTheaterImgs < (carouselWidthMovieTheaterImgs - cardWidthMovieTheaterImgs * cardsNumberMovieTheaterImgs)){ 
-                scrollPositionMovieTheaterImgs += cardWidthMovieTheaterImgs;
-                leftButton.classList.remove('display-none');
+        $("#rightButtonMovieTheaterImgs").on("click", async function () {
+            carouselButtonLimitMovieTheaterImgs = await getCarouselNextLimitMovieTheaterImgs();
+            console.log(carouselButtonLimitMovieTheaterImgs, "aa");
+            if(buttonCountMovieTheaterImgs < carouselButtonLimitMovieTheaterImgs){ 
+                console.log(buttonCountMovieTheaterImgs);
+                leftButton.classList.remove("visibility-hidden");
+                buttonCountMovieTheaterImgs ++;
+                scrollPositionMovieTheaterImgs += cardWidthMovieTheaterImgs * amountCardsMovieTheaterImgsAnimate;
                 $("#carouselInnerMovieTheaterImgs").animate({ scrollLeft: scrollPositionMovieTheaterImgs }, 400);
-                if (scrollPositionMovieTheaterImgs >= (carouselWidthMovieTheaterImgs - cardWidthMovieTheaterImgs * 5)){ 
-                    rightButton.classList.add('display-none');
+                if(buttonCountMovieTheaterImgs >= carouselButtonLimitMovieTheaterImgs)
+                    rightButton.classList.add("visibility-hidden");
+            }
+            await updateControlCirclesMovieTheaterImgs(buttonCountMovieTheaterImgs);
+        });
+        
+        $("#leftButtonMovieTheaterImgs").on("click", async function () {
+            carouselButtonLimitMovieTheaterImgs = await getCarouselNextLimitMovieTheaterImgs();
+            if(buttonCountMovieTheaterImgs > 0){ 
+                buttonCountMovieTheaterImgs --;
+                scrollPositionMovieTheaterImgs -= cardWidthMovieTheaterImgs * amountCardsMovieTheaterImgsAnimate;
+                $("#carouselInnerMovieTheaterImgs").animate({ scrollLeft: scrollPositionMovieTheaterImgs }, 400);
+                if(buttonCountMovieTheaterImgs <= 0){ 
+                    leftButton.classList.add("visibility-hidden");
+                    rightButton.classList.remove("visibility-hidden");
+                }else{ 
+                    leftButton.classList.remove("visibility-hidden");
+                    rightButton.classList.remove("visibility-hidden");
                 }
             }
+            await updateControlCirclesMovieTheaterImgs(buttonCountMovieTheaterImgs);
         });
-        
-        $("#leftButtonMovieTheaterImgs").on("click", function () {
-            scrollPositionMovieTheaterImgs -= cardWidthMovieTheaterImgs;
-            
-            if (scrollPositionMovieTheaterImgs <= 0) {
-                leftButton.classList.add('display-none');
-            }
-            rightButton.classList.remove('display-none');
-            $("#carouselInnerMovieTheaterImgs").animate({ scrollLeft: scrollPositionMovieTheaterImgs }, 400);
-            if(leftButton <= 0){
-                leftButton.classList.add('display-none')
-            }
-        });
-    
     }
     initCarouselMovieTheaterImgs();
 
-    async function responsiveCarouselLayout(day){
-        
-        const div = document.getElementById('moviesCurrent');
-        const divSm = document.getElementById('moviesCurrentSm');
-        const divCarouselMd = document.getElementById('carouselMoviesCurrent');
-        const divMovieTheaterImgs = document.getElementById('carouselInnerMovieTheaterImgs');
-        const divUpComingMovies = document.getElementById('moviesUpComing');
-        const leftButton = document.getElementById("leftButtonMoviesCurrent");
-        const rightButton = document.getElementById("rightButtonMoviesCurrent");
-        const leftButtonUpComing = document.getElementById("leftButtonMoviesUpComing");
-        const rightButtonUpComing = document.getElementById("rightButtonMoviesUpComing");
-        const leftButtonMovieTheaterImgs = document.getElementById("leftButtonMovieTheaterImgs");
-        const rightButtonMovieTheaterImgs = document.getElementById("rightButtonMovieTheaterImgs");
-        const cardsNumberMovieTheaterImgs = document.querySelectorAll('.carousel-item-movie-theater-imgs');
-        const movies = await movieContentInstance.getMoviesDay(day);
-        leftButton.classList.add('display-none');
-        leftButtonUpComing.classList.add('display-none');
-        leftButtonMovieTheaterImgs.classList.add('display-none');
-        let moviesFrontPage = 0;
-        
-        if(windowWidth > 1280)
-            moviesFrontPage = 5;
-        else if(windowWidth <= 1280 && windowWidth >= 819)
-            moviesFrontPage = 4;
-        else if((windowWidth <= 818 && windowWidth >= 450))
-            moviesFrontPage = 3;
-        else 
-            moviesFrontPage = 0;
 
-        if(movies.length <= moviesFrontPage){
+    /*Functions related with circles buttons in movies current*/ 
+    async function addControlCirclesMoviesCurrent(){
+        console.log("aba");
+        const 
+            div = document.getElementById("controlCirclesMoviesCurrent"),
+            moviesFrontPage = await getMoviesAmountFront(),
+            moviesCurrentDay = await movieContentInstance.getMoviesDay(daySelected),
+            amountCircles = await getCarouselNextLimitMoviesCurrent();
+        let circles = ``;
+
+        if(moviesCurrentDay.length > moviesFrontPage){ 
+            console.log(amountCircles, "circulo");
+            circles = `<button type="button" class=" bi-circle-fill itensControlCircleMoviesCurrent d-flex justify-content-center align-items-center" id="circle0MoviesCurrent"></button>`
+            for(let i = 1; i <= amountCircles; i++){
+                circles = circles + `<button type="button" class=" bi-circle itensControlCircleMoviesCurrent d-flex justify-content-center align-items-center" id="circle${i}MoviesCurrent"></button>`
+            }
+        }
+        div.innerHTML = circles;
+        addControlCirclesMoviesUpComing();
+        controlCirclesMoviesCurrent();
+    }
+
+    function controlCirclesMoviesCurrent(){
+        const allCircles = document.querySelectorAll('.itensControlCircleMoviesCurrent');
+        allCircles.forEach((circleId, circleIndex) => {circleId.addEventListener('click', () => {
+            
+            circleFunction(circleIndex); 
+        })});
+
+        async function circleFunction(index){
+            const leftButton = document.getElementById("leftButtonMoviesCurrent");
+            const rightButton = document.getElementById("rightButtonMoviesCurrent");
+            scrollPositionMoviesCurrent = await getMoviesAmountFront();
+            buttonCountMoviesCurrent = index;
+            
+                scrollPositionMoviesCurrent = (cardWidthMoviesCurrent*amountCardsMoviesCurrentAnimate)*index;
+                $("#moviesCurrent").animate({ scrollLeft: scrollPositionMoviesCurrent }, 0);
+            
+            if(buttonCountMoviesCurrent <= 0){ 
+                leftButton.classList.add("visibility-hidden");
+                rightButton.classList.remove("visibility-hidden");
+            }else{ 
+                leftButton.classList.remove("visibility-hidden");
+                rightButton.classList.remove("visibility-hidden");
+            }
+            if(buttonCountMoviesCurrent >= carouselButtonLimitMoviesCurrent)
+                rightButton.classList.add("visibility-hidden");
+            updateControlCirclesMoviesCurrent(index);
+        }
+    }
+
+    async function updateControlCirclesMoviesCurrent(position){
+        const allCircles = document.querySelectorAll('.itensControlCircleMoviesCurrent');
+        allCircles.forEach(circle => {
+            circle.classList.remove('bi-circle-fill');
+            circle.classList.add('bi-circle');
+        });
+        const controlCircle = document.getElementById(`circle${position}MoviesCurrent`);
+        controlCircle.classList.remove('bi-circle');
+        controlCircle.classList.add('bi-circle-fill');
+    }
+
+    
+    /*Functions related with circles buttons in movies upcoming*/ 
+    async function addControlCirclesMoviesUpComing(){
+        const 
+            div = document.getElementById("controlCirclesMoviesUpComing"),
+            moviesFrontPage = await getMoviesAmountFront(),
+            amountCircles = await getCarouselNextLimitMoviesUpComing();
+        let circles = ``;
+
+        if(upComingMoviesInstance.length > moviesFrontPage){ 
+            circles = `<button type="button" class="bi-circle-fill itensControlCircleMoviesUpComing d-flex justify-content-center align-items-center" id="circle0MoviesUpComing"></button>`
+            for(let i = 1; i <= amountCircles; i++){
+                circles = circles + `<button type="button" class="bi-circle itensControlCircleMoviesUpComing d-flex justify-content-center align-items-center" id="circle${i}MoviesUpComing"></button>`
+            }
+        }
+        div.innerHTML = circles;
+
+        controlCirclesMoviesUpComing();
+    }
+
+    function controlCirclesMoviesUpComing(){
+        const allCircles = document.querySelectorAll('.itensControlCircleMoviesUpComing');
+        allCircles.forEach((circleId, circleIndex) => {circleId.addEventListener('click', () => {
+            
+            circleFunction(circleIndex); 
+        })});
+
+        async function circleFunction(index){
+            const leftButton = document.getElementById("leftButtonMoviesUpComing");
+            const rightButton = document.getElementById("rightButtonMoviesUpComing");
+            scrollPositionMoviesUpComing = await getMoviesAmountFront();
+            buttonCountMoviesUpComing = index;
+            
+            scrollPositionMoviesUpComing = (cardWidthMoviesUpComing*amountCardsMoviesUpComingAnimate)*index;
+            $("#moviesUpComing").animate({ scrollLeft: scrollPositionMoviesUpComing }, 0);
+            
+            if(buttonCountMoviesUpComing <= 0){ 
+                leftButton.classList.add("visibility-hidden");
+                rightButton.classList.remove("visibility-hidden");
+            }else{ 
+                leftButton.classList.remove("visibility-hidden");
+                rightButton.classList.remove("visibility-hidden");
+            }
+            if(buttonCountMoviesUpComing >= carouselButtonLimitMoviesUpComing)
+                rightButton.classList.add("visibility-hidden");
+            await updateControlCirclesMoviesUpComing(index);
+        }
+    }
+
+    async function updateControlCirclesMoviesUpComing(position){
+        console.log("a");
+        const allCircles = document.querySelectorAll('.itensControlCircleMoviesUpComing');
+        allCircles.forEach(circle => {
+            circle.classList.remove('bi-circle-fill');
+            circle.classList.add('bi-circle');
+        });
+        const controlCircle = document.getElementById(`circle${position}MoviesUpComing`);
+        controlCircle.classList.remove('bi-circle');
+        controlCircle.classList.add('bi-circle-fill');
+    }
+
+
+    /*Functions related with circles buttons in movies movie theater images*/ 
+    async function addControlCirclesMovieTheaterImgs(){
+        const 
+            div = document.getElementById("controlCirclesMovieTheaterImgs"),
+            allMovieTheaterImgs = document.querySelectorAll(".carousel-item-movie-theater-imgs"),
+            moviesFrontPage = await getMoviesAmountFront(),
+            amountCircles = await getCarouselNextLimitMovieTheaterImgs();
+        let circles = ``;
+
+        if(allMovieTheaterImgs.length > moviesFrontPage){ 
+            circles = `<button type="button" class="bi-circle-fill itensControlCircleMovieTheaterImgs d-flex justify-content-center align-items-center" id="circle0MovieTheaterImgs"></button>`
+            for(let i = 1; i <= amountCircles; i++){
+                circles = circles + `<button type="button" class="bi-circle itensControlCircleMovieTheaterImgs d-flex justify-content-center align-items-center" id="circle${i}MovieTheaterImgs"></button>`
+            }
+        }
+        div.innerHTML = circles;
+
+        controlCirclesMovieTheaterImgs();
+    }
+    addControlCirclesMovieTheaterImgs();
+
+    function controlCirclesMovieTheaterImgs(){
+        const allCircles = document.querySelectorAll('.itensControlCircleMovieTheaterImgs');
+        allCircles.forEach((circleId, circleIndex) => {circleId.addEventListener('click', () => {
+            circleFunction(circleIndex); 
+        })});
+
+        async function circleFunction(index){
+            console.log(index);
+            const leftButton = document.getElementById("leftButtonMovieTheaterImgs");
+            const rightButton = document.getElementById("rightButtonMovieTheaterImgs");
+            scrollPositionMovieTheaterImgs = await getMoviesAmountFront() -1;
+            buttonCountMovieTheaterImgs = index;
+            
+            scrollPositionMovieTheaterImgs = (cardWidthMovieTheaterImgs*amountCardsMovieTheaterImgsAnimate)*index;
+            console.log(scrollPositionMovieTheaterImgs, "aaa");
+            $("#carouselInnerMovieTheaterImgs").animate({ scrollLeft: scrollPositionMovieTheaterImgs}, 0);
+            
+            if(buttonCountMovieTheaterImgs <= 0){ 
+                leftButton.classList.add("visibility-hidden");
+                rightButton.classList.remove("visibility-hidden");
+            }else{ 
+                leftButton.classList.remove("visibility-hidden");
+                rightButton.classList.remove("visibility-hidden");
+            }
+            if(buttonCountMovieTheaterImgs >= carouselButtonLimitMovieTheaterImgs)
+                rightButton.classList.add("visibility-hidden");
+            updateControlCirclesMovieTheaterImgs(index);
+        }
+    }
+
+    async function updateControlCirclesMovieTheaterImgs(position){
+        console.log("a");
+        const allCircles = document.querySelectorAll('.itensControlCircleMovieTheaterImgs');
+        allCircles.forEach(circle => {
+            circle.classList.remove('bi-circle-fill');
+            circle.classList.add('bi-circle');
+        });
+        const controlCircle = document.getElementById(`circle${position}MovieTheaterImgs`);
+        controlCircle.classList.remove('bi-circle');
+        controlCircle.classList.add('bi-circle-fill');
+    }
+
+    async function getMoviesAmountFront() {
+        const windowWidth = window.innerWidth;
+        if (windowWidth > 1280) return 5;
+        if (windowWidth > 818) return 4;
+        return 3;
+    }
+
+    async function getCarouselNextLimitMoviesCurrent(){
+        const amountMoviesCurrentFront = await getMoviesAmountFront();
+        const moviesCurrentDay = await movieContentInstance.getMoviesDay(daySelected);
+        const limitMoviesCurrent = Math.ceil((moviesCurrentDay.length - amountMoviesCurrentFront) / amountCardsMoviesCurrentAnimate);
+        return limitMoviesCurrent >= 1 ? limitMoviesCurrent : 0;
+    }
+
+    async function getCarouselNextLimitMoviesUpComing(){
+        await upComingMoviesInstance;
+        const amountMoviesUpComingMovies = await getMoviesAmountFront();
+        
+        const limitUpComingMovies = Math.ceil((upComingMoviesInstance.length - amountMoviesUpComingMovies) / amountCardsMoviesUpComingAnimate);
+        return limitUpComingMovies >= 1 ? limitUpComingMovies : 0;
+    }
+
+    async function getCarouselNextLimitMovieTheaterImgs(){
+        const amountMovieTheaterImgsFront = await getMoviesAmountFront() - 1;
+        const movieTheaterImgs = document.querySelectorAll(".carousel-item-movie-theater-imgs");
+        
+        const limitMovieTheaterImgs = Math.ceil((movieTheaterImgs.length - amountMovieTheaterImgsFront) / amountCardsMovieTheaterImgsAnimate);
+        return limitMovieTheaterImgs >= 1 ? limitMovieTheaterImgs : 0;
+    }
+
+    async function responsiveMoviesCurrentLayout(day){
+        const
+            moviesCurrentDay = await movieContentInstance.getMoviesDay(day),
+            div = document.getElementById('moviesCurrent'),
+            leftButton = document.getElementById("leftButtonMoviesCurrent"),
+            rightButton = document.getElementById("rightButtonMoviesCurrent"),
+            amountMoviesCurrentFront = await getMoviesAmountFront();
+
+        leftButton.classList.add('visibility-hidden');
+    
+        if(moviesCurrentDay.length <= amountMoviesCurrentFront){ 
             div.classList.add('justify-content-center'); 
-            rightButton.classList.add('display-none');
-            leftButton.classList.add('display-none');
-        }else{
+            rightButton.classList.add("visibility-hidden");
+        }else{  
             div.classList.remove('justify-content-center'); 
-            rightButton.classList.remove('display-none');
-        }
-        
-        if(upComingMoviesInstance.length <= moviesFrontPage){
-            divUpComingMovies.classList.add('justify-content-center'); 
-            rightButtonUpComing.classList.add('display-none');
-            leftButtonUpComing.classList.add('display-none');
-        }else{
-            divUpComingMovies.classList.remove('justify-content-center'); 
-            rightButtonUpComing.classList.remove('display-none');
-        }
-        if(cardsNumberMovieTheaterImgs.length <= moviesFrontPage){
-            divMovieTheaterImgs.classList.add('justify-content-center');
-            rightButtonMovieTheaterImgs.classList.add('display-none');
-            leftButtonMovieTheaterImgs.classList.add('display-none');
-        }else{
-            divMovieTheaterImgs.classList.remove('justify-content-center'); 
-            rightButtonMovieTheaterImgs.classList.remove('display-none');
+            rightButton.classList.remove("visibility-hidden");
         }
     }
-    responsiveCarouselLayout(currentDay);
-    
-    async function resizeWindow(){
-        cardWidthMoviesCurrent = $(".carousel-items-movies-current").width();
-        cardWidthMoviesUpComing = $(".carousel-items-movies-upcoming").width();
-        cardWidthMovieTheaterImgs = $(".carousel-item-movie-theater-imgs").width();
-        carouselWidth = $("#moviesCurrent")[0].scrollWidth;
-        carouselWidthMovieTheaterImgs = $("#carouselInnerMovieTheaterImgs")[0].scrollWidth;
-        carouselWidthUpComing = $("#moviesUpComing")[0].scrollWidth;
-        windowWidth = window.innerWidth;
-        scrollPosition = 0;
-            scrollPositionUpComing = 0;
-            scrollPositionMovieTheaterImgs = 0;
-            $("#moviesCurrent").animate({ scrollLeft: scrollPosition }, 0); 
-            $("#moviesUpComing").animate({ scrollLeft: scrollPositionUpComing }, 0); 
-            $("#carouselInnerMovieTheaterImgs").animate({ scrollLeft: scrollPositionMovieTheaterImgs }, 0);
-        responsiveCarouselLayout(daySelected);
-        if (windowWidth < 580 || windowWidth > 580 && windowWidth < 1019) {
-            renderDaysButtonsContent();
-        }
-    }
-    
-    window.addEventListener('resize', resizeWindow);
+    responsiveMoviesCurrentLayout(daySelected);
 
-    
+    async function responsiveMoviesUpComingLayout(){
+        await upComingMoviesInstance; 
+        const 
+            div = document.getElementById('moviesUpComing'),
+            leftButton = document.getElementById("leftButtonMoviesUpComing"),
+            rightButton = document.getElementById("rightButtonMoviesUpComing"),
+            amountMoviesUpComingFront = await getMoviesAmountFront();
+            
+        leftButton.classList.add('visibility-hidden');
+        
+        if(upComingMoviesInstance.length <= amountMoviesUpComingFront){ 
+            div.classList.add('justify-content-center'); 
+            rightButton.classList.add("visibility-hidden");
+        }else{  
+            div.classList.remove('justify-content-center'); 
+            rightButton.classList.remove("visibility-hidden");
+        }
+    }
+    responsiveMoviesUpComingLayout();
+
+    async function responsiveMovieTheaterImgsLayout(){ 
+        const 
+            div = document.getElementById('carouselInnerMovieTheaterImgs'),
+            allMovieTheaterImgs = document.querySelectorAll(".carousel-item-movie-theater-imgs"),
+            leftButton = document.getElementById("leftButtonMovieTheaterImgs"),
+            rightButton = document.getElementById("rightButtonMovieTheaterImgs"),
+            movieTheaterImgsFront = await getMoviesAmountFront() - 1;
+            
+        leftButton.classList.add('visibility-hidden');
+
+        if(allMovieTheaterImgs.length <= movieTheaterImgsFront){ 
+            div.classList.add('justify-content-center'); 
+            rightButton.classList.add("visibility-hidden");
+        }else{  
+            div.classList.remove('justify-content-center'); 
+            rightButton.classList.remove("visibility-hidden");
+        }
+    }
+    responsiveMovieTheaterImgsLayout();
+
+    const mediaQuerys = [ 
+        window.matchMedia("(max-width: 1280px)"),
+        window.matchMedia("(max-width: 1020px)"),
+        window.matchMedia("(max-width: 818px)"),
+        window.matchMedia("(max-width: 580px)")
+    ];
+
+    mediaQuerys.forEach(media => {
+        media.addEventListener('change', async () => {
+            windowWidth = window.innerWidth;
+            renderMoviesCurrent(daySelected);
+            renderUpComingMovies();
+            updateMovieTheaterImgsMediaQuerie();
+            carouselButtonLimitMoviesCurrent = await getCarouselNextLimitMoviesCurrent();
+            console.log(carouselButtonLimitMoviesCurrent,"cladio")
+        });
+    });
+
+    window.matchMedia("(max-width: 818px)").addEventListener('change', () => {
+
+    });
+
+    window.matchMedia("(max-width: 580px)").addEventListener('change', () => {
+        renderDaysButtonsContent();
+    });
+
+
+    function addCopyrightDate(){
+        const yearCurrent = String(date.getFullYear());
+        document.getElementById("dateCopyright").textContent = yearCurrent;
+    }
+    addCopyrightDate();
 });
 
 

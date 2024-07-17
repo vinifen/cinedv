@@ -1,9 +1,28 @@
-.display-none{
-    display: none !important;
+.visibility-hidden{
+    visibility: hidden;
 }
+
 .error-feedback{
     color: red;
 }  
+
+a{
+    text-decoration: none;
+}
+button{
+    color: #acacac;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    outline: none;
+    font-weight: bold;
+}
+
+h6, h5, h4, h3, h2, h1{
+    margin: 0;
+}
 
 .ok-feedback{
     color: green;

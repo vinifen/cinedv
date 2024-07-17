@@ -2,22 +2,19 @@ p, i a, nav, div{
     margin: 0;
 }
 
-.imagem{
+.images-movies-current-md{
     width: 75%;
 }
 
 .imagem2{
     width: 100%;
 }
+
 body{
     color: #ffffff;
     font-family: "Unna", serif;
     font-weight: 400;
     font-style: normal;
-}
-
-main{
-    background-color: #0F0F0F;
 }
 
 .login{
@@ -34,12 +31,22 @@ h1{
         1px 1px 0 #96081B;
 }
 
-h3{
-    font-size: 1.5em;
+h2{
+    font-size: 1em;
 }
 
-.imgs-movie-theater-sm{
-    width: 50vw;
+h3{
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+h4{
+    font-size: 1em;
+}
+
+h5{
+    color: #ffffff;
+    font-size: 1.2em;
 }
 
 .cards-movies-current-md{
@@ -54,31 +61,24 @@ h3{
     height: 4.5em;
 }
 
-.movie-title{
+.movie-title {
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* Número de linhas que deseja mostrar */
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
+    line-clamp: 2;
 }
 
 .timeline{
-    font-size: 0.8em;
-}
-
-button{
-    color: #acacac;
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
     font-size: 1em;
-    box-shadow: none;
-    outline: none;
-    font-weight: bold;
+    color: #acacac;
 }
 
+.daysButton{
+    width: 100%;
+    font-size: 1.2em;
+}
 
 label{
     color: #acacac;
@@ -86,7 +86,6 @@ label{
 }
 
 .selected-button{
-    font-size: 1.03em;
     color: white;
     text-shadow: 
         -1px -1px 0 #96081B,  
@@ -132,12 +131,16 @@ small{
 }
 
 .time{
-    font-size: 1em;
+    font-size: 1.2em;
     background-color: #272727;
-    border-radius: 5px;
-    border: #777777 1px solid;
-    padding: 2px 0 2px 0;
+    border-radius: 3px;
+    padding: 0;
     margin: 5px 5px 4px 5px;
+}
+
+.no-time{
+    font-size: 1.2em;
+    color: #acacac;
 }
 
 .schedule-container{
@@ -154,49 +157,81 @@ small{
     transform: scale(1.02);
 }
 
-.carousel-inner{
+.carousel-inner {
     padding: 1em;
 }
-.card{
+
+.card {
     margin: 0 .5em;
     box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
     border: none;
 }
-.carousel-control-prev, .carousel-control-next{
-    background-color: #e1e1e1;
-    width: 6vh;
-    height: 6vh;
-    border-radius: 50%;
-    top: 50%;
-    transform: translateY(-50%);
+
+.itensControlCircleMoviesCurrent, .itensControlCircleMoviesUpComing, .itensControlCircleMovieTheaterImgs {
+    margin: 0 8px;
 }
 
-.display-none{
-    display: none;
+#controlCirclesMoviesCurrent, #controlCirclesMoviesUpComing, #controlCirclesMovieTheaterImgs {
+    width: 60%;
 }
 
-h4{
-    font-size: 1em;
+.movie-of-week-img {
+    width: 60%;
 }
 
-h5{
+#divMovieOfWeekImg {
+    width: 20%;
+}
+
+#movieOfWeekBackgroundImg {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 80%;
+}
+
+.dark-effect {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#movieOfWeekTitle{
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.off20{
+    font-size: 2.2em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #96081B,  
+        1px -1px 0 #96081B,
+        -1px 1px 0 #96081B,
+        1px 1px 0 #96081B;
+}
+
+#movieOfWeekButton{
     color: #ffffff;
-    font-size: 1em;
+    font-size: 1.1em;
+    width: 15.5em;
 }
 
-.container-movies{
-    width: 79em;
+#movieOfWeekButton:hover{
+    transition: transform 0.5s;
+    transform: scale(1.02);
 }
 
-.container-movie-theater-imgs{
-    width: 77.5em;
+.card-movie-theater-imgs {
+    width: 90%;
+    height: 14.5em;
 }
 
-.container-dates-md{
+.container-dates-md {
     width: 76.5em;
 }
 
-.container-navbar{
+.container-navbar {
     width: 76.5em;
     height: 3em;
 }
@@ -215,10 +250,30 @@ h5{
     flex: 0 0 calc(100% / 5);
 }
 
-.imgs-movie-theater{
-    width: 90%;
-    height: 80%;
-    border-radius: 10px;
+.container-movies {
+    width: 79em;
+}
+
+.container-movie-theater-imgs {
+    width: 77.5em;
+}
+
+.imgs-movie-theater {
+    width: 100%;
+    height: 85%;
+    border-radius: 0.43em 0.43em 0 0;
+}
+
+.carousel-item-movie-theater-imgs {
+    flex: 0 0 calc(100% / 4);
+    display: flex !important;
+    justify-content: center;
+}
+
+.card-movie-theater-imgs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #moviesCurrentSm, #moviesUpComingSm {
@@ -230,6 +285,15 @@ h5{
     display: block !important;
 }
 
+.tmdb-logo{
+    width: 120px;
+}
+
+cite{
+    font-size: 1.3em;
+    font-weight: bold;
+    font-style: normal;
+}
 
 @media (max-width: 1280px) {
     .container-movies{
@@ -251,6 +315,10 @@ h5{
     
     .carousel-item {
         flex: 0 0 calc(100% / 4);
+    }
+
+    .carousel-item-movie-theater-imgs{
+        flex: 0 0 calc(100% / 3);
     }
 
     .cards-movies-current-md{
@@ -333,22 +401,35 @@ h5{
     }
 
     .movies-title-runtime{
-        height: 3.5em;
+        height: 4.4em;
     }
 
     .card-movies-upcoming{
         width: 10.5em;
     }
 
-    #sun, #mon, #tue, #wed, #thu, #fri, #sat{
-        font-size: 12px;
+    .daysButton{
+        font-size: 0.9em;
     }
 
     h4{
         font-size: 0.8em;
     }
+
     h3{
         font-size: 1.2em;
+    }
+
+    h5{
+        font-size: 1em;
+    }
+
+    .card-movie-theater-imgs{
+        height: 14em;
+    }
+
+    .timeline{
+        font-size: 0.7em;
     }
 }
 
@@ -380,6 +461,10 @@ h5{
     
     .carousel-item {
         flex: 0 0 calc(100% / 3);
+    }
+
+    .carousel-item-movie-theater-imgs{
+        flex: 0 0 calc(100% / 2);
     }
 
     #moviesCurrentSm {

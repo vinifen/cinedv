@@ -51,10 +51,7 @@ export class MovieSchedule{
     }
 
     monSchedule(){
-        return [   
-            
-        ];
-        
+        return [];
     }
 
     tueSchedule(){
