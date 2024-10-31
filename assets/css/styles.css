@@ -1,0 +1,178 @@
+body{
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.visibility-hidden {
+    visibility: hidden;
+}
+
+.error-feedback{
+    color: red;
+}  
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+button {
+    color: #acacac;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    outline: none;
+    font-weight: bold;
+}
+
+h6, h5, h4, h3, h2, h1{
+    margin: 0;
+    color: #ffffff;
+}
+
+h1{
+    font-size: 18px;
+    text-shadow: 
+        -1px -1px 0 #96081B,  
+        1px -1px 0 #96081B,
+        -1px 1px 0 #96081B,
+        1px 1px 0 #96081B;
+}
+
+h2{
+    font-size: 1.7em;
+}
+
+h3{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+h4{
+    font-size: 1em;
+}
+
+h5{
+    color: #ffffff;
+    font-size: 0.93em;
+}
+
+.ok-feedback {
+    color: green;
+}
+
+/*.justify-content-center {
+      display: flex;
+      justify-content: center; 
+}*/
+
+::-webkit-input-placeholder {
+    color: rgba(1, 16, 29, 0.9) !important;
+    font-style: italic;
+}
+
+.form-label {
+    color: #ffffff;
+}
+
+input {
+    color: #ffffff !important;
+    border-radius: 15px !important;
+    height: 2.7em;
+}
+
+input:focus {
+    background-color: rgba(1, 16, 29, 0.9) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px rgba(0, 18, 34, 0.9) inset !important;
+}
+
+input:-webkit-autofill{
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+.form-label,.form-remember-me  {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+@media (max-width: 1279px) {
+    h1 { 
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 992px) {
+    
+    h2{
+        font-size: 1.6em;
+    }
+    
+    h3{
+        font-size: 1.1em;
+    }
+    
+    h4{
+        font-size: 0.9em;
+    }
+    
+    h5{
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 805px) {
+    h1{
+        font-size: 0.9em;
+    }
+    
+    h2{
+        font-size: 1.5em;
+    }
+    
+    h3{
+        font-size: 1em;
+    }
+    
+    h4{
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 576px) {
+    
+    h2{
+        font-size: 1.3em;
+    }
+
+    h5{
+        font-size: 0.8em;
+    }
+
+    .form-label,.form-remember-me  {
+        font-size: 0.8em;
+    }
+    .form-remember-me  {
+        font-size: 0.9em;
+    }
+
+    input {
+        height: 2.5em;
+    }
+
+}
+
+@media (max-width: 420px) {
+    h4 {
+        font-size: 0.7em;
+    }
+}

@@ -1,0 +1,722 @@
+p, i a, nav, div{
+    margin: 0;
+}
+
+.images-movies-current-md{
+    width: 75%;
+}
+
+.login{
+    font-size: 1em;
+}
+
+h1{
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #96081B,  
+        1px -1px 0 #96081B,
+        -1px 1px 0 #96081B,
+        1px 1px 0 #96081B;
+}
+
+.cards-movies-current-md {
+    width: 14.5em;
+}
+
+.card-movies-upcoming {
+    width: 14em;
+}
+
+.movies-title-runtime {
+    height: 4.5em;
+}
+
+.movie-title {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    line-clamp: 2;
+}
+
+.runtime{
+    font-size: 1em;
+    color: #acacac;
+}
+
+.schedule-day-tittle-display-flex-control {
+    display: flex;
+    justify-content: center;
+}
+
+.daysButton {
+    width: 100%;
+    font-size: 1em;
+}
+
+.daysButtonLabel {
+    color: #acacac;
+    font-size: 0.9em;
+}
+
+.selected-button{
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #96081B,  
+        1px -1px 0 #96081B,
+        -1px 1px 0 #96081B,
+        1px 1px 0 #96081B;
+}
+
+small{
+    font-size: 0.8em;
+    color: #acacac;
+}
+
+.selected-date-button{
+    font-size: 1em;
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #96081B,  
+        1px -1px 0 #96081B,
+        -1px 1px 0 #96081B,
+        1px 1px 0 #96081B;
+}
+
+.backgroud-logo{
+    background-image: url(https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/baner_i6zrpo.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 8em;
+}
+
+#logo{
+    width: 50px;
+}
+
+#logo2{
+    width: 10em;
+}
+
+.movie-schedule-md{
+    font-size: 0.7em;
+    height: 92px;
+}
+
+.time{
+    color: #dad8d8;
+    font-size: 1.2em;
+    background-color: #272727;
+    border-radius: 3px;
+    padding: 0;
+    margin: 5px 5px 4px 5px;
+}
+
+.no-time{
+    font-size: 1.2em;
+    color: #acacac;
+}
+
+.schedule-container{
+    width: 90%;
+    height: 7.4em;
+}
+
+.view-more{
+    font-size: 1em;
+}
+
+.carousel-item:hover {
+    transition: transform 0.2s;
+    transform: scale(1.02);
+}
+
+.carousel-inner {
+    padding: 1em;
+}
+
+.card {
+    margin: 0 .5em;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    border: none;
+}
+
+.itensControlCircleMoviesCurrent, .itensControlCircleMoviesUpComing, .itensControlCircleMovieTheaterImgs {
+    margin: 0 8px;
+}
+
+#controlCirclesMoviesCurrent, #controlCirclesMoviesUpComing, #controlCirclesMovieTheaterImgs {
+    width: 60%;
+}
+
+.movie-of-week-img {
+    width: 60%;
+}
+
+#divMovieOfWeekImg{
+    width: 20%;
+}
+
+#movieOfWeekBackgroundImg {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 80%;
+}
+
+.dark-effect {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.off20{
+    font-size: 2.2em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #96081B,  
+        1px -1px 0 #96081B,
+        -1px 1px 0 #96081B,
+        1px 1px 0 #96081B;
+}
+
+#movieOfWeekButton{
+    color: #ffffff;
+    font-size: 1.1em;
+    width: 15.5em;
+}
+
+#movieOfWeekButton:hover{
+    transition: transform 0.5s;
+    transform: scale(1.02);
+}
+
+.container-dates-md {
+    width: 76.5em;
+}
+
+.container-navbar {
+    width: 76.5em;
+    height: 3em;
+}
+
+.carousel-inner{
+    padding: 0.5em 0;
+}
+
+.carousel-inner {
+    display: flex;
+}
+
+.carousel-item {
+    margin-right: 0;
+    display: block;
+    flex: 0 0 calc(100% / 5);
+}
+
+.container-movies {
+    width: 79em;
+}
+
+.container-movie-theater-imgs {
+    width: 77.5em;
+}
+
+.card-movie-theater-imgs {
+    width: 97%;
+    height: 17em;
+}
+
+.imgs-movie-theater {
+    width: 100%;
+    height: 87%;
+    border-radius: 0.43em 0.43em 0 0;
+}
+
+.carousel-item-movie-theater-imgs {
+    flex: 0 0 calc(100% / 4);
+    display: flex !important;
+    justify-content: center;
+}
+
+.container-information{
+    width: 48%;
+    padding: 0;
+}
+
+#moviesCurrentSm, #moviesUpComingSm {
+    display: none !important;
+}
+
+#carouselMoviesCurrent, #carouselMoviesUpcoming {
+    display: block !important;
+}
+
+.tmdb-logo {
+    width: 7em;
+}
+
+.logo-about {
+    width: 4em;
+    transform: rotate(10deg);
+}
+
+cite {
+    font-size: 1.2em;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.modal-width {
+    width: 50em;
+}
+
+.modal-time-movies-current {
+    font-size: 1em;
+    background-color: #272727;
+}
+
+.button-modal-current-movies {
+    width: 16.5em;
+}
+
+.modal-title-room {
+    width: 20%;
+}
+
+.modal-room-movies-current {
+    width: 80%;
+}
+
+#loginRemeberMe {
+    height: auto !important;
+}
+
+@media (max-width: 1279px) {
+    .container-movies{
+        width: 58em;
+    }
+
+    .container-movie-theater-imgs{
+        width: 57.5em;
+    }
+    
+    .container-dates-md{
+        width: 56.5em;
+    }
+    
+    .container-navbar{
+        width: 56.5em;
+        height: 3em;
+    }
+    
+    .carousel-item {
+        flex: 0 0 calc(100% / 4);
+    }
+
+    .carousel-item-movie-theater-imgs {
+        flex: 0 0 calc(100% / 3);
+    }
+
+    .cards-movies-current-md {
+        width: 13em;
+    }
+
+    .backgroud-logo {
+        height: 7em;
+    }
+
+    #logo2 {
+        width: 8em;
+    }
+
+    #divMovieOfWeekImg{
+        width: 25%;
+    }
+    
+    #movieOfWeekBackgroundImg {
+        width: 75%;
+    }
+
+    .login {
+        font-size: 1em;
+    }
+
+    .card-movies-upcoming {
+        width: 12.5em;
+    }
+
+    .follow-us {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 992px) {
+    .container-movies{
+        width: 50em;
+    }
+
+    .container-movie-theater-imgs {
+        width: 49.5em;
+    }
+    
+    .container-dates-md {
+        width: 47.5em;
+    }
+    
+    .container-navbar {
+        width: 47.5em;
+        height: 3em;
+    }
+    
+    .cards-movies-current-md {
+        width: 11em;
+    }
+
+    .backgroud-logo {
+        height: 6em;
+    }
+
+    #logo2 {
+        width: 8em;
+    }
+
+    .time {
+        font-size: 0.9em;
+        padding: 1px 0 1px 0;
+        margin: 4px 4px 3px 4px;
+    }
+
+    .no-time {
+        font-size: 10px;
+    }
+
+    .schedule-container {
+        width: 90%;
+        height: 6.5em;
+    }
+
+    .movie-schedule-md {
+        font-size: 0.78em;
+        height: 6.8em;
+    }
+
+    .view-more {
+        font-size: 0.7em;
+    }
+
+    .movie-title {
+        font-size: 14px;
+    }
+
+    .movies-title-runtime {
+        height: 4.4em;
+    }
+
+    .card-movies-upcoming {
+        width: 11em;
+    }
+
+    .daysButton {
+        font-size: 0.9em;
+    }
+
+    .card-movie-theater-imgs {
+        height: 15em;
+    }
+
+    .runtime {
+        font-size: 0.7em;
+    }
+
+    #divMovieOfWeekImg{
+        width: 30%;
+    }
+    
+    #movieOfWeekBackgroundImg {
+        width: 70%;
+    }
+
+    #movieOfWeekButton{
+        font-size: 1em;
+        width: 14em;
+    }
+
+    .modal-width {
+        width: 40em;
+    }
+
+    #modalDescriptionMoviesCurrent, #modalDescriptionMoviesUpComing {
+        font-size: 0.8em;
+    }
+
+    #modalRuntimeMoviesCurrent, #modalReleaseMoviesCurrent {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 805px) {
+
+    .schedule-day-tittle-display-flex-control {
+        justify-content: space-between;
+    }
+
+    .login {
+        font-size: 0.9em;
+    }
+
+    .container-movies{
+        width: 35em;
+    }
+
+    .container-movie-theater-imgs{
+        width: 34.5em;
+    }
+
+    .cards-movies-current-md{
+        width: 10em;
+    }
+
+    .card-movies-upcoming{
+        width: 10em;
+    }
+    
+    .container-dates-md{
+        width: 33.5em;
+    }
+    
+    .container-navbar{
+        width: 34.5em;
+        height: 3em;
+    }
+    
+    .carousel-item {
+        flex: 0 0 calc(100% / 3);
+    }
+
+    .carousel-item-movie-theater-imgs{
+        flex: 0 0 calc(100% / 2);
+    }
+
+    #moviesCurrentSm {
+        display: none;
+    }
+
+    #carouselMoviesCurrent {
+        display: block;
+    }
+
+    .off20 {
+        font-size: 1.4em;
+    }
+
+    .modal-width {
+        width: 32em;
+    }
+
+    .daysButton, .daysButtonLabel {
+        font-size: 0.9em;
+    } 
+
+    .modal-time-movies-current {
+        font-size: 0.8em;
+        background-color: #272727;
+    }
+
+    .modal-title-room {
+        width: 25%;
+    }
+
+    .modal-room-movies-current {
+        width: 75%;
+    }
+
+    .logo-about {
+        width: 3em;
+    }
+
+    .tmdb-logo {
+        width: 6em;
+    }
+
+    cite {
+        font-size: 1em;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    #moviesCurrentSm {
+        display: block !important;
+    }
+    
+    #carouselMoviesCurrent, #carouselMoviesUpcoming {
+        display: none !important;
+    }
+
+    #moviesUpComingSm {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .container-movies {
+        width: 25em;
+    }
+
+    .container-dates-md {
+        width: 24em;
+    }
+
+    .container-movie-theater-imgs {
+        width: 25em;
+    }
+
+    .card-movie-theater-imgs {
+        width: 85%;
+    }
+
+    .imgs-movie-theater {
+        height: 88%;
+    }
+    
+    .container-navbar {
+        width: 25em;
+        height: 2.5em;
+    }
+
+    .carousel-item {
+        flex: 0 0 calc(100% / 1);
+    }
+
+    .carousel-item-movie-theater-imgs {
+        flex: 0 0 calc(100% / 1);
+    }
+
+    .imgs-movie-theater {
+        width: 100%;
+    }
+
+    .movie-of-week-img{
+        width: 80%;
+    }
+
+    #divMovieOfWeekImg {
+        width: 40%;
+    }
+    
+    #movieOfWeekBackgroundImg {
+        width: 60%;
+    }
+
+    #movieOfWeekButton{
+        font-size: 0.9em;
+        width: 80%;
+    }
+
+    .daysButton {
+        font-size: 0.85em;
+    } 
+
+    .daysButtonLabel {
+        font-size: 0.75em;
+    } 
+
+    .modal-width {
+        width: 25em;
+        margin: 0 auto;
+    }
+
+    .button-modal-current-movies {
+        font-size: 0.8em;
+        width: 12em;
+    }
+
+    .tmdb-logo {
+        width: 4.5em;
+    }
+
+    cite {
+        font-size: 0.8em;
+    }
+
+    .movie-schedule-sm {
+        font-size: 0.78em;
+        height: 6.5em;
+    }
+
+    li {
+        font-size: 0.9em;
+    }
+
+    .off20 {
+        font-size: 1.2em;
+    }
+
+    .follow-us {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .container-movies {
+        width: 100%;
+    }
+
+    .container-dates-md {
+        width: 100%;
+    }
+
+    .container-movie-theater-imgs {
+        width: 100%;
+    }
+
+    .card-movie-theater-imgs {
+        width: 85%;
+        height: 14em;
+    }
+    
+    .container-navbar {
+        width: 100%;
+    }
+
+    .cards-movies-upcoming-sm {
+        width: 36vw;
+    }
+
+    .modal-width {
+        width: 96%;
+    }
+
+    .card-movies-upcoming{
+        width: 40vw;
+    }
+
+    li {
+        font-size: 0.8em;
+    }
+
+    .logo-about {
+        width: 3em;
+    }
+
+    small {
+        font-size: 0.6em;
+    }
+}
+
+@media (max-width: 270px) {
+    .daysButton{
+        font-size: 0.7em;
+    }
+
+    .daysButtonLabel {
+        font-size: 0.6em;
+    }
+
+    
+}
