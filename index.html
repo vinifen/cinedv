@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineDv</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/framework/bootstrap-custom.css">
+    <link rel="stylesheet" href="assets/index-assets/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100..900&family=Playwrite+BE+VLG:wght@100..400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Beastly&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head> 
+<body class="bg-black">
+    <header class="overflow-x-hidden">
+        <nav class="bg-primary">
+            <div class="container-fluid d-flex justify-content-between container-navbar">
+                <a href="index.html" class="m-0 navbar-brand d-flex align-items-center" href="#">
+                    <img src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/logo-cinedv_uazxqx.png" id="logo" alt="Logo">
+                    <h1 class="m-2">Cine<span>DV</span></h1>
+                </a>
+                <a type="button" id="loggedOut" class="m-0 d-flex align-items-center text-decoration-none" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <p class="login m-2 fw-bolder">Login</p>
+                    <i class="bi bi-person-circle fs-3 mt-1"></i>
+                </a>
+                <a type="button" id="logged" class="m-0 d-flex align-items-center text-decoration-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <p class="login m-2" id="loginText"></p>
+                    <i class="bi bi-person-circle fs-3 mt-1"></i>
+                </a>
+                <div class="offcanvas offcanvas-end bg-secondary text-white" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightLabel">Menu</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <a href="#" class="btn btn-danger d-flex justify-content-center" id="logoutButton">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="backgroud-logo d-flex align-items-center justify-content-center"> <!--Logo e fundo-->
+            <div>
+                <img src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/logo-2_wttptj.png" id="logo2" >
+            </div>
+        </div> <!--Logo e fundo-->
+        <nav class="bg-primary"> <!--Programação-->
+            <div class="container-fluid pb-2 pt-1 container-dates-md">
+                <div class="border-bottom">
+                    <div class="schedule-day-tittle-display-flex-control align-items-center mb-1">
+                        <div type="button" id="leftButtonDays" class="d-flex d-md-none bi bi-arrow-left-short bg-secondary py-1 px-3 rounded-3 fs-3 my-1"></div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <i class="bi bi-calendar-week me-2 fs-6"></i>
+                            <h5>SCHEDULE:</h5>
+                        </div>
+                        <div type="button" id="rightButtonDays" class="d-flex d-md-none bi bi-arrow-right-short bg-secondary py-1 px-3 rounded-3 fs-3 my-1"></div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between flex-nowrap fw-bolder mt-1 ">
+                    <div class="d-flex flex-column align-items-center">
+                        <button id="sun" class="daysButton"></button>
+                        <label for="sun" class="daysButtonLabel" id="sun-date"></label>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <button id="mon" class="daysButton"></button>
+                        <label for="mon" class="daysButtonLabel" id="mon-date"></label>
+                    </div>
+                    <div class=" d-flex flex-column align-items-center">
+                        <button id="tue" class="daysButton"></button>
+                        <label for="tue" class="daysButtonLabel" id="tue-date"></label>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <button id="wed" class="daysButton"></button>
+                        <label for="wed" class="daysButtonLabel" id="wed-date"></label>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <button id="thu" class="daysButton"></button>
+                        <label for="thu" class="daysButtonLabel" id="thu-date"></label>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <button id="fri" class="daysButton"></button>
+                        <label for="fri" class="daysButtonLabel" id="fri-date"></label>
+                    </div>
+                    <div class=" d-flex flex-column align-items-center">
+                        <button id="sat" class="daysButton"></button>
+                        <label for="sat" class="daysButtonLabel" id="sat-date"></label>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="overflow-x-hidden text-center">
+        <div class="container-fluid container-movies mb-5">
+            <small class="m-0">all sessions schedule - P.M </small>
+            <section class="mb-4">
+                <div id="carouselMoviesCurrent" class="carousel slide">
+
+                    <div id="moviesCurrent" class="carousel-inner mb-2"></div> 
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button id="leftButtonMoviesCurrent" class="left-Button-carousel mx-3 d-flex align-items-center d-flex align-items-center bi bi-chevron-left fs-3">
+                        </button>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div id="controlCirclesMoviesCurrent" class="d-flex justify-content-center align-items-center" ></div>
+                        </div>
+                        <button id="rightButtonMoviesCurrent" class="right-Button-carousel mx-3 d-flex align-items-center bi bi-chevron-right fs-3">
+               
+                        </button>
+                    </div>
+                    
+                </div>
+                <div id="moviesCurrentSm"></div>
+            </section>
+
+            <section class="bg-primary d-flex justify-content-between rounded rounded-5 mb-4 mx-md-2 movie-week">
+                <div id="divMovieOfWeekImg"></div>
+                <div id="movieOfWeekBackgroundImg" class="rounded rounded-5">
+                    <div class="dark-effect rounded rounded-5">
+                        <div class="d-flex flex-column justify-content-around align-items-start ms-3 ms-md-5" style="height: 100%;">
+                            <h3 class="my-2">MOVIE OF THE WEEK:</h3>
+                            <h3 class="mb-2" id="movieOfWeekTitle"></h3>
+                            <p class="off20">20% OFF</p>
+                            <button id="movieOfWeekButton" class="btn btn-dark py-2 py-md-3 border rounded-5 mb-2">Buy TICKETS</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section> 
+                <h2 class="border-bottom mb-2">Coming soon</h2>
+                <div id="carouselMoviesUpcoming" class="carousel slide">
+
+                    <div id="moviesUpComing" class="carousel-inner mb-2"></div>
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button id="leftButtonMoviesUpComing" class="mx-3 d-flex align-items-center d-flex align-items-center bi bi-chevron-left fs-3">
+                        </button>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div id="controlCirclesMoviesUpComing" class="d-flex justify-content-center align-items-center" ></div>
+                        </div>
+                        <button id="rightButtonMoviesUpComing" class=" mx-3 d-flex align-items-center bi bi-chevron-right fs-3">
+                        </button>
+                    </div>
+                </div>
+                <div id="moviesUpComingSm" class="mx-2"></div>
+            </section>
+        </div>
+        <section class="bg-primary pb-3 pt-2 mb-5">
+            <div class="container-fluid container-movie-theater-imgs">
+                <h2 class="border-bottom mb-2 ">Discover Our Space</h2>
+                <div id="carouselMovieTheaterImgs" class="carousel">
+                    <div class="carousel-inner mb-2 d-flex" id="carouselInnerMovieTheaterImgs">
+
+                        <div type="button" data-bs-toggle="modal" data-bs-target="#modalMovieTheaterImgs" class="carousel-item carousel-item-movie-theater-imgs active">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs d-flex flex-column justify-content-between">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/entrance_rzvsbc.jpg" >
+                                <h4 class="mb-2 title-movie-theater-imgs">Entrance</h4>
+                            </div>
+                        </div>
+                        <div type="button" data-bs-toggle="modal" data-bs-target="#modalMovieTheaterImgs" class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs d-flex flex-column justify-content-between">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/popcorn-store_mgyswp.jpg" >
+                                <h4 class="mb-2 title-movie-theater-imgs">Popcorn Store</h4>
+                            </div>
+                        </div>
+                        <div type="button" data-bs-toggle="modal" data-bs-target="#modalMovieTheaterImgs" class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs d-flex flex-column justify-content-between">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/rooms-entrance_lo97fq.jpg" >
+                                <h4 class="mb-2 title-movie-theater-imgs">Rooms Entrance</h4>
+                            </div>
+                        </div>
+                        <div type="button" data-bs-toggle="modal" data-bs-target="#modalMovieTheaterImgs" class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs d-flex flex-column justify-content-between">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/room_1_ixcbzp.jpg" >
+                                <h4 class="mb-2 title-movie-theater-imgs">Room 1</h4>
+                            </div>
+                        </div>
+                        <div type="button" data-bs-toggle="modal" data-bs-target="#modalMovieTheaterImgs" class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs d-flex flex-column justify-content-between">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/room_2_y7czzy.jpg" >
+                                <h4 class="mb-2 title-movie-theater-imgs">Room 2</h4>
+                            </div>
+                        </div>
+                        <div type="button" data-bs-toggle="modal" data-bs-target="#modalMovieTheaterImgs" class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs d-flex flex-column justify-content-between">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153732/baner_i6zrpo.jpg" >
+                                <h4 class="mb-2 title-movie-theater-imgs">Room 3</h4>
+                            </div>
+                        </div>
+                        <div type="button" data-bs-toggle="modal" data-bs-target="#modalMovieTheaterImgs" class="carousel-item carousel-item-movie-theater-imgs">
+                            <div class="card bg-secondary rounded rounded-3 card-movie-theater-imgs d-flex flex-column justify-content-between">
+                                <img class="img-fluid imgs-movie-theater" src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1721180909/estacionamento.jpg" >
+                                <h4 class="mb-2 title-movie-theater-imgs">Parking</h4>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button id="leftButtonMovieTheaterImgs" class="left-Button-carousel mx-3 d-flex align-items-center bi bi-chevron-left fs-3"></button>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div id="controlCirclesMovieTheaterImgs" class="d-flex justify-content-center align-items-center" ></div>
+                        </div>
+                        <button id="rightButtonMovieTheaterImgs" class="right-Button-carousel mx-3 d-flex align-items-center bi bi-chevron-right fs-3"></button>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        <div class="container-fluid container-movies mb-5 rounded-5">
+            <section class="d-flex justify-content-around flex-wrap">
+                <h2 class="mb-4" style="width: 100%;">Information</h2>
+                <ul class="mb-4 container-information text-start">
+                    <h4 class="border-bottom text-center mb-2">HALF TICKETS</h4>
+                    <li class="mx-3 mx-sm-4">People under 18 or over 60, people with disabilities or serious illnesses, blood donors, employees and students with proof are entitled to pay only half the price.</li>
+                </ul>
+                <ul class="mb-4 container-information text-start">
+                    <h4 class="border-bottom text-center mb-2">OPERATION</h4>
+                    <li class="mx-3 mx-sm-4 mb-2">We are open from TUESDAY to SUNDAY</li>
+                    <li class="mx-3 mx-sm-4 mb-2">TUESDAY to THURSDAY from 3:00 pm until 10:00 pm</li>
+                    <li class="mx-3 mx-sm-4 mb-2">FRIDAY, SATURDAY and SUNDAY from 1:00 pm until 11:00 pm</li>
+                </ul>
+                <ul class="mb-4 container-information text-start">
+                    <h4 class="border-bottom text-center mb-2">ADDRESS</h4>
+                    <li class="mx-3 mx-sm-4 mb-2">Street: Santos Oliveira </li>
+                    <li class="mx-3 mx-sm-4 mb-2">Neighborhood: Palmeiras</li>
+                    <li class="mx-3 mx-sm-4 mb-2">Number: 1234</li>
+                </ul>
+                <ul class="mb-4 container-information text-start">
+                    <h4 class="border-bottom text-center mb-2">CONTACT</h4>
+                    <li class="mx-4 mb-2">contact@cinedv.com</li>
+                    <li class="mx-4 mb-2">Phone: 9923198</li>
+                </ul>
+            </section> 
+            <section type="button" data-bs-toggle="modal" data-bs-target="#modalAboutSite" class="d-flex justify-content-center align-items-center pb-4 text-decoration-underline"> <!--Mais sobre esse site-->
+                <img src="https://res.cloudinary.com/dp5iuxy1u/image/upload/v1719153731/logo-2_wttptj.png" class="logo-about me-2">
+                <p>ABOUT THIS SITE</p>
+            </section> 
+        </div>
+    </main>
+    <footer class="overflow-x-hidden bg-primary border-top">
+        <div class="container-fluid container-movies d-flex justify-content-between px-2 px-md-5">
+            <a href="https://www.themoviedb.org/?language=en-US" class="my-4 d-flex justify-content-center align-items-center">
+                <img src="assets/img/tmdb-logo.svg" alt="tmdb-logo" class="tmdb-logo">
+            </a>
+            <a href="https://github.com/vinifen" target="_blank" class="text-white d-flex justify-content-center align-items-center">
+                <cite>By vinifen</cite>
+                <i class="bi bi-github fs-2 ms-2"></i>
+            </a>
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <div class="d-flex flex-column justify-content-center align-items-start">
+                    <p class="follow-us fw-bolder">Follow us</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://www.youtube.com/?app=desktop&hl=en" target="_blank">
+                            <i class="bi bi-youtube fs-5 me-2"></i>
+                        </a>
+                        <a href="https://www.facebook.com/?locale=en_US" target="_blank">
+                            <i class="bi bi-facebook fs-5 me-2"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank">
+                            <i class="bi bi-instagram fs-5 me-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <small>Copyright © <span id="dateCopyright"></span> Ninguem</small>
+        </div>   
+    </footer>
+
+    <!--Login and register modal-->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog mx-3 mx-sm-auto mt-5">
+            <div class="modal-content rounded-5">
+                <div class="modal-header mx-sm-5 d-flex justify-content-center flex-wrap">
+                    <button type="button" class="btn-close btn-close-white w-100 pt-0 pb-4" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h3 class="modal-title w-100 text-center pt-2" id="loginModalLabel">Authentication</h3>
+                </div>
+                <div class="modal-body mx-sm-4">
+                    <ul class="nav nav-tabs d-flex justify-content-center text-white" id="authTab" role="tablist">
+                        <li class="nav-item w-50 text-center text-white" role="presentation">
+                            <h4 type="button" class="nav-link active py-2" id="login-tab" data-bs-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</h4>
+                        </li>
+                        <li class="nav-item w-50 text-center" role="presentation">
+                            <h4 type="button" class="nav-link py-2" id="register-tab" data-bs-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</h4>
+                        </li>
+                    </ul>
+               
+                    <div class="tab-content mb-3" id="authTabContent">
+                        <div class="tab-pane fade show active text-center" id="login" role="tabpanel" aria-labelledby="login-tab">
+                            <form class="mt-3" id="loginForm">
+                                <div class="mb-3">
+                                    <label for="loginEmail" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="loginEmail">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="loginPassword">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="loginRemeberMe" class="form-remember-me">
+                                        <input type="checkbox" id="loginRemeberMe"><span class="mx-2">Remember-me</span>
+                                    </label>
+                                    
+                                </div>
+                                <div class="mb-1" id="loginFeedback"></div>
+                                <button type="button" id="loginSubmitButton" class="btn btn-dark py-3 px-5 rounded-5">Enter In Your Accont</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade text-center" id="register" role="tabpanel" aria-labelledby="register-tab">
+                            <form class="mt-3" id="registerForm">
+                                <div class="mb-2 mb-sm-3">
+                                    <label for="registerName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="registerName" minlength="2" maxlength="20" required autofocus pattern="^(?!  )[a-zA-ZÀ-ÿ\s]{2,}$">
+                                    <span></span>
+                                </div>
+                                <div class="mb-2 mb-sm-3">
+                                    <label for="registerLastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="registerLastName" minlength="2" maxlength="80" required autofocus pattern="^(?!  )[a-zA-ZÀ-ÿ\s]{2,}$">
+                                    <span></span>
+                                </div>
+                                <div class="mb-2 mb-sm-3">
+                                    <label for="registerAge" class="form-label">Age</label>
+                                    <input type="text" class="form-control" id="registerAge" minlength="10" maxlength="10" required pattern="^[0-9\/]*$" data-mask="00/00/0000">
+                                    <span></span>
+                                </div>
+                                <div class="mb-2 mb-sm-3">
+                                    <label for="registerEmail" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="registerEmail" required>
+                                    <span></span>
+                                </div>
+                                <div class="mb-2 mb-sm-3">
+                                    <label for="registerPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="registerPassword" minlength="4" maxlength="80" required>
+                                    <span></span>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" id="registerConfirmPassword" minlength="4" maxlength="80" required>
+                                    <span></span>
+                                </div>
+                                <div class="mb-1" id="registerFeedback"></div>
+                                <button type="button" class="btn btn-dark py-3 px-5 rounded-5" id="registerSubmitButton">Register Account</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal movies current-->
+    <div class="modal fade" id="modalMoviesCurrent" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog d-flex justify-content-center modal-width">
+            <div class="modal-content mt-3 d-flex justify-content-center rounded-5 modal-width">
+                <div class="modal-header d-flex justify-content-center border-none modal-width">
+                    <button type="button" class="btn-close btn-close-white pt-0 pb-4 w-100" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-0 px-2 px-sm-4 modal-width">
+                    <section class="d-flex justify-content-center mb-3 mb-md-2">
+                        <div class="d-none d-sm-block w-25" id="modalImgMoviesCurrent"></div>
+                        <div class="mx-sm-3 w-100 w-sm-75">
+                            <div class="d-flex d-sm-none justify-content-start w-100 d-flex justify-content-center">
+                                <div class="d-flex justify-content-start">
+                                    <div class="w-25" id="modalImgMoviesCurrentSm" style="min-width: 75px;"></div>
+                                    <div class="d-flex justify-content-center align-items-center ms-3">
+                                        <h3 id="modalTitleMoviesCurrent"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="d-none d-sm-flex" id="modalTitleMoviesCurrentSm"></h3>
+                            <div id="modalDescriptionMoviesCurrent" class="my-2"></div>
+                            <div class="d-flex justify-content-between">
+                                <div class="fw-bolder" id="modalRuntimeMoviesCurrent"></div>
+                                <div class="fw-bolder" id="modalReleaseMoviesCurrent"></div>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h3 class="text-center fw-bolder mb-3 mb-md-2" id="modalDayMoviesCurrent" style="width: 100%;"></h3>
+                        <div>
+                            <div class="bg-secondary d-flex justify-content-around align-items-center py-3 my-2 py-sm-3 my-sd-3 rounded-4">
+                                <h4 class="text-center modal-title-room bg-secondary  my-1">Room 1:</h4>
+                                <div id="modalRoom1" class="modal-room-movies-current d-flex align-items-center bg-secondary flex-wrap"></div>
+                            </div>
+                            <div class="bg-secondary d-flex justify-content-around align-items-center py-3 my-2 py-sm-3 my-sm-3 rounded-4">
+                                <h4 class="text-center modal-title-room bg-secondary  my-1">Room 2:</h4>
+                                <div id="modalRoom2" class="modal-room-movies-current d-flex align-items-center bg-secondary flex-wrap"></div>
+                            </div>
+                            <div class="bg-secondary d-flex justify-content-around align-items-center py-3 my-2 py-sm-3 my-sm-3 rounded-4">
+                                <h4 class="text-center modal-title-room bg-secondary  my-1">Room 3:</h4>
+                                <div id="modalRoom3" class="modal-room-movies-current d-flex align-items-center bg-secondary flex-wrap"></div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="text-center my-3 my-md-4">
+                        <button class="btn btn-dark py-3 rounded-5 border button-modal-current-movies">BUY TICKETS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal movies upcoming-->
+    <div class="modal fade" id="modalMoviesUpComing" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <section class="modal-content rounded-5 ">
+                <div class="modal-header d-flex justify-content-center flex-wrap">
+                    <button type="button" class="btn-close btn-close-white w-100 py-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <section class="modal-body d-flex justify-content-around pt-1">
+                    <div class="d-none d-sm-block w-30" id="modalImgMoviesUpComing"></div>
+                    <div class="mx-sm-3 w-100 w-sm-70">
+                        <div class="d-flex d-sm-none justify-content-start w-100 d-flex justify-content-center">
+                            <div class="d-flex justify-content-start">
+                                <div class="w-25" id="modalImgMoviesUpComingSm" style="min-width: 75px;"></div>
+                                <div class="d-flex justify-content-center align-items-center ms-3">
+                                    <h3 id="modalTitleMoviesUpComing"></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="d-none d-sm-flex" id="modalTitleMoviesUpComingSm"></h3>
+                        <div id="modalDescriptionMoviesUpComing" class="my-2"></div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <!--Modal movie theater images-->
+    <div class="modal fade" id="modalMovieTheaterImgs" tabindex="-1" aria-hidden="true">
+        <section class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content d-flex justify-content-center rounded-5">
+                <div class="modal-header d-flex justify-content-center border-none flex-wrap">
+                    <button type="button" class="btn-close btn-close-white w-100" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mb-3 pt-1">
+                    <h3 id="modalTitleMovieTheaterImgs" class="modal-title d-flex justify-content-center mb-3"></h3>
+                    <div id="modalImgMovieTheaterImgs" class="d-flex justify-content-center"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal fade" id="modalAboutSite" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-5">
+                <div class="modal-header d-flex justify-content-center border-none flex-wrap">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="width: 100%;"></button>
+                    <h3 id="modalTitleMovieTheaterImgs" class="modal-title d-flex justify-content-center" style="width: 100%;"></h3>
+                </div>
+                <section class="modal-body">
+                    <h3 class="text-center mb-3">ABOUT THIS SITE</h3>
+                    <h4 class="text-center mb-2">Welcome to our website!</h4>
+                    <p class="mb-2">This project was created by Vinicius and completed on 07/25/2024. Initially developed as a project for the Federal Technological University of Paraná (UTFPR), the website is inspired by the design and functionality of a local movie theater.</p>
+                    <p class="mb-2">This was my first major project and an enriching experience. I learned a lot throughout the process and used several technologies, such as JavaScript, Bootstrap, and an API for requesting movies.</p>
+                    <p class="mb-2">It is important to note that the information presented on the website does not represent reality; it was used only for academic purposes. The development of this website required a lot of work and dedication, and I am very pleased with the results obtained.</p>
+                    <p class="mb-2">In addition, I made an effort to make the website as configurable as possible. The times and the number of movies available each day are changed, in addition to the times being dynamic, adjusting automatically based on the current time and day.</p>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/script/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="assets/script/jquery.mask.min.js"></script>
+    <script src="assets/index-assets/index.js" type="module" defer></script>
+</body>
+</html>
+
