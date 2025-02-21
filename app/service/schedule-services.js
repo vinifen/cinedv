@@ -34,9 +34,7 @@ export class Schedule{
 
     async getOrderedTimes(schedule) {
         let orderedTimes = schedule.map(sublist => {
-            // Combinar todos os horários em uma única lista
             const allTimes = sublist.flat();
-            // Converter para minutos, ordenar e reconverter para "HH:MM"
             return allTimes.map(this.toMinutes).sort((a, b) => a - b).map(this.toTimeString);
         });
         return orderedTimes;

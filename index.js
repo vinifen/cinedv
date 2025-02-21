@@ -1,7 +1,7 @@
-import { moviesApiSelected, upComingMovies } from "../../app/service/movies-api.js";
-import { MovieContent } from "../../app/service/movies-content.js";
-import { Schedule } from "../../app/service/schedule-services.js";
-import { UserRegister } from "../../app/service/user-register.js";
+import { moviesApiSelected, upComingMovies } from "./app/service/movies-api.js";
+import { MovieContent } from "./app/service/movies-content.js";
+import { Schedule } from "./app/service/schedule-services.js";
+import { UserRegister } from "./app/model/user-register.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const div = document.getElementById('moviesCurrent');
