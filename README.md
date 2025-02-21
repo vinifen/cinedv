@@ -19,8 +19,8 @@ The frontend of the application was developed with HTML, CSS, and JavaScript, an
 To run it, simply download the file and run it with Live Server.
 
 -------------------------------------------------------------------------------------------------------------------------
-## Nav
-- [English] (README-english.md)
+
+[English](README-english.md)
 ## Figma
 
 https://www.figma.com/file/qhUzppZbI5zM8GxSARVhO8/Untitled?type=design&node-id=47%3A2&mode=design&t=ITMEoDuHMi1gRcTn-1
