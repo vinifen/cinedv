@@ -13,4 +13,4 @@ To get started, simply download the project files and open index.html using the 
 
 ## Figma
 
-[CineDV Figma] (https://www.figma.com/file/qhUzppZbI5zM8GxSARVhO8/Untitled?type=design&node-id=47%3A2&mode=design&t=ITMEoDuHMi1gRcTn-1)
+[CineDV Figma](https://www.figma.com/file/qhUzppZbI5zM8GxSARVhO8/Untitled?type=design&node-id=47%3A2&mode=design&t=ITMEoDuHMi1gRcTn-1)
