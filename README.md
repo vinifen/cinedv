@@ -20,7 +20,6 @@ To run it, simply download the file and run it with Live Server.
 
 -------------------------------------------------------------------------------------------------------------------------
 
-[English](README-english.md)
 ## Figma
+<a href="https://www.figma.com/file/qhUzppZbI5zM8GxSARVhO8/Untitled?type=design&node-id=47%3A2&mode=design&t=ITMEoDuHMi1gRcTn-1" target="_blank">Clique aqui para abrir em nova aba</a>
 
-https://www.figma.com/file/qhUzppZbI5zM8GxSARVhO8/Untitled?type=design&node-id=47%3A2&mode=design&t=ITMEoDuHMi1gRcTn-1
