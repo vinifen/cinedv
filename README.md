@@ -21,4 +21,4 @@ To get started, simply download the project files and open index.html using the 
 
 ## Prototyping
 
-[CineDV Figma](https://www.figma.com/file/qhUzppZbI5zM8GxSARVhO8/Untitled?type=design&node-id=47%3A2&mode=design&t=ITMEoDuHMi1gRcTn-1)
+[CineDV Figma](https://www.figma.com/design/qhUzppZbI5zM8GxSARVhO8/Untitled?node-id=52-624&t=XE1gWJdBUJl2stH0-0)

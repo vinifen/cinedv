@@ -4,30 +4,6 @@ import { Schedule } from "./app/service/schedule-services.js";
 import { UserRegister } from "./app/model/user-register.js";
 
 document.addEventListener('DOMContentLoaded', () => {
-    const div = document.getElementById('moviesCurrent');
-    let cardHTML = ``;
-    for (let i = 0; i < 4; i++){
-        cardHTML = cardHTML +
-        `<div class="card col-12 col-md-3">
-        <div>
-            <h3></h3>
-            <p class="timeline"></p>
-        </div>
-        <div>  
-        </div>
-        <div>
-            <div class="container">
-                <div class="movie-schedule">
-                    <div class="row">
-                        
-                    </div>
-                    <a href="" class="text-center">view more</a>
-                </div>
-            </div>
-        </div> 
-        </div>`;
-    }
-    div.innerHTML = cardHTML;
     let localStorageUserContent = JSON.parse(localStorage.getItem('user')) || {};
     const offLogin = document.getElementById('loggedOut');
     const onLogin = document.getElementById('logged');
