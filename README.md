@@ -1,7 +1,7 @@
 # CineDV
 #### v-1.1
 
-https://vinifen.github.io/cinedv/
+[Visit CineDv](https://vinifen.github.io/cinedv/)
 
 ## Description:
 
